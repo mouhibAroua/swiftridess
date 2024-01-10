@@ -1,0 +1,30 @@
+.imgg {
+    width: 100%;
+    height: 100vh;
+    background: url('https://cdn.discordapp.com/attachments/1113064451806076990/1194333192497397900/bg-light_1.gif?ex=65aff876&is=659d8376&hm=7596ac9ca83b99ac27c36b66c8f6afca0f5b9eb5bc03d43e7fb9a2e60ddde5a6&');
+    background-position: center;
+    background-size: cover;
+}
+
+.text-container {
+    width: 90%;
+    margin: auto;
+    
+}
+
+.text-container h1 {
+    margin-bottom: 9px;
+}
+.text-container button {
+    padding: 10px 30px;
+    background-color: #334155;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 30px;
+    border: 2px solid #334155;
+    transition: 0.3s;
+}
+
+.text-container button:hover {
+    background-color: transparent;
+}
