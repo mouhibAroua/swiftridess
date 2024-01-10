@@ -1,7 +1,8 @@
+import Head from "./navBar/page"
 const Home = () => {
     return ( 
         <div>
-            hello
+            <Head/>
         </div>
      );
 }
