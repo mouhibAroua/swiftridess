@@ -4,41 +4,51 @@ const {DataTypes } = require('sequelize');
 const Company = sequelize.define('company', {
   idcompany: {
     type: DataTypes.INTEGER,
+    autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
   companyName: {
     type: DataTypes.STRING(45),
-    allowNull: true,
+    allowNull: false,
   },
   ownerName: {
     type: DataTypes.STRING(45),
-    allowNull: true,
+    allowNull: false,
   },
   phoneNumber: {
     type: DataTypes.STRING(45),
-    allowNull: true,
+    allowNull: false,
   },
   location: {
     type: DataTypes.STRING(45),
-    allowNull: true,
+    allowNull: false,
   },
   verification: {
-    type: DataTypes.STRING(45),
-    allowNull: true,
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
   },
   longtitude: {
     type: DataTypes.STRING(45),
-    allowNull: true,
+    allowNull: false,
   },
   laltitude: {
     type: DataTypes.STRING(45),
-    allowNull: true,
+    allowNull: false,
+  },
+  emailCompany:{
+    type:DataTypes.STRING(255),
+    allowNull:false,
+  },
+  passwordCompany:{
+    type:DataTypes.STRING(255),
+    allowNull:false,
   },
   total_idpaiement: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
   },
+
 }, {
   tableName: 'company',
   indexes: [
