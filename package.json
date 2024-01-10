@@ -21,6 +21,7 @@
     "@radix-ui/react-select": "^2.0.0",
     "axios": "^1.6.5",
     "chart.js": "^4.4.1",
+    "cloudinary": "^1.41.2",
     "cookie": "^0.6.0",
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.10",

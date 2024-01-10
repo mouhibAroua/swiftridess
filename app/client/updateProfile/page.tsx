@@ -1,6 +1,6 @@
 "use client"
 import axios from "axios";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 interface Client {
     id:Number;
@@ -18,7 +18,8 @@ const UpdateProfile=()=>{
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [newPassword, setNewPassword] = useState<string>("")
-    const [show, setShow] = useState<Boolean>(false)
+    const [previewImage, setPreviewImage] = useState<string>("");
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const addPicture = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -33,12 +34,19 @@ const UpdateProfile=()=>{
             .then((res) => {
               console.log('secure', res.data.secure_url);
               setImgUrl(res.data.secure_url);
+              setPreviewImage(res.data.secure_url);
               console.log('url', imgUrl);
             })
             .catch((err) => {
               console.log(formData);
               console.log(err);
             });
+        }
+      };
+
+      const handleButtonClick = () => {
+        if (fileInputRef.current) {
+          fileInputRef.current.click();
         }
       };
 
@@ -64,25 +72,21 @@ return(
             <div className="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
                 <div className="grid max-w-2xl mx-auto mt-8">
                     <div className="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
-
-                        <img className="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
-                            src=""
+                        <img className="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500 hover:te"
+                            src={previewImage || 'default-image-url'}
                             alt=""/>
-
                         <div className="flex flex-col space-y-5 sm:ml-8">
-                            <button type="button"
+                            <button type="button" 
                                 className="text-white py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200 "
-                                onClick={()=>{setShow(!show)}}>
+                                onClick={handleButtonClick}>
                                 Change picture
                             </button>
-                            {show &&
-                            <div>
-                            <input type="file" onChange={(e) => addPicture(e)} />
-                          </div>}
-                            <button type="button"
-                                className="py-3.5 px-7 text-base font-medium text-indigo-900 focus:outline-none bg-white rounded-lg border border-indigo-200 hover:bg-indigo-100 hover:text-[#202142] focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
-                                Delete picture
-                            </button>
+                            <input 
+                             ref={fileInputRef}
+                             type="file" 
+                             className="hidden"
+                             onChange={(e) =>{ addPicture(e) }} 
+                             />                        
                         </div>
                     </div>
 
