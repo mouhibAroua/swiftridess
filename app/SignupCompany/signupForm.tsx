@@ -143,7 +143,7 @@ console.log(phoneNumber)
             </div>
           )}
 
-          <Link className="text-sm mt-3 text-center" href="/Login">
+          <Link className="text-sm mt-3 text-center" href="/LoginCompany">
             Already have an account? <span className="underline font-bold font-red-500">Login</span>
           </Link>
         </form>

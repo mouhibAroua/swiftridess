@@ -1,7 +1,7 @@
 {
   "name": "swift-rides",
   "version": "0.1.0",
-  "private": true,
+  "p": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
