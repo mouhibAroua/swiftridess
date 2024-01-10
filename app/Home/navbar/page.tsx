@@ -1,120 +1,133 @@
-'use client'
-import Link from 'next/link';
-import { useState } from 'react';
+"use client"
+import React, { useState, useRef, useEffect } from "react";
+import "./nav.css"
+interface MenuItem {
+    title: string;
+    path: string;
+}
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface ProfileDropDownProps {
+    class: string;
+}
 
-  return (
-    <nav className="bg-gray-800">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div className="relative flex items-center justify-between h-16">
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            <button
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <span className="sr-only">Open main menu</span>
-              {!isOpen ? (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
+const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
+    const [state, setState] = useState(false);
+    const profileRef = useRef<HTMLButtonElement>(null);
+
+    const navigation: MenuItem[] = [
+        { title: "Settings", path: "/" },
+        { title: "Log out", path: "/" },
+    ];
+
+    useEffect(() => {
+        const handleDropDown = (e: MouseEvent) => {
+            if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
+                setState(false);
+            }
+        };
+        document.addEventListener('click', handleDropDown);
+        return () => {
+            document.removeEventListener('click', handleDropDown);
+        };
+    }, []);
+
+    return (
+        <div className={`relative ${props.class}`}>
+            <div className="flex items-center space-x-4">
+                <button ref={profileRef} className="w-10 h-10 outline-none rounded-full ring-offset-2 ring-gray-200 ring-2 lg:focus:ring-indigo-600"
+                    onClick={() => setState(!state)}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              )}
-            </button>
-          </div>
-          <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex-shrink-0 flex items-center">
-              <img
-                className="block lg:hidden h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                alt="Workflow"
-              />
-              <img
-                className="hidden lg:block h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                alt="Workflow"
-              />
+                    <img
+                        src="https://randomuser.me/api/portraits/men/46.jpg"
+                        className="w-full h-full rounded-full"
+                        alt="Profile"
+                    />
+                </button>
+                <div className="lg:hidden">
+                    <span className="block">Micheal John</span>
+                    <span className="block text-sm text-gray-500">john@gmail.com</span>
+                </div>
             </div>
-            <div className="hidden sm:block sm:ml-6">
-              <div className="flex space-x-4">
-                <Link href="/">
-                  <a className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
-                    Home
-                  </a>
-                </Link>
-                <Link href="/about">
-                  <a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                    About
-                  </a>
-                </Link>
-                <Link href="/contact">
-                  <a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                    Contact
-                  </a>
-                </Link>
-              </div>
-            </div>
-          </div>
+            <ul className={`bg-white top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
+                {
+                    navigation.map((item, idx) => (
+                        <li key={idx}>
+                            <a className="block text-black-600 lg:hover:bg-gray-50 lg:p-2.5" href={item.path}>
+                                {item.title}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
         </div>
-      </div>
-
-      <div
-        className={`${
-          isOpen ? 'block' : 'hidden'
-        } sm:hidden`}
-        id="mobile-menu"
-      >
-        <div className="px-2 pt-2 pb-3 space-y-1">
-          <Link href="/">
-            <a className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
-              Home
-            </a>
-          </Link>
-          <Link href="/about">
-            <a className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-              About
-            </a>
-          </Link>
-          <Link href="/contact">
-            <a className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-              Contact
-            </a>
-          </Link>
-        </div>
-      </div>
-    </nav>
-  );
+    );
 };
 
-export default Navbar;
+const Navigation: React.FC = () => {
+    const [menuState, setMenuState] = useState(false);
+
+    const navigation: MenuItem[] = [
+        { title: "Home", path: "/" },
+        { title: "About", path: "/" },
+        { title: "Contact", path: "/" },
+        { title: "Sign", path: "/" },
+    ];
+
+  return (
+        <nav className="bg-white border-b">
+            <div className="flex items-center space-x-8 py-3 px-4 max-w-screen-xl mx-auto md:px-8">
+                <div className="flex-none lg:flex-initial">
+                    <a href="/">
+                        <img
+                            src="https://media.discordapp.net/attachments/1157269732219691038/1194220754376589352/cars-removebg-preview.png?ex=65af8fbf&is=659d1abf&hm=94eae9de317c04c8f6efeb2ce656743162493db62d430b29f3b8c0aa69da9b28&=&format=webp&quality=lossless&width=706&height=552" 
+                            width={120} 
+                            height={50}
+                            alt="Float UI logo"
+                        />
+                    </a>
+                </div>
+                <div className="flex-1 flex items-center justify-between">
+                    <div className={`bg-white absolute z-20 w-full top-16 left-0 p-4 border-b lg:static lg:block lg:border-none ${menuState ? '' : 'hidden'}`}>
+                        <ul className="mt-12 space-y-5 lg:flex lg:space-x-6 lg:space-y-0 lg:mt-0">
+                            {
+                                navigation.map((item, idx) => (
+                                    <li key={idx} className="text-gray-600 hover:text-gray-900">
+                                        <a href={item.path}>
+                                            {item.title}
+                                        </a>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                        <ProfileDropDown 
+                            class="mt-5 pt-5 border-t lg:hidden"
+                        />
+                    </div>
+                    <div className="flex-1 flex items-center justify-end space-x-2 sm:space-x-6">
+                        <ProfileDropDown 
+                            class="hidden lg:block"
+                        />
+                        <button 
+                            className="outline-none text-gray-400 block lg:hidden"
+                            onClick={() => setMenuState(!menuState)}
+                        >
+                            {
+                                menuState ? (
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                ) : (
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                                    </svg>
+                                )
+                            }
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    )
+}
+
+export default Navigation;
