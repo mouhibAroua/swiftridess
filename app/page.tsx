@@ -1,4 +1,4 @@
-  import Navigation from "../app/client/navBar/page"
+  import Navigation from "../app/client/navbar/page"
   import Footer from "../app/client/footer/page"
   import Testimonials from "../app/client/ClientFeedBack/page"
   import VehicleDetails from "../app/client/Vehicle/page"
