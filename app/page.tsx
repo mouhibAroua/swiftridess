@@ -1,7 +1,7 @@
-  import Navigation from "../app/client/navbar/page"
-  import Footer from "../app/client/footer/page"
-  import Testimonials from "../app/client/ClientFeedBack/page"
-  import VehicleDetails from "../app/client/Vehicle/page"
+  // import Navigation from "../app/client/navbar/page"
+  // import Footer from "../app/client/footer/page"
+  // import Testimonials from "../app/client/ClientFeedBack/page"
+  // import VehicleDetails from "../app/client/Vehicle/page"
   import Link from 'next/link';
   
   import './landingPage/landing.css';
@@ -12,7 +12,6 @@
       'https://carvo.ch/assets/images/models/md-221/original/cupra-formentor-20-tsi-4drive-fs12KUNuaf.png',
       'https://www.cupraofficial.com/content/dam/public/cupra-website/cupra-global-navigation/models/cupra-range/x-large/cupra-formentor-model-conversion.png', // Add another image URL here
       'https://carsguide-res.cloudinary.com/image/upload/f_auto,fl_lossy,q_auto,t_cg_hero_low/v1/editorial/vhs/2021-Cupra-Formentor-index.png', // Add another image URL here
-      // Add as many image URLs as needed
     ],
     make: 'Cupra',
     model: 'Formentor',
