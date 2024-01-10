@@ -69,7 +69,7 @@ export default function Home() {
             Log In
           </button>
 
-          <Link className="text-sm mt-3 text-center" href="/Signup">
+          <Link className="text-sm mt-3 text-center" href="/SignupCompany">
             You Don't Have an Account? <span className="underline font-bold font-red-500 hover:">Register Now</span>
           </Link>
         </form>

@@ -35,7 +35,7 @@ const LandingPage = () => {
       <h1 className="text-white text-2xl font-bold mb-9">Your Journey,</h1>
       <h1 className="text-white text-4xl font-bold">SWIFTLY</h1>
       <h1 className="text-gray-300 text-5xl font-extrabold">DELIVERED</h1>
-      <Link href={'/'}><button className='text-white border rounded bg-red-800 mt-5 mr-[30px]'>Rent Now</button></Link>
+      <Link href={'/Home'}><button className='text-white border rounded bg-red-800 mt-5 mr-[30px]'>Rent Now</button></Link>
       <Link href={'/LoginCompany'}><button className='text-white border rounded bg-red-800 mt-5'>company</button></Link>
     </div>
   </div>
