@@ -30,7 +30,7 @@ const UpdateProfile=()=>{
           formData.append('upload_preset', 'pa4ezjqw');
     
           axios
-            .post('https://res.cloudinary.com/dfsyqvvim/image/upload', formData)
+            .post("http://api.cloudinary.com/v1_1/dfsyqvvim/image/upload", formData)
             .then((res) => {
               console.log('secure', res.data.secure_url);
               setImgUrl(res.data.secure_url);
@@ -73,7 +73,7 @@ return(
                 <div className="grid max-w-2xl mx-auto mt-8">
                     <div className="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
                         <img className="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500 hover:te"
-                            src={previewImage || 'default-image-url'}
+                            src={previewImage}
                             alt=""/>
                         <div className="flex flex-col space-y-5 sm:ml-8">
                             <button type="button" 
