@@ -1,7 +1,6 @@
 import connectseq from "../../../server/database-sequalize/index";
 import Company from "../../../server/models/company";
 import { NextResponse } from "next/server";
-
 import bcrypt from "bcryptjs";
 
 export async function POST(req : any) {
