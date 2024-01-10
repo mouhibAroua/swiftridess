@@ -1,7 +1,10 @@
+import Head from "./navbar/page"
+import Add from "./Add/page";
 const Home = () => {
     return ( 
         <div>
-            hello
+            <Head/>
+            <Add/>
         </div>
      );
 }
