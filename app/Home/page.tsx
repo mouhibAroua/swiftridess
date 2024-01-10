@@ -1,15 +1,8 @@
-import Navbar from "./navbar/page";
-
+import Head from "./navBar/page"
 const Home = () => {
     return ( 
         <div>
-           <Navbar/> 
-
-
-
-
-
-           
+            <Head/>
         </div>
      );
 }
