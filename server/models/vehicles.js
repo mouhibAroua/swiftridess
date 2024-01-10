@@ -39,7 +39,7 @@ const Cars = sequelize.define('cars', {
     allowNull: true,
   },
   image: {
-    type: DataTypes.STRING(45),
+    type: DataTypes.JSON,
     allowNull: true,
   },
   mileage: {

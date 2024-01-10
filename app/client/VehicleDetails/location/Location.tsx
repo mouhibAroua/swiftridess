@@ -13,7 +13,7 @@ export default function BasicSelect() {
   };
 
   return (
-    <Box sx={{ minWidth: 250, position: 'absolute', top: 900, left: 100 }}>
+    <Box sx={{ minWidth: 250, position: 'absolute', top: 1100, left: 100 }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Location</InputLabel>
         <Select
