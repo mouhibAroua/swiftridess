@@ -1,8 +1,23 @@
 const company = require('../models/company');
 const car=require('../models/vehicles');
-
+const jwt =require('jsonwebtoken')
+const generateToken = (idcompany, companyName) => {
+  const expiresIn = 60 * 60 * 48; //two days ;
+  return jwt.sign({ idcompany, companyName }, 'secretKey', { expiresIn: expiresIn });
+};
 
 module.exports = {
+    addCom:async(req,res)=>{
+        try {
+            
+            let ad=await company.create(req.body)
+            const token = generateToken(ad.idcompany,ad.companyName);
+            ad.dataValues.token=token
+            res.json(ad)
+        } catch (error) {
+            res.status(500).json(error)
+        }
+    },
     getAllCom:async (req,res)=>{
         const comp=await company.findAll();
         res.json(comp)

@@ -7,6 +7,7 @@ const Chat = sequelize.define('chat', {
   idchat: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    autoIncrement: true,
     primaryKey: true,
   },
   content: {
