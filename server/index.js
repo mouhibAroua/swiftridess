@@ -7,7 +7,8 @@ const feedback = require('./models/feedback')
 const userHasCars = require('./models/user_carss')
 const userRoutes=require('./routes/usersRoute.js')
 const companyRoutes=require('./routes/companyRoute.js')
-
+const loginRoutes=require ('./routes/loginRoute.js')
+const signupRoutes=require('./routes/singupRoute.js')
 const PORT = 3000
 const app = express()
 const cors = require('cors')
@@ -17,10 +18,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/../client/dist'))
 
 
-
+app.use('/api',loginRoutes)
+app.use('/api',signupRoutes)
 app.use('/api',userRoutes)
 app.use('/api',companyRoutes)
-
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`)
