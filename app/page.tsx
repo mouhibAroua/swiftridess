@@ -2,7 +2,10 @@
   import Footer from "../app/client/footer/page"
   import Testimonials from "../app/client/ClientFeedBack/page"
   import VehicleDetails from "../app/client/Vehicle/page"
-
+  import Link from 'next/link';
+  
+  import './landingPage/landing.css';
+  
   const carDetails = {
     name: 'Cupra Formentor',
     images: [
@@ -22,18 +25,6 @@
     FuelType: "Essence"
   };
   
-  
-const Home: React.FC = () => {
-  return (
-    <div>
-        <Navigation/>
-        <VehicleDetails vehicle={carDetails} />
-
-    </div>
-    
-import Link from 'next/link';
-import './landingPage/landing.css';
-
 const LandingPage = () => {
 
   return (
