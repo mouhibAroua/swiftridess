@@ -24,7 +24,7 @@ export default function Home() {
       if(!logCompany.data.idcompany) {
         alert("Company not exist")
       }
-      else{ push("/Admin")}
+      else{  push("/company/Payment")}
       // redirect the user to home 
       // push("/Home");
       

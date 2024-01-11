@@ -44,6 +44,10 @@ const Company = sequelize.define('company', {
     type:DataTypes.STRING(255),
     allowNull:false,
   },
+  PaymentVerification:{
+    type:DataTypes.BOOLEAN,
+    allowNull:false,
+  },
   total_idpaiement: {
     type: DataTypes.INTEGER,
     allowNull: true,
