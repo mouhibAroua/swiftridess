@@ -23,7 +23,7 @@ const UpdateProfile=()=>{
 
       const modifyProfile = (company:Object) => {
               axios
-                .put("http://localhost:3000/api/company/${id}", company)
+                .put("http://localhost:3000/api/company/profile/${idcompany}", company)
                 .then((res) => {
           console.log(res.data,"res")
                   alert("You successfully updated your account");
