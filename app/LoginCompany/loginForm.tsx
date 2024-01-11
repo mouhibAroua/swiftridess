@@ -20,10 +20,13 @@ export default function Home() {
       alert(JSON.stringify(logCompany));
       localStorage.setItem('idcompany', logCompany.data.idcompany);
       console.log("data ", logCompany)
-      push("/Company")
+      if(!logCompany.data.idcompany) {
+        alert("not exist")
+      }
+      else{ push("/Admin")}
       // redirect the user to home 
       // push("/Home");
-
+      
     } catch (e) {
       const error = e as AxiosError;
 
