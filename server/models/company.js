@@ -17,7 +17,7 @@ const Company = sequelize.define('company', {
     allowNull: false,
   },
   phoneNumber: {
-    type: DataTypes.STRING(45),
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   location: {
@@ -42,6 +42,10 @@ const Company = sequelize.define('company', {
   },
   passwordCompany:{
     type:DataTypes.STRING(255),
+    allowNull:false,
+  },
+  PaymentVerification:{
+    type:DataTypes.BOOLEAN,
     allowNull:false,
   },
   total_idpaiement: {
