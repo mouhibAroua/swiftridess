@@ -14,10 +14,52 @@ import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { Box } from '@mui/system';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
+import TimeToLeaveOutlinedIcon from '@mui/icons-material/TimeToLeaveOutlined';
 
+const data = [
+    {
+      name: 'Monday',
+
+      sales: 2400,
+      amt: 2400,
+    },
+    {
+      name: 'Tuesday',
+     sales: 1398,
+      amt: 2210,
+    },
+    {
+      name: 'Thursday',
+      sales: 9800,
+      amt: 2290,
+    },
+    {
+      name: 'Wedsnesday',
+      sales: 3908,
+      amt: 2000,
+    },
+    {
+      name: 'Friday',
+      sales: 4800,
+      amt: 2181,
+    },
+    {
+      name: 'Saturday',
+      sales: 3800,
+      amt: 2500,
+    },
+    {
+      name: 'Sunday',
+      sales: 4300,
+      amt: 2100,
+    },
+  ];
 
 const dashboard: React.FC = () => {
-
+    const chartWidth = 1100;
+    const chartHeight = 450;
 
   return (
     <div className="flex h-screen">
@@ -111,9 +153,8 @@ const dashboard: React.FC = () => {
       <Typography variant="h1" fontWeight="bold" style={{ color: '#000080' }}>
         DASHBOARD
       </Typography>
-      <Typography variant="h2">
-        ye Hala ye Hala 
-        {/* Welcome to your Dashboard */}
+      <Typography variant="h5">
+         Welcome to your Dashboard 
       </Typography>
 
       <div className="flex-grow p-10">
@@ -128,7 +169,6 @@ const dashboard: React.FC = () => {
             <div className="flex items-center">
               <Typography variant="h3">123</Typography>
 
-              {/* < style={{ marginLeft: '8px' , color: '#FF9800' }} /> */}
             </div>
             <Typography variant="h6" gutterBottom>
               Item Sales
@@ -138,27 +178,51 @@ const dashboard: React.FC = () => {
           {/* New Orders */}
           <Box className="p-4 bg-white rounded-md shadow-md transition transform hover:scale-105">
           <PersonAddOutlinedIcon/>
+          <Typography variant="h4">45</Typography>
             <Typography variant="h6" gutterBottom>
               New Orders
             </Typography>
-            <Typography variant="h4">45</Typography>
+            
           </Box>
 
           {/* Total Users */}
           <Box className="p-4 bg-white rounded-md shadow-md transition transform hover:scale-105">
+          <PeopleOutlineOutlinedIcon />
+          <Typography variant="h4">567</Typography>
+          
             <Typography variant="h6" gutterBottom>
               Total Users
             </Typography>
-            <Typography variant="h4">567</Typography>
+            
           </Box>
 
           {/* Another Box */}
           <Box className="p-4 bg-white rounded-md shadow-md transition transform hover:scale-105">
+          <TimeToLeaveOutlinedIcon />
+          <Typography variant="h4">789</Typography>
+          
             <Typography variant="h6" gutterBottom>
               Total Vehicles
             </Typography>
-            <Typography variant="h4">789</Typography>
+            
           </Box>
+          <Typography variant="h6" fontWeight="bold" style={{ color: '#000080' }}>Weekly Recap</Typography>
+
+          <Box className={`p-4 bg-white rounded-md shadow-md`} style={{ width: chartWidth, height: chartHeight }}>
+          <LineChart
+            width={chartWidth}
+            height={chartHeight}
+            data={data}
+            margin={{ top: 5, right: 50, left: 10, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="sales" stroke="#8884d8" />
+          </LineChart>
+        </Box>
         </div>
       </div>
     </div>

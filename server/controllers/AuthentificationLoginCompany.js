@@ -9,7 +9,7 @@ function generateToken(company) {
 }
 
 const signUpCompany = async (req, res) => {
-    const { companyName,ownerName,phoneNumber,location,longtitude,laltitude, emailCompany, passwordCompany } = req.body;
+    const { companyName,ownerName,phoneNumber,location,longtitude,laltitude, emailCompany, passwordCompany,PaymentVerification } = req.body;
     try {
         const hashedpasswordCompany = await bcrypt.hash(passwordCompany, 10);
 
@@ -19,6 +19,7 @@ const signUpCompany = async (req, res) => {
             phoneNumber,
             location,
             verification,
+            PaymentVerification,
             longtitude,
             laltitude,
             emailCompany,
