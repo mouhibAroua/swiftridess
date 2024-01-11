@@ -1,31 +1,7 @@
-  // import Navigation from "../app/client/navbar/page"
-  // import Footer from "../app/client/footer/page"
-  // import Testimonials from "../app/client/ClientFeedBack/page"
-  // import VehicleDetails from "../app/client/Vehicle/page"
-  import Link from 'next/link';
-  
+  import Link from 'next/link';  
   import './landingPage/landing.css';
-  
-  const carDetails = {
-    name: 'Cupra Formentor',
-    images: [
-      'https://carvo.ch/assets/images/models/md-221/original/cupra-formentor-20-tsi-4drive-fs12KUNuaf.png',
-      'https://www.cupraofficial.com/content/dam/public/cupra-website/cupra-global-navigation/models/cupra-range/x-large/cupra-formentor-model-conversion.png', // Add another image URL here
-      'https://carsguide-res.cloudinary.com/image/upload/f_auto,fl_lossy,q_auto,t_cg_hero_low/v1/editorial/vhs/2021-Cupra-Formentor-index.png', // Add another image URL here
-    ],
-    make: 'Cupra',
-    model: 'Formentor',
-    BodyType: "SUV",
-    color: 'Black',
-    price: "100Dt/Day",
-    Registration: 2023,
-    Milage: '2023', 
-    Transmition: 'Automatique',
-    FuelType: "Essence"
-  };
-  
-const LandingPage = () => {
 
+const LandingPage = () => {
   return (
     <div className="imgg">
       <div className='w-[170px] mr-[60px] float-right'>
