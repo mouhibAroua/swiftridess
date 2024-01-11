@@ -18,6 +18,7 @@ import Review from './Review';
 import "./payment.css"
 import axios from "axios";
 
+
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
@@ -30,7 +31,13 @@ function Copyright() {
     </Typography>
   );
 }
+const idcompany = localStorage.getItem('idcompany');
 
+  const vereficationCompany=()=>{
+    axios.put(`http://localhost:3000/api/verification/${idcompany}`,{PaymentVerification:true}).then(res=>{
+      console.log("verificado");
+    }).catch((err)=>{console.error(err)})
+  }
 
 const steps = ['Adress Information', 'Payment details', 'Review your order'];
 
@@ -97,9 +104,10 @@ export default function Checkout() {
                 Your order number is #1. We have emailed your order
                 confirmation  Thank You For Joining Us !
               </Typography>
-              <Button className='buttons' variant="contained" disableElevation>
+              <Link  href="http://localhost:3001/company/DashBoard">
+              <Button onClick={()=>vereficationCompany()} className='buttons' variant="contained" disableElevation >
         DASHBOARD</Button>
-
+        </Link>
             </React.Fragment>
           ) : (
             <React.Fragment>

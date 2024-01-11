@@ -17,7 +17,7 @@ const Company = sequelize.define('company', {
     allowNull: false,
   },
   phoneNumber: {
-    type: DataTypes.STRING(45),
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   location: {

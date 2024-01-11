@@ -9,7 +9,7 @@ const Total = sequelize.define('total', {
     allowNull: false,
   },
   paiement: {
-    type: DataTypes.STRING(45),
+    type: DataTypes.INTEGER,
     allowNull: true,
   },
 }, {
