@@ -1,4 +1,5 @@
 const express = require('express')
+console.log("test");
 const company = require('./models/company')
 const users = require('./models/users')
 const cars = require('./models/vehicles')
