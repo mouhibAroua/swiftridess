@@ -30,7 +30,7 @@ margin-bottom: 10px;
 
 .carimages{
 position: relative;
-top: 50px;
+top: -250px;
 margin-left: 10px;
 display: flex;
 object-fit: contain;
@@ -47,7 +47,7 @@ gap: 50px;
 position: relative;
 right: 700px;
 max-width: 700px;
-top: -350px;
+top: -650px;
   }
 
   body {

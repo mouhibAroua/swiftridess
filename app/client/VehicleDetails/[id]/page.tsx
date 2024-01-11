@@ -13,6 +13,7 @@ import Location from "../location/Location"
 import Date from "../date/Date"
 import Time from "../time/Time"
 import Company from "../companyInfo/CompanyInfo"
+import Foot from "../../../Home/footer/page"
 interface Car {
   id: string;
   brand: string;
@@ -70,9 +71,9 @@ const CarInfo = ({ carId }: CarInfoProps) => {
               <p className='info'><CalendarTodayIcon/> Registration: {carInfo.registration}</p>
               <p className='info'><AddRoadIcon/> Mileage : {carInfo.mileage}</p>
               <Location/>
-              <Date/>
               <Time/>
               <Company/>
+              <Date/>
 
             </div>
           </div>
@@ -103,12 +104,23 @@ const CarInfo = ({ carId }: CarInfoProps) => {
                 </div>
               </div>
             </div>
+            
           )}
+             <br />
+             <br />
+             <br />
+             <br />
+             <br />
+             <br />
+             <br />
+             <br />
+<div> <Foot/></div>
         </div>
       ) : (
         <p>Loading...</p>
       )}
     </div>
+    
   );
 };
 

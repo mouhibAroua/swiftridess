@@ -7,8 +7,9 @@ import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Link from 'next/link';  
+
 interface Car {
-  id: number;
   brand: string;
   model: string;
   rating: number;
@@ -17,7 +18,7 @@ interface Car {
   passengers: string;
   type: string;
   price: string;
-
+  idcars:number;
 }
 
 
@@ -53,7 +54,7 @@ const TopRatedCars: React.FC = () => {
       </h2>
       <div className="car-container">
         {topRatedCars.map((car) => (
-          <div key={car.id} className="car-box">
+          <div key={car.idcars} className="car-box">
             <img
               src={car.image[0]}
               alt={`${car.brand} ${car.model}`}
@@ -72,7 +73,9 @@ const TopRatedCars: React.FC = () => {
               </h3>
               <h3 style={{ display: "flex", alignItems: "center", position:"relative",top:"50px" }} >{car.price} DT/Day</h3>
               <Stack spacing={2} direction="row">
+              <Link target="_blank" href={`client/VehicleDetails/${car.idcars}` }>
               <Button className = "but"size="small" variant="contained" style={{ backgroundColor: '#C0C0C0', color: 'black'  }}>Rent Now</Button>
+      </Link>
       </Stack>
             </div>
           </div>
