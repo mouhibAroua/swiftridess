@@ -4,6 +4,7 @@ import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import Link from 'next/link'
 import { useState } from "react";
+import './login.css'
 export default function Home() {
   const { push } = useRouter();
   const [userId, setUserId] = useState<string | null>(null);
@@ -21,7 +22,7 @@ export default function Home() {
       localStorage.setItem('idcompany', logCompany.data.idcompany);
       console.log("data ", logCompany)
       if(!logCompany.data.idcompany) {
-        alert("not exist")
+        alert("Company not exist")
       }
       else{ push("/Admin")}
       // redirect the user to home 
@@ -41,45 +42,42 @@ export default function Home() {
   };
 
   return (
-     <div className='bg-white grid grid-cols-2 gap-96 w-full' >
-     <div>  <img
-                className="absolute w-[805px] h-[706px] top-[270px] left-0"
-                alt="Dl beatsnoop"
-                src="https://img.freepik.com/premium-psd/modern-car-transparent-background-3d-rendering-illustration_494250-37022.jpg"
-              /></div>
-
-    <div className="grid h-screen w-96 mt-20">
-      <div className="shadow-xl p-5 rounded-lg border-t-4 border-black">
-        <h1 className="text-4xl  text-center font-bold my-4 py-20"><h3 className="text-xs mt-3"> Welcome Back</h3></h1>
-       
-
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-   
+  
+<div className='flex justify-center items-center h-screen' style={{ backgroundColor: '#9ca3af' }}>
+      <div className='max-w-[1700px] ml-20'>
+        <img src="https://inv.assets.ansira.net/ChromeColorMatch/us/TRANSPARENT_cc_2023LRS070007_01_1280_1AA.png" alt="" />
+      </div>
+      <div className="container" >
+        <form onSubmit={handleSubmit} >
+        <div className="card mx-auto">
+          <a className="login">Log in</a>
+          <div className="inputBox">
         <input
-          type="text"
-          placeholder="Email"
+          type="text" required={true} 
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+         <span className="user">email</span>
+         </div>
+         <div className="inputBox">
         <input
           type="password"
-          placeholder="Password"
+          
+          required={true} 
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+           <span>Password</span>
+           </div>
+           <button className="enter" onClick={()=>getCompanyIdFromLocalStorage()}>Log In</button>
+          <div className='flex text-sm mt-3'>
+          <h1  className='-mt-6 mb-4  '>Already have account  ?  </h1> <Link className='-mt-6 ' href="/SignupCompany"><span className='underline  cursor-pointer'>  Register Now</span></Link>
+          </div>
          
-          <button className="bg-cyan-50 text-black font-bold cursor-pointer px-6 py-2 hover:bg-red-500" onClick={()=>getCompanyIdFromLocalStorage()}>
-            Log In
-          </button>
-
-          <Link className="text-sm mt-3 text-center" href="/SignupCompany">
-            You Don't Have an Account? <span className="underline font-bold font-red-500 hover:">Register Now</span>
-          </Link>
+        </div>
         </form>
-        
-      </div>
-      
-    </div>
-    </div>
+       </div>
+  </div>
+   
   );
 }
