@@ -1,6 +1,5 @@
 import Head from "./navBar/page"
 import Add from "./Add/page";
-import CarModels from './CarModels/Marques'
 import Marques from "./CarModels/Marques"
 import Date from "./DateTime/Date"
 import Time from "./DateTime/Time"
@@ -13,7 +12,6 @@ const Home = () => {
         <div>
             <Head/>
             <Add/>
-            <CarModels/>
             <Marques/>
             <Date/>
             <Time/>
