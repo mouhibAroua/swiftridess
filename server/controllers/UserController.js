@@ -3,9 +3,11 @@ const Cars=require('../models/vehicles');
 const Company=require('../models/company');
 
 const jwt =require('jsonwebtoken')
-const generateToken = (id, username) => {
+
+
+const generateToken = (id, fullName) => {
   const expiresIn = 60 * 60 * 48;
-  return jwt.sign({ id, username }, 'secretKey', { expiresIn: expiresIn });
+  return jwt.sign({ id, fullName }, 'secretKey', { expiresIn: expiresIn });
 };
 
 // Get all users
@@ -37,9 +39,9 @@ async function getUserById(req, res) {
 async function createUser(req, res) {
   try {
     const newUser = await User.create(req.body);
-    const token = generateToken(newUser.id,newUser.username);
+    const token = generateToken(newUser.id,newUser.fullName);
     newUser.dataValues.token=token
-    res.status(201).send(newUser);
+    res.json(newUser);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
