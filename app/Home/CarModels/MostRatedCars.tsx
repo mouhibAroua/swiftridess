@@ -26,7 +26,7 @@ const TopRatedCars: React.FC = () => {
   const [topRatedCars, setTopRatedCars] = useState<Car[]>([]);
 
   useEffect(() => {
-    const fetchTopRatedCars = async () => {
+    const fetchTopRatedCars =   async () => {
       try {
         const response = await axios.get(
           "http://localhost:3000/api/car/getallcars"

@@ -67,6 +67,25 @@ module.exports = {
             where:{id}
         })
         res.json(comp)
-    }
+    },
+
+    updatePaymentVerification: async (req, res) => {
+        const { id } = req.params;
+        const { PaymentVerification } = req.body;
+        try {
+          const updatedCompany = await company.update(
+            { PaymentVerification: PaymentVerification },
+            { where: { idcompany: id } } 
+          );
+          if (updatedCompany[0] === 0) {
+            return res.status(404).json({ error: 'Company not found' });
+          }
+          return res.status(200).json({ success: true, message: 'PaymentVerification updated successfully' });
+        } catch (error) {
+          console.error(error);
+          return res.status(500).json({ error: 'Internal Server Error' });
+        }
+      },
+      
 
 }
