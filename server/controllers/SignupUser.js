@@ -5,7 +5,7 @@ const {createUser} = require('./UserController');
 
   
   const RegisterUser = async (req, res) => {
-    const { fullName,image_user, phoneNumber ,longtitude,laltitude,email,password,role } = req.body;
+    const { fullName,image_user, phoneNumber ,longitude,latitude,email,password} = req.body;
   
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
@@ -14,15 +14,16 @@ const {createUser} = require('./UserController');
         fullName,
         image_user,
         phoneNumber,
-        longtitude,
-        laltitude,
+        longitude,
+        latitude,
         email,
-        role,
+        role:"client",
         password: hashedPassword}
-       
         createUser({ body: newUser }, res);
     } catch (error) {
-      res.status(500).json({ error: 'Error' });
+      console.log(req.body);
+
+      res.send(error)
     }
   };
   
