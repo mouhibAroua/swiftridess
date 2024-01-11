@@ -18,6 +18,7 @@ const {addCom} = require('./CompanyController.js');
         longtitude,
         laltitude,
         verification:false,
+        PaymentVerification:false,
         emailCompany,
         passwordCompany: hashedPassword}
        
