@@ -21,13 +21,12 @@ export default function Home() {
       alert(JSON.stringify(logCompany));
       localStorage.setItem('idcompany', logCompany.data.idcompany);
       console.log("data ", logCompany)
-      if(!logCompany.data.idcompany) {
-        alert("Company not exist")
+      if(logCompany.data.PaymentVerification===false) {
+        push("/company/Payment")
       }
-      else{  push("/company/Payment")}
-      // redirect the user to home 
-      // push("/Home");
-      
+      if (logCompany.data.PaymentVerification===true) {
+        push("/company/Dashboard")
+      }
     } catch (e) {
       const error = e as AxiosError;
 
