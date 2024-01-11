@@ -26,6 +26,7 @@ router.delete('/car/:id', CompanyController.deleteCar);
 
 router.delete('/company/:id', CompanyController.deleteCom);
 
+router.put('/verification/:id', CompanyController.updatePaymentVerification);
 
 
 

@@ -20,7 +20,7 @@ export default function Home() {
       alert(JSON.stringify(logCompany));
       localStorage.setItem('idcompany', logCompany.data.idcompany);
       console.log("data ", logCompany)
-      push("/Company")
+      push("/company/Payment")
       // redirect the user to home 
       // push("/Home");
 
