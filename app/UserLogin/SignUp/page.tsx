@@ -15,6 +15,7 @@ const SignUp = () => {
 
   
   const router = useRouter();
+  console.log('hello')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,14 +35,7 @@ const SignUp = () => {
         body: JSON.stringify({ email }),
       });
   
-      const { user } = await resUserExists.json();
   
-      if (user) {
-        setError("User already exists.");
-        return;
-      }
-  
-      // If the user doesn't exist, proceed with user registration
       const res = await fetch("http://localhost:3000/api/signup/user", {
         method: "POST",
         headers: {
@@ -60,11 +54,9 @@ const SignUp = () => {
       const data = await res.json();
   
       if (res.ok) {
-        // Registration successful, redirect or handle accordingly
         router.push("/UserLogin/Login");
       } else {
-        // Registration failed, log the error
-        console.log("User registration failed:", data.error || "Unknown error");
+        console.log("User registration failed:", data.error );
         setError("User registration failed.");
       }
     } catch (error) {
