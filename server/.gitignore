@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
-
+.database-sequalize/index.js
 # testing
 /coverage
 
@@ -35,3 +35,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .server/node_modules
+.server/database-sequalize/index.

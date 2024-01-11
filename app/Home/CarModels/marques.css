@@ -1,0 +1,33 @@
+.category-flex{
+display: flex;
+justify-content: space-between;
+}
+
+.category-flex > * {
+    margin-right: 50px; 
+    margin-top: 170px;
+  }
+  
+  .category-flex img {
+    width: 65%;
+    max-width: 75%; 
+    object-fit: contain; 
+  }
+
+#cupra{
+width: 10%;
+height: 30%;
+position: relative;
+top: -20px;
+}
+
+#suzuki{
+    width: 12%;
+    position: relative;
+    top: -5px;
+    }
+
+    #bmw{
+      position: relative;
+      right: -25px;
+      }

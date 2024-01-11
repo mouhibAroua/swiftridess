@@ -1,0 +1,56 @@
+.infos{
+position: relative;
+left: 900px;
+top: 350px;
+font-family: 'Poppins', sans-serif;
+font-weight: 700;
+margin-bottom: 10px;
+}
+
+.info{
+    position: relative;
+    left: 1000px;
+    top: 350px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    margin-bottom: 10px;
+
+    }
+.name{
+    color: #000;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 250px;
+    font-family: 'Poppins', sans-serif;
+    top: 20px;
+    position: relative;
+}
+
+.carimages{
+position: relative;
+top: -250px;
+margin-left: 10px;
+display: flex;
+object-fit: contain;
+gap: 50px; 
+}
+
+.carImageItem {
+    object-fit: contain;
+    justify-content: space-between;
+
+  }
+
+  #mainimage{
+position: relative;
+right: 700px;
+max-width: 700px;
+top: -650px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+  
