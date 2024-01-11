@@ -9,6 +9,7 @@ const Feedback = sequelize.define('feedback', {
   idfeedback: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    autoIncrement: true,
     primaryKey: true,
   },
   content: {
