@@ -9,8 +9,8 @@ export default async function Login() {
     redirect('/Home');
   }
   return(
-  <div>
+  
 <LoginForm/>
-  </div>
+ 
   )
 }

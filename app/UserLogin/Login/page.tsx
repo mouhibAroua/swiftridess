@@ -23,7 +23,12 @@ const Login = () => {
   
       localStorage.setItem('id', logUser.data.id);
       console.log("data ", logUser);
-        push("/Home");
+      if(logUser.data.role ==="client") {
+        push("/Home")
+      }
+      if(logUser.data.role ==="admin") {
+        push("/Admin")
+      }
     } catch (e) {
       const error = e as AxiosError;
       alert(error.message);
