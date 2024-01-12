@@ -86,6 +86,32 @@ module.exports = {
           return res.status(500).json({ error: 'Internal Server Error' });
         }
       },
+
+      getCarsByCompany: async (req, res) => {
+        const { id } = req.params;
+        try {
+          const carCount = await car.count({
+            where: { company_idcompany: id },
+          });
+          res.json({ carCount });
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ error: 'Internal Server Error' });
+        }
+      },
+
+      getAllCarsByCompany :  async (req, res) => {
+        const { id } = req.params;
+        try {
+          const carss = await car.findAll({
+            where: { company_idcompany: id },
+          });
+          res.json({ carss });
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ error: 'Internal Server Error' });
+        }
+      },
       
 
 }
