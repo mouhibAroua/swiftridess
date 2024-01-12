@@ -3,7 +3,6 @@ import Link from 'next/link';
 import './SignUp.css'
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
 const SignUp = () => {
 
   const [fullName, setFullName] = useState<string>("");
@@ -16,7 +15,6 @@ const SignUp = () => {
 
   
   const router = useRouter();
-  console.log('hello')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

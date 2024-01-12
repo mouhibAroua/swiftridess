@@ -1,6 +1,5 @@
 "use client"
 import React, { useState, useRef, useEffect } from "react";
-import "./nav.css"
 interface MenuItem {
     title: string;
     path: string;
@@ -72,7 +71,7 @@ const Navigation: React.FC = () => {
         { title: "Home", path: "/Home" },
         { title: "About", path: "/" },
         { title: "Contact", path: "/" },
-        { title: "Sign", path: "/" },
+        { title: "Sign", path: "/UserLogin/Login" },
     ];
 
   return (
