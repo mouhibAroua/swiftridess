@@ -40,6 +40,8 @@ const Login = () => {
     } catch (e) {
       const error = e as AxiosError;
       alert(error.message);
+      console.log(error);
+      
     }
   };
   const getUserIdFromLocalStorage = () => {
