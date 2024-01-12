@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 // import Footer from "../Footer/page";
-
+import './signup.css'
 export default function RegisterForm() {
 
   const [companyName, setCompanyName] = useState<string>("");
@@ -78,64 +78,74 @@ console.log(phoneNumber)
 
 
   return (
-    <div className='bg-white grid grid-cols-2 gap-96 w-full' >
-     <div>  <img
-                className="absolute w-[805px] h-[706px] top-[270px] left-0"
-                alt="Dl beatsnoop"
-                src="https://img.freepik.com/premium-psd/modern-car-transparent-background-3d-rendering-illustration_494250-37022.jpg"
-              /></div>
-
-    <div className="grid h-screen w-96 mt-20">
-      <div className="shadow-xl p-5 rounded-lg border-t-4 border-black">
-        <h1 className="text-4xl  text-center font-bold my-4 py-20"><h3 className="text-xs mt-3"> Register And Start Shopping !</h3></h1>
-
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <div  className='flex justify-center items-center h-screen' style={{ backgroundColor: '#9ca3af' }}>
+    <div className='max-w-[1700px] ml-20'>
+     <img src="https://inv.assets.ansira.net/ChromeColorMatch/us/TRANSPARENT_cc_2023LRS070007_01_1280_1AA.png" alt="" />
+    </div>
+    <div className="container ">
+        <form onSubmit={handleSubmit} >
+        <div className="card mx-auto">
+          <a className="login">sign up</a>
+          <div className="inputBox">
           <input
+          required={true} 
             onChange={(e) => setCompanyName(e.target.value)}
             type="text"
-            placeholder="Company Name"
+           
           />
+          <span className="user">Company Name</span>
+          </div>
+          <div className="inputBox">
             <input
+              required={true} 
             onChange={(e) => setOwnerName(e.target.value)}
-            type="text"
-            placeholder="Owner Name"
+            type="text"         
           />
-           <input
+          <span className="user">Owner Name</span>
+          </div>
+           <div className="inputBox">
+           <input   required={true} 
             onChange={(e) => setPhoneNumber(e.target.value)}
             type="number"
-            placeholder="phone number"
           />
-
-          <input
+          <span className="user">phone number</span>
+          </div>
+          <div className="inputBox">
+          <input   required={true} 
             onChange={(e) => setLocation(e.target.value)}
             type="text"
-            placeholder="position of company"
           />
-
-          <input
+         <span className="user">position of company</span>
+          </div>
+          <div className="inputBox">
+          <input   required={true} 
             onChange={(e) => setLongtitude(e.target.value)}
             type="text"
-            placeholder="longtitude of company"
           />
-          <input
+          <span className="user">longtitude of company</span>
+          </div>
+          <div className="inputBox">
+          <input   required={true} 
             onChange={(e) => setLaltitude(e.target.value)}
             type="text"
-            placeholder="latitude of company"
           />
-          <input
+              <span className="user">longtitude of company</span>
+          </div>
+          <div className="inputBox">
+          <input   required={true} 
             onChange={(e) => setEmail(e.target.value)}
             type="text"
-            placeholder="Email"
           />
-          <input
+            <span className="user">email</span>
+          </div>
+          <div className="inputBox">
+          <input  required={true} 
             onChange={(e) => setPassword(e.target.value)}
             type="password"
-            placeholder="Password"
           />
-            
-          <button className="bg-cyan-50 text-black font-bold cursor-pointer px-6 py-2 hover:bg-red-500">
-            Register
-          </button>
+             <span className="user">Password</span>
+          </div>
+          <button className="enter">register</button>
 
           {error && (
             <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
@@ -143,14 +153,13 @@ console.log(phoneNumber)
             </div>
           )}
 
-          <Link className="text-sm mt-3 text-center" href="/LoginCompany">
-            Already have an account? <span className="underline font-bold font-red-500">Login</span>
-          </Link>
+<div className='flex text-sm '>
+          <h1  className=' mb-4'>Already have account  ?</h1><Link className=' ' href="/LoginCompany"><span className='underline  cursor-pointer'>  Log in</span></Link>
+          </div>
+          </div>
         </form>
-        
       </div>
       
-    </div>
-    </div>
+        </div>
   );
 }
