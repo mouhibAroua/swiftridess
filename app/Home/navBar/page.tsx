@@ -18,6 +18,8 @@ const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
         { title: "Settings", path: "/" },
         { title: "Log out", path: "/" },
     ];
+ const userId = localStorage.getItem('id');
+
 
     useEffect(() => {
         const handleDropDown = (e: MouseEvent) => {
