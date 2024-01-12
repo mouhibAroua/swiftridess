@@ -7,7 +7,7 @@ const Categories: React.FC = () => {
   return (
     <div>
       <div className="category-flex">
-        <div className="category-flex1">
+      <div id="bmw"  >
           <img src="https://images2.imgbox.com/a1/2d/5z7BixpH_o.png" alt="icon" className="category-icon" />
         </div>
         <div id="cupra">

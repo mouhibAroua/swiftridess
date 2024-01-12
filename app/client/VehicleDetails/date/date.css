@@ -1,0 +1,26 @@
+.calander {
+  position: relative;
+  top: 450px;
+  right: -300px; 
+  z-index: 1; 
+  display: flex;
+}
+
+#days{
+  position: relative;
+  top: 195px;
+right: 330px;
+}
+
+#priceday{
+  position: relative;
+  top: -30px;
+right: 330px;
+}
+
+.imga{
+width: 400px;
+position: relative;
+top: 100px;
+right: 350px;
+}
