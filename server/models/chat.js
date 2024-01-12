@@ -4,13 +4,15 @@ const User = require('./users');
 const Company = require('./company'); 
 
 const Chat = sequelize.define('chat', {
-  idchat: {
+  
+  roomId:{
     type: DataTypes.INTEGER,
     allowNull: false,
+    autoIncrement: true,
     primaryKey: true,
   },
   content: {
-    type: DataTypes.STRING(45),
+    type: DataTypes.STRING(255),
     allowNull: true,
   },
   client_id: {

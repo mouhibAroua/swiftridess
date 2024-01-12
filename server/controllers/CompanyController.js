@@ -1,8 +1,23 @@
 const company = require('../models/company');
 const car=require('../models/vehicles');
-
+const jwt =require('jsonwebtoken')
+const generateToken = (idcompany, companyName) => {
+  const expiresIn = 60 * 60 * 48; //two days ;
+  return jwt.sign({ idcompany, companyName }, 'secretKey', { expiresIn: expiresIn });
+};
 
 module.exports = {
+    addCom:async(req,res)=>{
+        try {
+            
+            let ad=await company.create(req.body)
+            const token = generateToken(ad.idcompany,ad.companyName);
+            ad.dataValues.token=token
+            res.json(ad)
+        } catch (error) {
+            res.status(500).json(error)
+        }
+    },
     getAllCom:async (req,res)=>{
         const comp=await company.findAll();
         res.json(comp)
@@ -52,6 +67,25 @@ module.exports = {
             where:{id}
         })
         res.json(comp)
-    }
+    },
+
+    updatePaymentVerification: async (req, res) => {
+        const { id } = req.params;
+        const { PaymentVerification } = req.body;
+        try {
+          const updatedCompany = await company.update(
+            { PaymentVerification: PaymentVerification },
+            { where: { idcompany: id } } 
+          );
+          if (updatedCompany[0] === 0) {
+            return res.status(404).json({ error: 'Company not found' });
+          }
+          return res.status(200).json({ success: true, message: 'PaymentVerification updated successfully' });
+        } catch (error) {
+          console.error(error);
+          return res.status(500).json({ error: 'Internal Server Error' });
+        }
+      },
+      
 
 }

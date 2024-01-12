@@ -7,6 +7,7 @@ const Cars = sequelize.define('cars', {
   idcars: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    autoIncrement: true,
     primaryKey: true,
   },
   price: {
@@ -38,7 +39,7 @@ const Cars = sequelize.define('cars', {
     allowNull: true,
   },
   image: {
-    type: DataTypes.STRING(45),
+    type: DataTypes.JSON,
     allowNull: true,
   },
   mileage: {

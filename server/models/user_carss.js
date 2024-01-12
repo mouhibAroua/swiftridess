@@ -8,6 +8,7 @@ const ClientHasCars = sequelize.define('client_has_cars', {
   client_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    
     primaryKey: true,
   },
   cars_idcars: {

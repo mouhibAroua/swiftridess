@@ -1,0 +1,39 @@
+.car-container {
+    display: flex;
+    gap: 190px;
+    flex-wrap: wrap;
+  }
+  
+  .car-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 350px;
+    height: 320px;
+    background-color: transparent;
+    margin-bottom: 20px;
+    position: relative;
+    top: -20px;
+    right: -30px;
+  }
+  
+  .car-image {
+    width: 300px; 
+    object-fit: cover; 
+    border-radius: 5px; 
+  }
+  
+  .car-details {
+    padding-top: 10px;
+  }
+  
+  #texting{
+position: relative;
+top: -70px;
+  }
+
+  .but{
+position: relative;
+right: -215px;
+top: 25px;
+}

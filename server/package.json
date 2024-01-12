@@ -4,7 +4,9 @@
   "description": "A Minimum Viable Product",
   "main": "index.js",
   "scripts": {
-    "server-dev": "nodemon server/index.js"
+    "start": "concurrently \"npm run server-main\" \"npm run server-chat\"",
+    "server-main": "nodemon index.js",
+    "server-chat": "nodemon indexChat.js"
   },
   "author": "You!",
   "license": "ISC",
@@ -21,7 +23,8 @@
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.6.5",
     "path": "^0.12.7",
-    "sequelize": "^6.35.2"
+    "sequelize": "^6.35.2",
+    "socket.io": "^4.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",

@@ -5,10 +5,11 @@ const Total = sequelize.define('total', {
   idpaiement: {
     type: DataTypes.INTEGER,
     primaryKey: true,
+    autoIncrement: true,
     allowNull: false,
   },
   paiement: {
-    type: DataTypes.STRING(45),
+    type: DataTypes.INTEGER,
     allowNull: true,
   },
 }, {

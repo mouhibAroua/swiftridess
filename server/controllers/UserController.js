@@ -1,8 +1,13 @@
 const User = require('../models/users');
+const Cars=require('../models/vehicles');
+const Company=require('../models/company');
+
 const jwt =require('jsonwebtoken')
-const generateToken = (id, username) => {
+
+
+const generateToken = (id, fullName) => {
   const expiresIn = 60 * 60 * 48;
-  return jwt.sign({ id, username }, 'secretKey', { expiresIn: expiresIn });
+  return jwt.sign({ id, fullName }, 'secretKey', { expiresIn: expiresIn });
 };
 
 // Get all users
@@ -34,9 +39,9 @@ async function getUserById(req, res) {
 async function createUser(req, res) {
   try {
     const newUser = await User.create(req.body);
-    const token = generateToken(newUser.id,newUser.username);
+    const token = generateToken(newUser.id,newUser.fullName);
     newUser.dataValues.token=token
-    res.status(201).send(newUser);
+    res.json(newUser);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -77,10 +82,32 @@ async function deleteUserById(req, res) {
   }
 }
 
+async function getCompanyInfoByCarId(req, res) {
+  const { id } = req.params;
+  try {
+    const carData = await Cars.findByPk(id, {
+      include: [{
+        model: Company,
+        as: 'company',
+        attributes: ['idcompany', 'companyName', 'ownerName', 'phoneNumber', 'location', 'verification', 'longtitude', 'laltitude', 'emailCompany', 'passwordCompany'],
+      }],
+    });
+    if (!carData) {
+      return res.status(404).json({ error: `Car with ID ${id} not found` });
+    }
+    const companyInfo = carData.company.toJSON();
+    res.json(companyInfo);
+  } catch (error) {
+    console.error('Error fetching company info:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
   createUser,
   updateUserById,
   deleteUserById,
+  getCompanyInfoByCarId,
 };
