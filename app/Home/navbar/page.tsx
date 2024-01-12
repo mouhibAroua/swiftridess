@@ -72,7 +72,7 @@ const Navigation: React.FC = () => {
         { title: "Home", path: "/Home" },
         { title: "About", path: "/" },
         { title: "Contact", path: "/" },
-        { title: "Sign", path: "/" },
+        { title: "Sign", path: "/UserLogin/Login" },
     ];
 
   return (
