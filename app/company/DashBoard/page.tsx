@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
+import Sidenav from "./Sidenav"
+import Charts from "./Charts"
+import AllVehicles from "./AllVehicles"
 
-function page() {
+const MainPage: React.FC = () => {
   return (
-    <div>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</div>
-  )
-}
+    <div>
+        <Sidenav />
+        <Charts/>
+        <AllVehicles/>
+      </div>
+  );
+};
 
-export default page
+export default MainPage;
