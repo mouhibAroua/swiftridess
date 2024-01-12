@@ -1,8 +1,8 @@
 "use client"
 import { Typography } from "@mui/material";
-import React , { PureComponent } from "react"
+import React from "react"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
+import Sidebar from "../sidebar/page"
 const data = [
     {
       name: 'Monday',
@@ -43,10 +43,20 @@ const data = [
   ];
 
 const Chart =()=>{
+  
 
     return (
-        <div>
-        <Typography variant="h2" fontWeight="bold" style={{ color: '#000080' }}>Weekly Recap</Typography>
+      <div className="flex h-screen">
+      <Sidebar/>
+   
+         {/* Main Content */}
+         <div className="flex-1 bg-gray-100 p-4 ml-[350px]">
+         {/* Your main content goes here */}
+         <div>
+         <Typography variant="h1" fontWeight="bold" style={{ color: '#000080' }}>
+           Weekly recap
+         </Typography>
+       
         <LineChart width={1050} height={450} data={data}
   margin={{ top: 5, right: 30, left: 20, bottom: 5 }} className="bg-blue">
   <CartesianGrid strokeDasharray="3 3" />
@@ -57,6 +67,14 @@ const Chart =()=>{
   <Line type="monotone" dataKey="sales" stroke="#8884d8" />
 </LineChart>
       </div>
+      </div> 
+     
+  </div>
+
+      
+
+
+      
     )
 }
 export default Chart;

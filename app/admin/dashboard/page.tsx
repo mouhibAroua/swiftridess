@@ -1,22 +1,17 @@
 "use client"
-import React, { useState } from "react";
-import { List, ListItem, ListItemIcon, ListItemText,Menu,Typography } from '@mui/material';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined';
-import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
-import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
-import PieChartOutlinedIcon from '@mui/icons-material/PieChartOutlined';
-import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
-import ShowChartOutlinedIcon from '@mui/icons-material/ShowChartOutlined';
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import React from "react";
+import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
 import TimeToLeaveOutlinedIcon from '@mui/icons-material/TimeToLeaveOutlined';
+import Sidebar from "../sidebar/page"
+
+// interface sidebarProps{
+//   class:string;
+// }
 
 const data = [
     {
@@ -57,106 +52,28 @@ const data = [
     },
   ];
 
-const dashboard: React.FC = () => {
+const dashboard: React.FC  = () => {
+
     const chartWidth = 1100;
     const chartHeight = 450;
 
   return (
     <div className="flex h-screen">
-      {/* Sidebar */}
-      <div className="col-span-3 bg-gray-800 text-white px-10 py-7">
-        <List className="flex-col space-y-3">
-
-        <div className="flex items-center ">
-  <Typography variant="h6" className="mt-2 mr-40" style={{ color: 'grey' }}>
-    ADMINS
-  </Typography>
-  <MenuOutlinedIcon />
-</div>
-          <ListItem className="flex items-center flex-col px-4 py-2 hover:bg-gray-1000">
-
-            <img className="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
-              src="https://cdn.discordapp.com/attachments/1150837767849390100/1192526352767791256/c286cbb1-fb30-4454-a545-a74b649a6fd9.jpg?ex=65a965b6&is=6596f0b6&hm=a117da4cb4984f13f0fafe5f57905a33f94d520645a93bfd8d398652ec4353a0&"
-              alt="Bordered avatar" />
-
-            <ListItemText primary={<p className="mt-2">NOURHEN </p>} />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <HomeOutlinedIcon color="primary" />
-            </ListItemIcon>
-            <ListItemText primary={<p>Dashboard</p>} />
-          </ListItem>
-          <Typography variant="h6" className="mt-2" style={{ color: 'grey' }}>
-             Data
-            </Typography>
-            <ListItem button >
-            <ListItemIcon >
-              <GroupOutlinedIcon color="primary" />
-            </ListItemIcon>
-            <ListItemText primary="Manage Team" />
-          </ListItem>
-          <ListItem button >
-            <ListItemIcon >
-              <ContactMailOutlinedIcon color="primary"/>
-            </ListItemIcon>
-            <ListItemText primary="Contact Information" />
-          </ListItem>
-          <Typography variant="h6" className="mt-2" style={{ color: 'grey' }}>
-             Details
-            </Typography>
-            <ListItem button>
-            <ListItemIcon>
-              <AccountCircleOutlinedIcon color="primary" />
-            </ListItemIcon>
-            <ListItemText primary="Profile" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <EventOutlinedIcon color="primary" />
-            </ListItemIcon>
-            <ListItemText primary="Calendar" />
-          </ListItem>
-          <Typography variant="h6" className="mt-2" style={{ color: 'grey' }}>
-             Charts
-            </Typography>
-          <ListItem button>
-            <ListItemIcon>
-              <PublicOutlinedIcon color="primary" />
-            </ListItemIcon>
-            <ListItemText primary="Geography " />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <PieChartOutlinedIcon color="primary" />
-            </ListItemIcon>
-            <ListItemText primary="Pie Chart" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <BarChartOutlinedIcon color="primary"/>
-            </ListItemIcon>
-            <ListItemText primary="Graph Chart" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <ShowChartOutlinedIcon color="primary" />
-            </ListItemIcon>
-            <ListItemText primary="Line" />
-          </ListItem>
-        </List>
-      </div>
+   <Sidebar/>
 
       {/* Main Content */}
-      <div className="flex-1 bg-gray-100 p-4">
-      {/* Your main content goes here */}
+      <div className="flex-1 bg-gray-100 p-4 ml-[350px]">
+    
+      <div>
       <Typography variant="h1" fontWeight="bold" style={{ color: '#000080' }}>
         DASHBOARD
       </Typography>
+     
       <Typography variant="h5">
          Welcome to your Dashboard 
       </Typography>
 
+      
       <div className="flex-grow p-10">
         <Typography variant="h4" className="mb-6 text-gray-750">
           General Report
@@ -206,8 +123,9 @@ const dashboard: React.FC = () => {
             </Typography>
             
           </Box>
-          <Typography variant="h6" fontWeight="bold" style={{ color: '#000080' }}>Weekly Recap</Typography>
-
+          
+<div className="ml-[40px]">
+<Typography variant="h4" style={{ color: '#000080' }}>Weekly Recap</Typography>
           <Box className={`p-4 bg-white rounded-md shadow-md`} style={{ width: chartWidth, height: chartHeight }}>
           <LineChart
             width={chartWidth}
@@ -224,7 +142,9 @@ const dashboard: React.FC = () => {
           </LineChart>
         </Box>
         </div>
+        </div>
       </div>
+    </div>
     </div>
     </div>
   );
