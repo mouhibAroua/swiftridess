@@ -1,4 +1,4 @@
-import Head from "./navBar/page"
+import Head from "./navbar/page"
 import Add from "./Add/page";
 import Marques from "./CarModels/Marques"
 import Date from "./DateTime/Date"
