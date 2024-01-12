@@ -16,7 +16,6 @@ const SignUp = () => {
 
   
   const router = useRouter();
-  console.log('hello')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
