@@ -46,12 +46,12 @@ const TopRatedCars: React.FC = () => {
 
   return (
     <div>
-      <h2
+      <h1
         id="texting"
-        className="text-3xl font-bold mb-4 text-center text-gold-100"
+        className="text-3xl font-bold  text-center text-gold-100"
       >
         Top Rated Cars
-      </h2>
+      </h1>
       <div className="car-container">
         {topRatedCars.map((car) => (
           <div key={car.idcars} className="car-box">

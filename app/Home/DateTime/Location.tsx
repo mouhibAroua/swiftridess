@@ -1,18 +1,32 @@
 "use client";
-import * as React from 'react';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
+import React, { useState, useEffect, useRef } from 'react';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useState } from 'react';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import "./location.css";
 import 'leaflet/dist/leaflet.css';
+
 export default function MultipleSelectChip() {
   const [showMap, setShowMap] = useState<boolean>(false);
 
+  const mapContainerRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (mapContainerRef.current && !mapContainerRef.current.contains(e.target)) {
+        setShowMap(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
+
   function LocationMarker() {
-    const [position, setPosition] = useState<LatLng | null>(null);
+    const [position, setPosition] = useState<null>(null);
     const map = useMapEvents({
       click() {
         map.locate();
@@ -24,31 +38,33 @@ export default function MultipleSelectChip() {
     });
 
     return position === null ? null : (
-      <Marker position={position}>
-        <Popup>You are here</Popup>
-      </Marker>
+      <div>
+  
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/1334px-Map_marker.svg.png" alt="" />
+          <Popup  position={position}>You are here</Popup>
+
+      </div>
     );
   }
 
   return (
-    <div>
+    <div ref={mapContainerRef}>
       <FormControl sx={{ m: 1, width: 250, position: "relative", top: "-335px", right: "-40px" }}>
-        <InputLabel id="demo-multiple-chip">Location</InputLabel>
-        <button id="select-multiple-chip" label="Chip" onClick={()=>setShowMap(!showMap)}>location</button>
+        <button className='mt-2 border rounded w-[230px] h-[55px]' onClick={() => setShowMap(!showMap)}>location</button>
+        {showMap && (
+          <MapContainer className='' center={{ lat: 36.890308, lng: 10.180120 }}
+            zoom={16}
+            style={{ height: '400px', width: '600px' }}
+            scrollWheelZoom={true}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <LocationMarker />
+          </MapContainer>
+        )}
       </FormControl>
-      {showMap && (
-        <MapContainer center={{ lat: 36.890308, lng: 10.180120 }} 
-        zoom={16} 
-        style={{ height: '400px', width: '700px' }}
-        scrollWheelZoom={true}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <LocationMarker />
-        </MapContainer>
-      )}
     </div>
   );
 }
