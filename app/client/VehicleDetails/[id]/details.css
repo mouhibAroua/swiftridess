@@ -47,7 +47,10 @@ gap: 50px;
 position: relative;
 right: 700px;
 max-width: 700px;
+max-height: 700px;
 top: -650px;
+
+
   }
 
   body {
