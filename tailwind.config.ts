@@ -21,7 +21,9 @@ const config: Config = {
       'gray-200':'#e2e8f0',
       'gray-400':'#9ca3af',
       'gray-300':'#334155',
-      'slate':'#4b5563'
+      'slate':'#4b5563',
+      'oronge':'#ea580c',
+      'oronge-500':'#f97316',
       
     },
     extend: {
