@@ -5,6 +5,9 @@ import Link from 'next/link';
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Login = () => {
   const { push } = useRouter();
   const [userId, setUserId] = useState<string | null>(null);
@@ -12,18 +15,23 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string>('');
 
+  const notify = () => toast("Your Account Created Succesfuly! please log in");
+  toast("Your Account Created Successfully! please log in");
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+
     event.preventDefault();
     if(!email||!password){
       setError('Invalid email or password')
       return;
     }
+    
     try {
       const logUser = await axios.post("http://localhost:3000/api/login/user", { email, password });
-  
+      
       localStorage.setItem('id', logUser.data.id);
       console.log("data ", logUser);
       if(logUser.data.role ==="client") {
+        
         push("/Home")
       }
       if(logUser.data.role ==="admin") {
@@ -45,6 +53,17 @@ const Login = () => {
       <div className='max-w-[1700px] ml-20'>
         <img src="https://inv.assets.ansira.net/ChromeColorMatch/us/TRANSPARENT_cc_2023LRS070007_01_1280_1AA.png" alt="" />
       </div>
+      
+      <ToastContainer
+      position="top-center"
+      autoClose={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      theme="colored"
+      />
       <div className="container" >
         <form onSubmit={handleSubmit} >
         <div className="card mx-auto">
@@ -63,7 +82,7 @@ const Login = () => {
             <span>Password</span>
           </div>
 
-          <button className="enter" onClick={()=>getUserIdFromLocalStorage()}>Log In</button>
+          <button className="enter" onClick={()=>{notify;getUserIdFromLocalStorage()}} >Log In</button>
           <div className='flex text-sm mt-3'>
           <h1  className='-mt-6 mb-4  '>Already have account  ?  </h1> <Link className='-mt-6 ' href={'/UserLogin/SignUp'}><span className='underline  cursor-pointer'>  Register Now</span></Link>
           </div>

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import './SignUp.css'
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
 const SignUp = () => {
 
   const [fullName, setFullName] = useState<string>("");
