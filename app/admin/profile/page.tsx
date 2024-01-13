@@ -17,32 +17,28 @@ const profile:React.FC  = ()=>{
            Profile
          </Typography>
 
-         <div className="container mx-auto mt-5">
-      <div className="p-4">
-        {/* Profile Picture */}
-        <img
-          src="https://i.pinimg.com/236x/ec/41/b7/ec41b76eb7cee1e7a38a641c6269797d.jpg" 
-          alt="Profile"
-          className="rounded-full w-32 h-32 mx-auto"
-        />
-      </div>
-      <div className="p-4 text-center">
-        {/* User Info */}
-        <h1 className="text-2xl font-bold">Nourhen abidi</h1>
-        <p className="text-gray-600">Admin</p>
-        {/* Other User Details */}
-      
-      </div>
 
-      <div className="p-4">
-        {/* User Posts */}
-        <div className="bg-white p-4 rounded shadow mb-4">
-          <p className="text-gray-800 center">Hello, this is my first post!</p>
-          {/* Add more post details as needed */}
-        </div>
-        {/* Add more posts as needed */}
-      </div>
-    </div>
+         <div className="flex flex-col items-end p-4 bg-gray-200 rounded-lg shadow-md">
+  <div className="w-80 h-80 overflow-hidden rounded-full mb-100">
+    <img src="profile-picture.jpg" alt="Profile" className="w-full h-full object-cover" />
+  </div>
+  <div className="text-right">
+    <h3 className="text-lg font-semibold">Admin Name</h3>
+    <p>Followers: 100</p>
+    <p className="text-sm text-gray-600">About Me: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  </div>
+</div>
+
+         {/* <div className="admin-profile-box">
+  <div className="profile-picture-container">
+    <img src="profile-picture.jpg" alt="Profile" className="profile-picture" />
+  </div>
+  <div className="profile-info">
+    <h3>Admin Name</h3>
+    <p>Followers: 100</p>
+    <p>About Me: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  </div>
+</div> */}
 
       </div> 
       </div>
