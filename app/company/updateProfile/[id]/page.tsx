@@ -39,7 +39,7 @@ return(
 <div className="flex ">
 <img 
 className="w-[500px] h-screen "
-src="https://i.pinimg.com/originals/9b/1c/65/9b1c65f4c4aedb26a0dae07ecce12eb9.jpg"
+src="https://i.pinimg.com/originals/41/4a/86/414a8690808037a6a744c40bdaea7cd9.jpg"
 alt=""/>
 <div className=" w-[1000px]  bg-white  flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
 

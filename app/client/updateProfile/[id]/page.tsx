@@ -154,7 +154,7 @@ return(
 </div>
 <img
 className="h-screen w-[1000px]"
-src="https://i.pinimg.com/564x/05/2e/4d/052e4d356fee73e7bb2df44cce0dc074.jpg"/>
+src="https://www.pixelstalk.net/wp-content/uploads/2016/10/BMW-F30-335i-1080x1920.jpg"/>
 </div>
 )
 }
