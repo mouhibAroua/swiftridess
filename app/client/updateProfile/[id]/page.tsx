@@ -65,7 +65,7 @@ const UpdateProfile=()=>{
 
 return(
     
-
+<div className="flex">
 <div className="max-h-screen justify-center items-center bg-white w-full flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
     <main className="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4">
         <div className="p-2 md:p-4">
@@ -140,9 +140,10 @@ return(
 
                         <div className="flex justify-end">
                             <button type="submit"
-                                className="text-black bg-indigo-700  hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                                onClick={()=>{modifyProfile({fullName:fullName,phoneNumber:phoneNumber,email:email,password:password,newPassword:newPassword})}}
-                                >Save</button>
+                                className="bg-blue-950 text-blue-400 border border-blue-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
+                                onClick={()=>{modifyProfile({fullName:fullName,phoneNumber:phoneNumber,email:email,password:password,newPassword:newPassword})}}>
+                                <span className="bg-blue-400 shadow-blue-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
+                                Save</button>
                         </div>
 
                     </div>
@@ -150,6 +151,10 @@ return(
             </div>
         </div>
     </main>
+</div>
+<img
+className="h-screen w-[1000px]"
+src="https://i.pinimg.com/564x/05/2e/4d/052e4d356fee73e7bb2df44cce0dc074.jpg"/>
 </div>
 )
 }
