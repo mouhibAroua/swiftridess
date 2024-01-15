@@ -51,6 +51,7 @@ const TopRatedCars: React.FC = () => {
         className="text-3xl font-bold  text-center text-gold-100"
       >
         Top Rated Cars
+        <hr className="border-t-4 border-oronge-500 mb-4 w-[240px] ml-[620px]"/> 
       </h1>
       <div className="car-container">
         {topRatedCars.map((car) => (
