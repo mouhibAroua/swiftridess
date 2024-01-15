@@ -18,14 +18,13 @@ export default function Home() {
     try {
       const logCompany  = await axios.post("http://localhost:3000/api/login", { emailCompany: email, passwordCompany: password });
 
-      alert(JSON.stringify(logCompany));
       localStorage.setItem('idcompany', logCompany.data.idcompany);
       console.log("data ", logCompany)
       if(logCompany.data.PaymentVerification===false) {
         push("/company/Payment")
       }
       if (logCompany.data.PaymentVerification===true) {
-        push("/company/Dashboard")
+        push("/company/DashBoard")
       }
     } catch (e) {
       const error = e as AxiosError;

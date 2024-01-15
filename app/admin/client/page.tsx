@@ -3,7 +3,6 @@ import React ,{useState , useEffect} from "react";
 import { Typography } from "@mui/material";
 import Sidebar from "../sidebar/page"
 import axios from "axios";
-
 interface Client {
   id: number;
   fullName: string;
@@ -60,7 +59,7 @@ const client =()=>{
 
 
 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <table className="w-full text-sm text-left rtl:text-right text-black dark:text-black">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
 
@@ -71,13 +70,7 @@ const client =()=>{
                     fullName 
                 </th>
                 <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
-                image_user 
-                </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
                     Email 
-                </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
-                    Password 
                 </th>
                 <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
                     Phone Number 
@@ -101,17 +94,11 @@ const client =()=>{
                 <th scope="col" className="px-6 py-3">
                    {e.id}
                 </th>
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                 {e.fullName}
-                </th>
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {e.image_user}
                 </th>
                 <td className="px-6 py-4">
                 {e.email}
-                </td>
-                <td className="px-6 py-4">
-                {e.password}
                 </td>
                 <td className="px-6 py-4">
                 {e.phoneNumber}
