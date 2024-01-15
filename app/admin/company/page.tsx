@@ -122,9 +122,6 @@ const company:React.FC =()=>{
                     Email 
                 </th>
                 <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
-                    Password 
-                </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
                     Phone Number 
                 </th>
                 <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
@@ -144,35 +141,32 @@ const company:React.FC =()=>{
         <tbody>
             <tr>
                 <th scope="col" className="px-6 py-3">
-                   {e.id}
+                   {e.idcompany}
                 </th>
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                 {e.companyName}
                 </th>
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                 {e.ownerName}
                 </th>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 text-black ">
                 {e.emailCompany}
                 </td>
-                <td className="px-6 py-4">
-                {e.passwordCompany}
-                </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 text-black ">
                 {e.phoneNumber}
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 text-black ">
                 {e.location}
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 text-black ">
                 {e.longtitude}
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 text-black ">
                 {e.longtitude}
                 </td>
                 <td className="flex items-center px-6 py-4"> {e.verification}
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                    <a href="#" className="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
+                    <a href="#" className="font-medium text-blue-600 dark:text-black hover:underline">Edit</a>
+                    <a href="#" className="font-medium text-red-600 dark:text-black hover:underline ms-3">Remove</a>
                 </td>
             </tr>
             </tbody>

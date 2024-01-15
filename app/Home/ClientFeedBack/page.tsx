@@ -9,19 +9,19 @@ interface Testimonial {
 const Testimonials: React.FC = () => {
     const testimonials: Testimonial[] = [
         {
-            avatar: "https://repertoire-artistestunisiens.com/wp-content/uploads/2016/09/samir-loussif-300x300.jpg",
-            name: "Samir Lousif",
-            quote: "Bent L 7ay ya wkhayeni tekwi kay"
+            avatar: "https://preview.redd.it/created-random-people-using-chatgpt-midjourney-do-you-know-v0-re9fc50i5dqb1.png?width=640&crop=smart&auto=webp&s=30408dbab2026d810eaa20862e51b7f46f331a6d",
+            name: "Emma Thompson",
+            quote: "Fantastic service! The vehicle was clean, well-maintained, and the rental process was smooth. Will definitely be renting from you again."
         },
         {
-            avatar: "https://www.tuniscope.com/uploads/images/content/maktoub-300809-1.jpg",
-            name: "Dali",
-            quote: "Dali 3omrou ma yo7sol"
+            avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fHww",
+            name: "James Rodriguez",
+            quote: "Impressed with the variety of vehicles available. The staff was helpful, and the online booking made it convenient. Highly recommend!"
         },
         {
-            avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Samara_rappeur.jpg/800px-Samara_rappeur.jpg",
-            name: "Samara riahi",
-            quote: "chteswa flousi ya houma eeeeeeee"
+            avatar: "https://preview.redd.it/created-random-people-using-chatgpt-midjourney-do-you-know-v0-xc8pg40i5dqb1.png?width=640&crop=smart&auto=webp&s=4029ddd24fbe7e577359e7e6d1f0c49bec2b4856",
+            name: "Olivia Martinez",
+            quote: "Great experience! The pick-up and drop-off were quick, and the car exceeded my expectations. Will be my go-to rental company from now on."
         },
     ];
 
