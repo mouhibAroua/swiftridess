@@ -92,7 +92,7 @@ const Navigation: React.FC = () => {
                         <ul className="mt-12 space-y-5 lg:flex lg:space-x-6 lg:space-y-0 lg:mt-0">
                             {
                                 navigation.map((item, idx) => (
-                                    <li key={idx} className="text-gray-600 hover:text-gray-900">
+                                    <li key={idx} className="text-black hover:text-gray-600">
                                         <a href={item.path}>
                                             {item.title}
                                         </a>
