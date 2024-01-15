@@ -14,10 +14,10 @@ import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
 import Link from 'next/link';
 
-// interface MenuItem {
-//   title: string;
-//   path: string;
-// }
+interface MenuItem {
+  title: string;
+  path: string;
+}
 interface dashboardProps {
   class: string;
 }
@@ -31,10 +31,9 @@ const dashboard: React.FC <dashboardProps> = (props) => {
 
 
 
-//   const navigation: MenuItem[] = [
-//     { title: "Edit", path: "/admin/editProfile" },
-//     { title: "View Profile", path: "/admin/profile" }
-// ];
+  const navigation: MenuItem[] = [
+    { title: "View Profile", path: "/admin/profile" }
+];
 
   useEffect(() => {
       const handleDropDown = (e: MouseEvent) => {
@@ -55,7 +54,7 @@ const dashboard: React.FC <dashboardProps> = (props) => {
 
         <div className="flex items-center ">
   <Typography variant="h6" className="mt-2 mr-40" style={{ color: 'grey' }}>
-    ADMIN
+    ADMINS
   </Typography>
   <MenuOutlinedIcon />
 </div>
@@ -75,7 +74,7 @@ const dashboard: React.FC <dashboardProps> = (props) => {
 
             </div>
             
-            {/* <ul className={`bg-white top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
+            <ul className={`bg-white top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
                 {   
                     navigation.map((item, idx) => (
                         <li key={idx}>
@@ -85,10 +84,10 @@ const dashboard: React.FC <dashboardProps> = (props) => {
                         </li>
                     ))
                 }
-            </ul> */}
+            </ul>
         </div>
 
-            <ListItemText primary={<p className="mt-2">NOURHEN </p>} />
+            <ListItemText primary={<p className="mt-2">NOURHEN ABIDI</p>} />
           </ListItem>
           <ListItem>
             <ListItemIcon>
@@ -103,13 +102,13 @@ const dashboard: React.FC <dashboardProps> = (props) => {
             <ListItemIcon >
               <GroupOutlinedIcon color="primary" />
             </ListItemIcon>
-            <Link href={'/admin/client'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Manage Team" /></button></Link>
+            <Link href={'/admin/client'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Users" /></button></Link>
           </ListItem>
           <ListItem button >
             <ListItemIcon >
               <ContactMailOutlinedIcon color="primary"/>
             </ListItemIcon>
-            <Link href={'/admin/company'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Contact Information" /></button></Link>
+            <Link href={'/admin/company'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Contacts information" /></button></Link>
           </ListItem>
           <Typography variant="h6" className="mt-2" style={{ color: 'grey' }}>
              Details

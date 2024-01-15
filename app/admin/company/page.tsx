@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 import Sidebar from "../sidebar/page"
 import axios from 'axios';
 
-import Stack from '@mui/material/Stack';
+
 
 interface Company {
   id: number;

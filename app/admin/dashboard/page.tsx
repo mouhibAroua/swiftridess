@@ -8,9 +8,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
 import EmailIcon from '@mui/icons-material/Email';
 import Sidebar from "../sidebar/page"
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import { red } from "@mui/material/colors";
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import MovingIcon from '@mui/icons-material/Moving';
 
 const dataa = [
     {
@@ -130,8 +129,8 @@ const dashboard: React.FC  = () => {
             <Box display="flex" justifyContent="space-between" mt="2px">
             <Typography
           variant="h5"
-          fontStyle="italic" style={{ marginLeft: 'auto' }}>
-          <ArrowUpwardIcon color="success"/>21%
+          fontStyle="italic" style={{ marginLeft: 'auto' }} sx={{ color: "green" }}>
+          <MovingIcon color="success"/>21%
         </Typography>
         </Box>
           </Box>
@@ -146,8 +145,8 @@ const dashboard: React.FC  = () => {
             <Box display="flex" justifyContent="space-between" mt="2px">
             <Typography
           variant="h5"
-          fontStyle="italic" style={{ marginLeft: 'auto' }}>
-         <ArrowUpwardIcon color="success"/>5%
+          fontStyle="italic" style={{ marginLeft: 'auto' }} sx={{ color: "green" }}>
+         <MovingIcon color="success"/>5%
         </Typography>
         </Box>
           </Box>
@@ -163,8 +162,8 @@ const dashboard: React.FC  = () => {
             <Box display="flex" justifyContent="space-between" mt="2px">
             <Typography
           variant="h5"
-          fontStyle="italic" style={{ marginLeft: 'auto' }}>
-          <ArrowDownwardIcon sx={{ color: "red" }} />7%
+          fontStyle="italic" style={{ marginLeft: 'auto' }} sx={{ color: "red" }}>
+          <TrendingDownIcon sx={{ color: "red" }} />7%
         </Typography>
         </Box>
           </Box>
@@ -180,8 +179,8 @@ const dashboard: React.FC  = () => {
             <Box display="flex" justifyContent="space-between" mt="2px">
             <Typography
           variant="h5"
-          fontStyle="italic" style={{ marginLeft: 'auto' }}>
-          <ArrowUpwardIcon color="success"/>14%
+          fontStyle="italic" style={{ marginLeft: 'auto' }} sx={{ color: "green" }}>
+          <MovingIcon color="success"/>14%
         </Typography>
         </Box>
         </Box>
