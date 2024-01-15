@@ -32,7 +32,6 @@ const dashboard: React.FC <dashboardProps> = (props) => {
 
 
   const navigation: MenuItem[] = [
-    { title: "Edit", path: "/admin/editProfile" },
     { title: "View Profile", path: "/admin/profile" }
 ];
 
@@ -71,11 +70,10 @@ const dashboard: React.FC <dashboardProps> = (props) => {
                         alt="Profile"
                     />
                 </button>
-                <div className="lg:hidden">
-                    <span className="block">Micheal John</span>
-                    <span className="block text-sm text-gray-500">john@gmail.com</span>
-                </div>
+
+
             </div>
+            
             <ul className={`bg-white top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
                 {   
                     navigation.map((item, idx) => (
@@ -89,13 +87,13 @@ const dashboard: React.FC <dashboardProps> = (props) => {
             </ul>
         </div>
 
-            <ListItemText primary={<p className="mt-2">NOURHEN </p>} />
+            <ListItemText primary={<p className="mt-2">NOURHEN ABIDI</p>} />
           </ListItem>
           <ListItem>
             <ListItemIcon>
               <HomeOutlinedIcon color="primary" />
             </ListItemIcon>
-            <Link href={'/admin/dashboard'}><button > <ListItemText primary={<p>Dashboard</p>} /></button></Link>
+            <Link href={'/admin/dashboard'} className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary={<p>Dashboard</p>}/></button></Link>
           </ListItem>
           <Typography variant="h6" className="mt-2" style={{ color: 'grey' }}>
              Data
@@ -104,13 +102,13 @@ const dashboard: React.FC <dashboardProps> = (props) => {
             <ListItemIcon >
               <GroupOutlinedIcon color="primary" />
             </ListItemIcon>
-            <ListItemText primary="Manage Team" />
+            <Link href={'/admin/client'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Users" /></button></Link>
           </ListItem>
           <ListItem button >
             <ListItemIcon >
               <ContactMailOutlinedIcon color="primary"/>
             </ListItemIcon>
-            <ListItemText primary="Contact Information" />
+            <Link href={'/admin/company'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Contacts information" /></button></Link>
           </ListItem>
           <Typography variant="h6" className="mt-2" style={{ color: 'grey' }}>
              Details
@@ -120,7 +118,7 @@ const dashboard: React.FC <dashboardProps> = (props) => {
               <AccountCircleOutlinedIcon color="primary" />
             </ListItemIcon>
             
-            <Link href={'/admin/profile'}><button > <ListItemText primary="Profile" /></button></Link>
+            <Link href={'/admin/profile'} className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Profile"/></button></Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
@@ -153,7 +151,7 @@ const dashboard: React.FC <dashboardProps> = (props) => {
             <ListItemIcon>
               <ShowChartOutlinedIcon color="primary" />
             </ListItemIcon>
-            <Link href={'/admin/Chart'}><button > <ListItemText primary="Line" /></button></Link>
+            <Link href={'/admin/Chart'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Line" /></button></Link>
           </ListItem>
         </List>
       </div>
