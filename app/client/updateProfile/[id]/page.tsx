@@ -1,6 +1,7 @@
 "use client"
 import axios from "axios";
 import { useState, useRef } from "react";
+import bcrypt from "bcrypt"
 
 interface Client {
     id:Number;
@@ -19,6 +20,7 @@ const UpdateProfile=()=>{
     const [password, setPassword] = useState<string>("")
     const [newPassword, setNewPassword] = useState<string>("")
     const [previewImage, setPreviewImage] = useState<string>("");
+    const userId = localStorage.getItem('id')
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const addPicture = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,18 +52,58 @@ const UpdateProfile=()=>{
         }
       };
 
-      const modifyProfile = (user:Object) => {
-              axios
-                .put("http://localhost:3000/api/users/${id}", user)
-                .then((res) => {
-          console.log(res.data,"res")
-                  alert("You successfully updated your account");
-                  })
-                .catch((err) =>
-          
-          console.log(err)
-                  )};
+      const verifyCurrentPassword = async (email: string, currentPassword: string): Promise<boolean> => {
+        try {
+          const response = await axios.get(`http://localhost:3000/api/users?email=${email}`);
     
+          if (response.data.length === 0) {
+            throw new Error('User not found');
+          }
+    
+          const user: Client = response.data[0];
+    
+          const passwordCorrect = await bcrypt.compare(currentPassword, user.password);
+    
+          return passwordCorrect;
+        } catch (error) {
+          console.error(error);
+          return false;
+        }
+      };
+
+     
+      const modifyProfile = async (user: Client) => {
+        try {
+          const currentPasswordCorrect = await verifyCurrentPassword(user.email, password);
+    
+          if (!currentPasswordCorrect) {
+            alert('Current password is incorrect');
+            return;
+          }
+    
+          let hashedNewPassword: string | null = null;
+    
+          if (newPassword) {
+            hashedNewPassword = await bcrypt.hash(newPassword, 10);
+          }
+    
+          const updatedUser = {
+            ...user,
+            newPassword: hashedNewPassword,
+            image_user: imgUrl,
+          };
+    
+          const response = await axios.put(`http://localhost:3000/api/users/${userId}`, updatedUser);
+    
+          console.log(response.data, 'res');
+          alert('You successfully updated your account');
+        } catch (error) {
+          console.error(error);
+        }
+      };
+    
+      
+               
 
 return(
     
@@ -141,7 +183,7 @@ return(
                         <div className="flex justify-end">
                             <button type="submit"
                                 className="bg-blue-950 text-blue-400 border border-blue-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
-                                onClick={()=>{modifyProfile({fullName:fullName,phoneNumber:phoneNumber,email:email,password:password,newPassword:newPassword})}}>
+                                onClick={()=>{modifyProfile({fullName:fullName,phoneNumber:phoneNumber,email:email,password:newPassword})}}>
                                 <span className="bg-blue-400 shadow-blue-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
                                 Save</button>
                         </div>
