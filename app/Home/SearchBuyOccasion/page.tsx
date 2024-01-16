@@ -1,6 +1,32 @@
+"use client"
+import React, { useEffect, useState,useRef } from 'react';
+import { motion } from "framer-motion";
+import fadeIn from '../AboutUs/fadeIn';
+
 const Occasion = () => {
+    const [animationTriggered, setAnimationTriggered] = useState<boolean>(false);
+    const scrollDown = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleScroll = () => {
+          if (scrollDown.current) {
+            const down = scrollDown.current.getBoundingClientRect();
+            const vs = down.top < window.innerHeight
+            setAnimationTriggered(vs);
+          }
+        };
+        window.addEventListener('scroll', handleScroll);
+
+      }, []);
+
     return (
-        <div className="mt-[100px]">
+        <motion.div 
+        ref={scrollDown}
+        variants={fadeIn('up', 0.4)}
+         initial='hidden'
+        animate={animationTriggered ? 'show' : 'hidden'}
+        
+        className="mt-[100px]">
             <h1 className="flex justify-center font-semibold text-3xl">Occasion</h1>
             <hr className="border-t-4 border-oronge-500 mb-4 w-[180px] ml-[650px]"/> 
         <div className="flex justify-center space-x-40 mt-[100px]" >
@@ -18,7 +44,7 @@ const Occasion = () => {
                 <h1 className="font-semibold">Transporter</h1>
             </div>
         </div>
-        </div>
+        </motion.div>
     );
 }
 
