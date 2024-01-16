@@ -1,0 +1,10 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ec250d;
+    background-clip: initial;
+    border: 0.0625rem solid rgba(34,42,66,.05);
+    border-radius: 1.2857rem;
+}

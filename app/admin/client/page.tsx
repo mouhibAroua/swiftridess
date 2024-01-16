@@ -10,13 +10,13 @@ interface Client {
   image_user: string;
   phoneNumber: string;
   email:string;
-  password:string;
+
   longitude:string;
   latitude:string;
   role:string;
 } 
 
-const client =()=>{
+const client: React.FC =()=>{
   const [data, setData] = useState<Client | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -76,9 +76,7 @@ const client =()=>{
                 <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
                     Email 
                 </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
-                    Password 
-                </th>
+
                 <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
                     Phone Number 
                 </th>
@@ -110,9 +108,7 @@ const client =()=>{
                 <td className="px-6 py-4">
                 {e.email}
                 </td>
-                <td className="px-6 py-4">
-                {e.password}
-                </td>
+
                 <td className="px-6 py-4">
                 {e.phoneNumber}
                 </td>

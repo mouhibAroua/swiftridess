@@ -16,7 +16,6 @@ interface Company {
   longtitude:string;
   latitude:string;
   emailCompany:string;
-  passwordCompany:string;
   PaymentVerification:number
 } 
 
@@ -121,9 +120,7 @@ const company:React.FC =()=>{
                 <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
                     Email 
                 </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
-                    Password 
-                </th>
+
                 <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
                     Phone Number 
                 </th>
@@ -155,9 +152,7 @@ const company:React.FC =()=>{
                 <td className="px-6 py-4">
                 {e.emailCompany}
                 </td>
-                <td className="px-6 py-4">
-                {e.passwordCompany}
-                </td>
+
                 <td className="px-6 py-4">
                 {e.phoneNumber}
                 </td>
