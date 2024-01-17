@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Navv from "../../../Home/navBar/page"
+import Navv from "../../../Home/navbar/page"
 import "./details.css"
 import PaidIcon from '@mui/icons-material/Paid';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
