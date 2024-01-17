@@ -35,6 +35,28 @@ async function getUserById(req, res) {
   }
 }
 
+const getUserByEmail = async (req, res) => {
+  try {
+    const { email } = req.params;
+
+    const user = await User.findOne({
+      where: {
+        email: email,
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    return res.json(user);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+
 // Create a new user
 async function createUser(req, res) {
   try {
@@ -110,4 +132,5 @@ module.exports = {
   updateUserById,
   deleteUserById,
   getCompanyInfoByCarId,
+  getUserByEmail
 };

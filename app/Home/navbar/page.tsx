@@ -1,6 +1,7 @@
 "use client"
-import "./nav.css"
+// import "../nav.css"
 import React, { useState, useRef, useEffect } from "react";
+
 interface MenuItem {
     title: string;
     path: string;

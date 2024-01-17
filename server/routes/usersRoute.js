@@ -20,5 +20,7 @@ router.delete('/users/:id', UserController.deleteUserById);
 
 router.get('/company/car/:id', UserController.getCompanyInfoByCarId);
 
+router.get ('/users/email/:email',UserController.getUserByEmail)
+
 
 module.exports = router;
