@@ -22,7 +22,7 @@ interface Company {
 
 
 const company:React.FC =()=>{
-  const [companyData, setCompanyData] = useState<Company | null>(null);
+  const [companyData, setCompanyData] = useState<Company[]| null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -142,7 +142,7 @@ const company:React.FC =()=>{
         <tbody>
             <tr>
                 <td scope="col" className="px-6 py-3">
-                   {e.idcompany}
+                   {e.id}
                 </td>
                 <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                 {e.companyName}

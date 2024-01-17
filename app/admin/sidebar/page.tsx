@@ -18,15 +18,14 @@ interface MenuItem {
   title: string;
   path: string;
 }
-interface dashboardProps {
-  class: string;
-}
 
 
 
-const dashboard: React.FC <dashboardProps> = (props) => {
+
+const Sidebar: React.FC = (props) => {
   const [state, setState] = useState(false);
-  const profileRef = useRef<HTMLButtonElement>(null); 
+  const profileRef = useRef<HTMLButtonElement>(null);
+
 
 
 
@@ -56,11 +55,13 @@ const dashboard: React.FC <dashboardProps> = (props) => {
   <Typography variant="h6" className="mt-2 mr-40" style={{ color: 'grey' }}>
     ADMINS
   </Typography>
+ 
   <MenuOutlinedIcon />
-</div>
-          <ListItem className="flex items-center flex-col px-4 py-2 hover:bg-gray-1000">
 
-                    <div className={`relative ${props.class}`}>
+</div>
+          <ListItem  className="flex items-center flex-col px-4 py-2 hover:bg-gray-1000" >
+
+                    <div>
             <div className="flex items-center space-x-4">
                 <button ref={profileRef} className="w-15 h-15 outline-none rounded-full ring-offset-2 ring-gray-200 ring-2 lg:focus:ring-indigo-600"
                     onClick={() => setState(!state)}>
@@ -163,4 +164,4 @@ const dashboard: React.FC <dashboardProps> = (props) => {
   );
 };
 
-export default dashboard;
+export default Sidebar;

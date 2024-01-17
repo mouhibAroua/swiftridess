@@ -54,7 +54,7 @@ const dashboard: React.FC  = () => {
 
     const chartWidth = 1100;
     const chartHeight = 450;
-const[open,setOpen]=useState<Boolean>(true)
+
   return (
     <div className="flex h-screen">
    <Sidebar/>
@@ -204,6 +204,7 @@ const[open,setOpen]=useState<Boolean>(true)
           </LineChart>
         </Box>
         </div> 
+        
         </div>
       </div>
     </div>

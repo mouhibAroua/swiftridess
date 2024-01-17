@@ -1,11 +1,54 @@
-"use client "
-import React from "react"
+"use client"
+import React , {useState} from "react"
 import Sidebar from "../sidebar/page"
 import {Typography } from '@mui/material';
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import "./profile.module.css"
+import axios from "axios";
+
+interface Add {
+    fullName:string;
+    role:string;
+    phoneNumber:number;
+    longtitude:string;
+    email:string;
+    password:string;
+    image_user:String;
+}
 
 const profile:React.FC  = ()=>{
+const [fullName,setfullName]=useState<string>("")
+const [role,setRole]=useState<string>("")
+const [phoneNumber,setPhoneNumber]=useState<number>(0)
+const [longitude,setLongitude]=useState<string>("")
+const [email,setEmail]=useState<string>("")
+const [password,setPassword]=useState<string>("")
+const [image_user,setimage_user]=useState<string>("")
+
+const obj: Add = {
+  fullName:fullName,
+  image_user:image_user,
+  phoneNumber:phoneNumber,
+  email:email,
+  password:password,
+  longtitude:longitude,
+  role:role,
+};
+
+const addOne = () => {
+  console.log(obj);
+  
+  axios
+    .post('http://localhost:3000/api/users/add', obj)
+    .then(() => {
+      console.log("added");
+      
+      alert('person added');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
     return (
       <div className="flex h-screen">
       <Sidebar/>
@@ -41,58 +84,72 @@ const profile:React.FC  = ()=>{
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div>
             <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">
-              First name
+              Full name
             </label>
             <div className="mt-2.5">
               <input
                 type="text"
-                name="first-name"
-                id="first-name"
-                autoComplete="given-name"
+                name="fullname"
+                id="fullname"
+                autoComplete="fullname"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+                onChange={(e)=>setfullName(e.target.value)} />
             </div>
           </div>
           <div>
-            <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
-              Last name
+            <label htmlFor="role" className="block text-sm font-semibold leading-6 text-gray-900">
+              role
             </label>
             <div className="mt-2.5">
               <input
                 type="text"
-                name="last-name"
-                id="last-name"
+                name="role"
+                id="role"
                 autoComplete="family-name"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+                onChange={(e)=>setRole(e.target.value)} />
             </div>
           </div>
           <div className="sm:col-span-2">
             <label htmlFor="company" className="block text-sm font-semibold leading-6 text-gray-900">
-              Company
+            email
             </label>
             <div className="mt-2.5">
               <input
                 type="text"
-                name="company"
-                id="company"
-                autoComplete="organization"
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">
-              Email
-            </label>
-            <div className="mt-2.5">
-              <input
-                type="email"
                 name="email"
                 id="email"
                 autoComplete="email"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+                onChange={(e)=>setEmail(e.target.value)} />
+            </div>
+          </div>
+          <div className="sm:col-span-2">
+            <label htmlFor="longitude" className="block text-sm font-semibold leading-6 text-gray-900">
+              password
+            </label>
+            <div className="mt-2.5">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                autoComplete="password"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                onChange={(e)=>setPassword(e.target.value)} />
+            </div>
+          </div>
+          <div className="sm:col-span-2">
+            <label htmlFor="role" className="block text-sm font-semibold leading-6 text-gray-900">
+              longitude
+            </label>
+            <div className="mt-2.5">
+              <input
+                type="role"
+                name="role"
+                id="role"
+                autoComplete="role"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                onChange={(e)=>setLongitude(e.target.value)}/>
             </div>
           </div>
           <div className="sm:col-span-2">
@@ -110,8 +167,6 @@ const profile:React.FC  = ()=>{
                   className="h-full rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
                 >
                   <option>+216</option> //tunisia 
-                  <option>+218</option> //libiya
-                  <option>+214</option> //algeria
                 </select>
                 <ChevronDownIcon
                   className="pointer-events-none absolute right-3 top-0 h-full w-5 text-gray-400"
@@ -124,7 +179,7 @@ const profile:React.FC  = ()=>{
                 id="phone-number"
                 autoComplete="tel"
                 className="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+                onChange={(e)=>setPhoneNumber(+e.target.value)}/>
             </div>
           </div>
           {/* <div className="sm:col-span-2">
@@ -173,44 +228,16 @@ const profile:React.FC  = ()=>{
         <div className="mt-10">
           <button
             type="submit"
-            className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Let's talk
+            className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onClick={(e)=>{e.preventDefault()
+              addOne()}} >
+            add
           </button>
-        </div>
+        </div>  
       </form>
     </div>
   
 
-  {/* <Box className="p-40 rounded-md shadow-md bg-gray-200 fixed top-30 right-4">
-    <div className="flex items-center mt-[-260px] ml-10">
-      <button className="w-15 h-15 outline-none rounded-full ring-offset-2 ring-gray-200 ring-2 lg:focus:ring-indigo-600">
-        <img
-          src="https://cdn.discordapp.com/attachments/1154695405645340722/1196115147987628073/377126404_1282887952416251_3954805956161640879_n.jpg?ex=65b6740a&is=65a3ff0a&hm=6f8612f82f75beaf8ff027a67350e605e3e9e7209e40794b2b590df62712f9a7&"
-          className="w-full h-full rounded-full"
-          alt="Profile"
-        />
-      </button>
-    
-    <Typography variant="h4" fontWeight="bold" gutterBottom className="ml-20">
-      Nourhen Abidi
-    </Typography>
-    <Typography variant="h5" gutterBottom className="center ml-36" style={{ color: 'grey' }}>
-      Mostachara
-    </Typography>
-    <Box display="flex" justifyContent="space-between" mt="2px">
-      <Typography variant="h5" fontStyle="italic" className="ml-auto text-green-500">
-        21%
-      </Typography>
-    </Box>
-    <div>
-      <Typography variant="h5" fontStyle="italic" className="ml-auto text-green-500 ml-10">
-        About Me:
-      </Typography>
-      <p> this space is only for admins </p>
-    </div>
-  </Box>
-</div> */}
 
       </div> 
       </div>
