@@ -20,7 +20,6 @@ const UpdateProfile=()=>{
     const [fullName, setFullName] = useState<string>("")
     const [phoneNumber, setPhoneNumber] = useState<string>("")
     const [email, setEmail] = useState<string>("")
-    const [password, setPassword] = useState<string>("")
     const [newPassword, setNewPassword] = useState<string>("")
     const [previewImage, setPreviewImage] = useState<string>("");
     const userId = localStorage.getItem('id')
@@ -57,21 +56,19 @@ const UpdateProfile=()=>{
         }
       };
 
-      
+      const password=async (val:any)=>{
+        let hashedNewPassword = await bcrypt.hash(newPassword, 10);
+        setNewPassword(hashedNewPassword)
+        
+    }
 
      
       const modifyProfile = async (user: Client) => {
         try {
     
-          let hashedNewPassword: string | null = null;
-    
-          if (newPassword) {
-            hashedNewPassword = await bcrypt.hash(newPassword, 10);
-          }
-    
           const updatedUser = {
             ...user,
-            newPassword: hashedNewPassword,
+            newPassword,
             image_user: imgUrl,
           };
     
@@ -166,7 +163,7 @@ return(
                                 className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">New Password</label>
                             <input type="password" id="New-password"
                                 className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                                placeholder="New Password" onChange={(e)=>setNewPassword(e.target.value)} />
+                                placeholder="New Password" onChange={(e)=>password(e.target.value)} />
                         </div>
 
                         <div className="flex justify-end">
