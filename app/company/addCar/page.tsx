@@ -122,7 +122,7 @@ const addCar=()=>{
                             ))}
                             </div>
         
-          <img className="w-[600px] h-[500px] ml-[240px]" src="https://i.pinimg.com/originals/b3/18/8c/b3188c1d762e8b7d1ea9e5b41b12685e.jpg"/>    
+          
          
         </div>
         </div>
