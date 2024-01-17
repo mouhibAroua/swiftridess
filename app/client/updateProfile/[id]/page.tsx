@@ -1,10 +1,10 @@
 "use client"
 import axios from "axios";
 import { useState, useRef } from "react";
-import bcrypt from "bcrypt"
+import bcrypt from "bcryptjs"
 
 interface Client {
-    id:Number;
+    id:string|null;
     fullName: string;
     image_user: string;
     phoneNumber: string;
@@ -13,6 +13,7 @@ interface Client {
   }
 
 const UpdateProfile=()=>{
+  
     const [imgUrl, setImgUrl] = useState<string>("");
     const [fullName, setFullName] = useState<string>("")
     const [phoneNumber, setPhoneNumber] = useState<string>("")
@@ -22,7 +23,7 @@ const UpdateProfile=()=>{
     const [previewImage, setPreviewImage] = useState<string>("");
     const userId = localStorage.getItem('id')
     const fileInputRef = useRef<HTMLInputElement>(null);
-
+    
     const addPicture = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
     
@@ -52,9 +53,9 @@ const UpdateProfile=()=>{
         }
       };
 
-      const verifyCurrentPassword = async (email: string, currentPassword: string): Promise<boolean> => {
+      const verifyCurrentPassword = async (email: string, password: string): Promise<boolean> => {
         try {
-          const response = await axios.get(`http://localhost:3000/api/users?email=${email}`);
+          const response = await axios.get(`http://localhost:3000/api/users/email/${email}`);
     
           if (response.data.length === 0) {
             throw new Error('User not found');
@@ -62,7 +63,7 @@ const UpdateProfile=()=>{
     
           const user: Client = response.data[0];
     
-          const passwordCorrect = await bcrypt.compare(currentPassword, user.password);
+          const passwordCorrect = await bcrypt.compare(password, user.password);
     
           return passwordCorrect;
         } catch (error) {
@@ -183,7 +184,7 @@ return(
                         <div className="flex justify-end">
                             <button type="submit"
                                 className="bg-blue-950 text-blue-400 border border-blue-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
-                                onClick={()=>{modifyProfile({fullName:fullName,phoneNumber:phoneNumber,email:email,password:newPassword})}}>
+                                onClick={()=>{modifyProfile({id:userId,fullName:fullName,phoneNumber:phoneNumber,email:email,password:newPassword,image_user:imgUrl})}}>
                                 <span className="bg-blue-400 shadow-blue-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
                                 Save</button>
                         </div>
