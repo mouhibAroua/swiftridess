@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import fadeIn from '../AboutUs/fadeIn';
+import Link from 'next/link';  
 
 const Occasion = () => {
   const [animationTriggered, setAnimationTriggered] = useState<boolean>(false);
@@ -37,6 +38,7 @@ const Occasion = () => {
 
 
       <div className="flex justify-center space-x-40 mt-[100px]">
+      <Link href={`http://localhost:3001/Home/SearchBuyOccasion/wedding` }>
         <motion.div
           className="w-[200px] text-center mb-4"
           variants={fadeIn('left', 0.6)}
@@ -45,8 +47,9 @@ const Occasion = () => {
             src="https://cdn.discordapp.com/attachments/1191774717003182175/1195382536692568194/9d586d2acbd77481e4650fe48aea7e0a-removebg-preview.png?ex=65b3c9bd&is=65a154bd&hm=d2c2817137a72b1fe812a597db6555165bc78a4e4a8ff2c4e9a7111f64e81fc5&"/>
           <h1 className="font-semibold">Weddings</h1>
         </motion.div>
-
+        </Link> 
         
+        <Link href={`http://localhost:3001/Home/SearchBuyOccasion/daily` }>
         <motion.div
           className="w-60 text-center mb-4"
           variants={fadeIn('left', 0.7)}
@@ -55,6 +58,9 @@ const Occasion = () => {
             src="https://cdn.discordapp.com/attachments/1113064451806076990/1195294213252857927/43801ed6-940a-4810-aef1-fc7a93783b72_1.png?ex=65b3777b&is=65a1027b&hm=99ead9082d51a60062ef7869e5007b5c509fcd5b97c5c831321bcff53a92d324&"/>
           <h1 className="font-semibold">Daily Use</h1>
         </motion.div>
+        </Link>
+
+        <Link href={`http://localhost:3001/Home/SearchBuyOccasion/daily` }>
         <motion.div
           className="w-60 text-center mb-4"
           variants={fadeIn('left', 0.8)}
@@ -63,6 +69,8 @@ const Occasion = () => {
             src="https://www.petitforestier.com/files/images/file/9b9bab13-765e-4620-ac40-b97696266bdc/iveco-daily-1.png"/>
           <h1 className="font-semibold">Transporter</h1>
         </motion.div>
+        </Link>
+
       </div>
     </motion.div>
   );
