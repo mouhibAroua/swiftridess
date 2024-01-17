@@ -1,7 +1,9 @@
 "use client"
 import axios from "axios";
 import { useState, useRef } from "react";
+import { useParams } from "next/navigation";
 import bcrypt from "bcryptjs"
+
 
 interface Client {
     id:string|null;
@@ -22,6 +24,8 @@ const UpdateProfile=()=>{
     const [newPassword, setNewPassword] = useState<string>("")
     const [previewImage, setPreviewImage] = useState<string>("");
     const userId = localStorage.getItem('id')
+    const {id} = useParams()
+    console.log(typeof(id),"eee",typeof(userId))
     const fileInputRef = useRef<HTMLInputElement>(null);
     
     const addPicture = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,34 +57,11 @@ const UpdateProfile=()=>{
         }
       };
 
-      const verifyCurrentPassword = async (email: string, password: string): Promise<boolean> => {
-        try {
-          const response = await axios.get(`http://localhost:3000/api/users/email/${email}`);
-    
-          if (response.data.length === 0) {
-            throw new Error('User not found');
-          }
-    
-          const user: Client = response.data[0];
-    
-          const passwordCorrect = await bcrypt.compare(password, user.password);
-    
-          return passwordCorrect;
-        } catch (error) {
-          console.error(error);
-          return false;
-        }
-      };
+      
 
      
       const modifyProfile = async (user: Client) => {
         try {
-          const currentPasswordCorrect = await verifyCurrentPassword(user.email, password);
-    
-          if (!currentPasswordCorrect) {
-            alert('Current password is incorrect');
-            return;
-          }
     
           let hashedNewPassword: string | null = null;
     
@@ -106,11 +87,24 @@ const UpdateProfile=()=>{
       
                
 
-return(
+return(    
+  <>
+  {(id!==userId)&&
+  <h1>not found</h1>}
+  {(id===userId)&&
     
-<div className="flex">
+  <div className="flex justify-between">
+                    <a href="/Home">
+                        <img
+                            src="https://media.discordapp.net/attachments/1157269732219691038/1194220754376589352/cars-removebg-preview.png?ex=65af8fbf&is=659d1abf&hm=94eae9de317c04c8f6efeb2ce656743162493db62d430b29f3b8c0aa69da9b28&=&format=webp&quality=lossless&width=706&height=552" 
+                            width={120} 
+                            height={100}
+                            alt="Float UI logo"
+                        />
+                    </a>
+               
+                <div className="flex">
 <div className="max-h-screen justify-center items-center bg-white w-full flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
-    <main className="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4">
         <div className="p-2 md:p-4">
             <div className="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
                 <div className="grid max-w-2xl mx-auto mt-8">
@@ -166,13 +160,7 @@ return(
                                 placeholder="your.email@mail.com" onChange={(e)=>setEmail(e.target.value)} />
                         </div>
 
-                        <div className="mb-2 sm:mb-6">
-                            <label 
-                                className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">Password</label>
-                            <input type="password" id="password"
-                                className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                                placeholder="Password" onChange={(e)=>setPassword(e.target.value)} />
-                        </div>
+
                         <div className="mb-2 sm:mb-6">
                             <label 
                                 className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">New Password</label>
@@ -188,17 +176,20 @@ return(
                                 <span className="bg-blue-400 shadow-blue-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
                                 Save</button>
                         </div>
-
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
 </div>
+<div className="h-screen w-[600px] overflow-hidden">
 <img
-className="h-screen w-[1000px]"
+className="h-full w-full object-cover"
 src="https://www.pixelstalk.net/wp-content/uploads/2016/10/BMW-F30-335i-1080x1920.jpg"/>
 </div>
+</div>
+}
+</>
 )
 }
 

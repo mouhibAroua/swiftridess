@@ -16,7 +16,6 @@ const Login = () => {
   const [error, setError] = useState<string>('');
 
   const notify = () => toast("Your Account Created Succesfuly! please log in");
-  toast("Your Account Created Successfully! please log in");
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 
     event.preventDefault();
@@ -84,7 +83,7 @@ const Login = () => {
             <span>Password</span>
           </div>
 
-          <button className="enter" onClick={()=>{notify;getUserIdFromLocalStorage()}} >Log In</button>
+          <button className="enter" onClick={()=>{notify();getUserIdFromLocalStorage()}} >Log In</button>
           <div className='flex text-sm mt-3'>
           <h1  className='-mt-6 mb-4  '>Already have account  ?  </h1> <Link className='-mt-6 ' href={'/UserLogin/SignUp'}><span className='underline  cursor-pointer'>  Register Now</span></Link>
           </div>

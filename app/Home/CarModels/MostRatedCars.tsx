@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import axios from "axios";
 import "./TopRatedCars.css";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
@@ -8,6 +8,8 @@ import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Link from 'next/link';  
+import { motion } from "framer-motion";
+import fadeIn from '../AboutUs/fadeIn';
 
 interface Car {
   brand: string;
@@ -23,6 +25,9 @@ interface Car {
 
 
 const TopRatedCars: React.FC = () => {
+  const [animationTriggered, setAnimationTriggered] = useState<boolean>(false);
+  const scrollDown = useRef<HTMLDivElement>(null);
+
   const [topRatedCars, setTopRatedCars] = useState<Car[]>([]);
 
   useEffect(() => {
@@ -44,8 +49,24 @@ const TopRatedCars: React.FC = () => {
     fetchTopRatedCars();
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollDown.current) {
+        const down = scrollDown.current.getBoundingClientRect();
+        const vs = down.top < window.innerHeight
+        setAnimationTriggered(vs);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+
+  }, []);
   return (
-    <div>
+    <motion.div 
+    ref={scrollDown}
+        variants={fadeIn('up', 0.4)}
+         initial='hidden'
+        animate={animationTriggered ? 'show' : 'hidden'}
+    >
       <h1
         id="texting"
         className="text-3xl font-bold  text-center text-gold-100"
@@ -82,7 +103,7 @@ const TopRatedCars: React.FC = () => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div >
   );
 };
 

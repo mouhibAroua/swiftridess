@@ -71,8 +71,7 @@ const Navigation: React.FC = () => {
 
     const navigation: MenuItem[] = [
         { title: "Home", path: "/Home" },
-        { title: "About", path: "/" },
-        { title: "Contact", path: "/Contact" },
+        { title: "About", path: "/"  },
         { title: "Sign", path: "/UserLogin/Login" },
     ];
 
@@ -96,13 +95,14 @@ const Navigation: React.FC = () => {
                                 
                                 navigation.map((item, idx) => (
                                     <li key={idx} className="text-gray-600 hover:text-gray-900">
-                                        <a href={item.path}>
-                                            {item.title}
+                                        <a  href={item.path}>
+                                            {item.title}    
                                         </a>
                                     </li>
                                 ))
                             }
                         </ul>
+                        <button onClick={() => window.scrollTo({ top: 2000, behavior: "smooth" })} className="whyusb"> Why Us</button>
                         <ProfileDropDown 
                             class="mt-5 pt-5 border-t lg:hidden"
                         />
