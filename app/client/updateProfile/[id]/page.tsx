@@ -25,7 +25,7 @@ const UpdateProfile=()=>{
     const [previewImage, setPreviewImage] = useState<string>("");
     const userId = localStorage.getItem('id')
     const {id} = useParams()
-    console.log(typeof(id),"eee",typeof(userId))
+    
     const fileInputRef = useRef<HTMLInputElement>(null);
     
     const addPicture = (e: React.ChangeEvent<HTMLInputElement>) => {
