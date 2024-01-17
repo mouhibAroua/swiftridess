@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
             <div className="max-w-lg sm:mx-auto sm:text-center">
                 <img src="https://media.discordapp.net/attachments/1157269732219691038/1194220754376589352/cars-removebg-preview.png?ex=65af8fbf&is=659d1abf&hm=94eae9de317c04c8f6efeb2ce656743162493db62d430b29f3b8c0aa69da9b28&=&format=webp&quality=lossless&width=706&height=552" className="w-32 sm:mx-auto" alt="Float UI logo" />
                 <p className="leading-relaxed mt-2 text-[15px]">
-                    Thanks For Visiting This Website.
+                Discover the freedom of the open road with SwiftRides. We are dedicated to providing reliable and affordable vehicle rentals for all your travel needs. Whether you're planning a weekend getaway or a cross-country adventure, we've got the perfect ride for you.
                 </p>
             </div>
             <ul className="items-center justify-center mt-8 space-y-5 sm:flex sm:space-x-4 sm:space-y-0">

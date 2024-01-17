@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React,{useState} from "react";
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -54,7 +54,7 @@ const dashboard: React.FC  = () => {
 
     const chartWidth = 1100;
     const chartHeight = 450;
-
+const[open,setOpen]=useState<Boolean>(true)
   return (
     <div className="flex h-screen">
    <Sidebar/>
@@ -108,7 +108,6 @@ const dashboard: React.FC  = () => {
       <Typography variant="h5">
          Welcome to your Dashboard 
       </Typography>
-
       
       <div className="flex-grow p-10">
         <Typography variant="h4" className="mb-6 text-gray-750">
