@@ -17,7 +17,7 @@ const CompanyInfo: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/company/getOne/1');
+        const response = await axios.get('http://localhost:3000/api/company/getOne/5');
         setCompanyData(response.data);
       } catch (error) {
         setError('Error fetching data');

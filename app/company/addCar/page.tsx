@@ -1,6 +1,7 @@
 "use client"
 import axios from "axios";
 import { useState, useRef } from "react";
+import SideNav from "../../company/DashBoard/Sidenav"
 
 interface Car {
     price: number;
@@ -88,11 +89,14 @@ const addCar=()=>{
 
 
     return(
+      
        <div className="grid grid-cols-2 gap-1">
+        
+        <SideNav/>
         <div>
-        <h1 className="text-center font-bold-5xl text-7xl mt-[100px]">Add New Car</h1>
+        <h1 className="text-center font-bold-5xl text-5xl mt-[100px] ml-80 ">Add New Car</h1>
         <div className=" space-y-5 sm:flex-row sm:space-y-0 gap-6">
-        <button className="ml-[250px] mt-[50px] text-white py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200 "
+        <button className="ml-[500px] mt-[50px] text-white py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200 "
         onClick={handleButtonClick}>
             Add Pictures</button>
          <input 
@@ -101,18 +105,19 @@ const addCar=()=>{
             className="hidden"
             onChange={(e) =>{ addPicture(e) }} 
           /> 
-        <div className="flex flex-wrap justify-start space-x-4 space-y-4">
+        <div className="flex flex-wrap space-x-4 space-y-4">
         
         {image.slice(0, 5).map((image, index) => (
         <img 
-        className=" rounded-md border object-cover w-[200px] h-[200px] p-1  "
+        className=" rounded-md border object-cover w-[200px] h-[200px] p-1 ml-[250px]  "
                             key={index}
                             src={image}
                             alt={`previewImage ${index}`}/>
                             ))}
                             </div>
         
-          <img className="w-90 h-90" src="https://i.pinimg.com/originals/b3/18/8c/b3188c1d762e8b7d1ea9e5b41b12685e.jpg"/>    
+          <img className="w-[600px] h-[500px] ml-[240px]" src="https://i.pinimg.com/originals/b3/18/8c/b3188c1d762e8b7d1ea9e5b41b12685e.jpg"/>    
+         
         </div>
         </div>
         <div className="mt-[150px]">
