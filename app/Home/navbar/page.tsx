@@ -1,4 +1,5 @@
 "use client"
+import "./nav.css"
 import React, { useState, useRef, useEffect } from "react";
 interface MenuItem {
     title: string;
@@ -70,13 +71,13 @@ const Navigation: React.FC = () => {
     const navigation: MenuItem[] = [
         { title: "Home", path: "/Home" },
         { title: "About", path: "/" },
-        { title: "Contact", path: "/" },
+        { title: "Contact", path: "/Contact" },
         { title: "Sign", path: "/UserLogin/Login" },
     ];
 
   return (
-        <nav className="">
-            <div className="flex items-center space-x-8 py-3 px-4 max-w-screen-xl mx-auto md:px-8">
+        <nav className="naviii">
+            <div className=" flex items-center space-x-8 py-3 px-4 max-w-screen-xl mx-auto md:px-8">
                 <div className="flex-none lg:flex-initial">
                     <a href="/Home">
                         <img
@@ -88,11 +89,13 @@ const Navigation: React.FC = () => {
                     </a>
                 </div>
                 <div className="flex-1 flex items-center justify-between">
-                    <div className={`bg-white absolute z-20 w-full top-16 left-0 p-4 border-b lg:static lg:block lg:border-none ${menuState ? '' : 'hidden'}`}>
+                    <div
+                     className={`bg-white absolute z-20 w-full top-16 left-0 p-4 border-b lg:static lg:block lg:border-none ${menuState ? '' : 'hidden'}`}>
                         <ul className="mt-12 space-y-5 lg:flex lg:space-x-6 lg:space-y-0 lg:mt-0">
                             {
+                                
                                 navigation.map((item, idx) => (
-                                    <li key={idx} className="text-gray-600 hover:text-gray-900">
+                                    <li key={idx} className="text-black hover:text-gray-600">
                                         <a href={item.path}>
                                             {item.title}
                                         </a>

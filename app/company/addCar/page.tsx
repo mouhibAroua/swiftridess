@@ -1,6 +1,7 @@
 "use client"
 import axios from "axios";
 import { useState, useRef } from "react";
+import SideNav from "../../company/DashBoard/Sidenav"
 
 interface Car {
     price: number;
@@ -88,9 +89,11 @@ const addCar=()=>{
 
 
     return(
+      
        <div className="grid grid-cols-2 gap-1">
+        <SideNav/>
         <div>
-        <h1 className="text-center font-bold-5xl text-7xl mt-[100px]">Add New Car</h1>
+        <h1 className="text-center font-bold-5xl text-5xl mt-[100px] ml-80 ">Add New Car</h1>
         <div className=" space-y-5 sm:flex-row sm:space-y-0 gap-6">
         <button className="ml-[250px] mt-[50px] text-white py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200 "
         onClick={handleButtonClick}>
