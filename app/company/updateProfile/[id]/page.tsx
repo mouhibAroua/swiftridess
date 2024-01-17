@@ -1,9 +1,11 @@
 "use client"
 import axios from "axios";
 import { useState} from "react";
+import bcrypt from "bcryptjs"
+import { useParams } from "next/navigation";
 
 interface Company {
-    idcompany:Number;
+    idcompany:string;
     companyName: string;
     ownerName: string;
     phoneNumber: string;
@@ -17,28 +19,42 @@ const UpdateProfile=()=>{
     const [ownerName, setOwnerName] = useState<string>("")
     const [phoneNumber, setPhoneNumber] = useState<string>("")
     const [emailCompany, setEmailCompany] = useState<string>("")
-    const [passwordCompany, setPasswordCompany] = useState<string>("")
     const [newPassword, setNewPassword] = useState<string>("")
-    
+    const idcompany = localStorage.getItem("idcompany")
+    const {id} = useParams()
 
-      const modifyProfile = (company:Object) => {
-              axios
-                .put("http://localhost:3000/api/company/profile/${idcompany}", company)
-                .then((res) => {
-          console.log(res.data,"res")
-                  alert("You successfully updated your account");
-                  })
-                .catch((err) =>
-          
-          console.log(err)
-                  )};
+      const modifyProfile = async (company:Object) => {
+        try {
+    
+            let hashedNewPassword: string | null = null;
+      
+            if (newPassword) {
+              hashedNewPassword = await bcrypt.hash(newPassword, 10);
+            }
+      
+            const updatedCompany = {
+              ...company,
+              newPassword: hashedNewPassword,
+            };
+      
+            const response = await axios.put(`http://localhost:3000/api/company/profile/${idcompany}`, updatedCompany);
+      
+            console.log(response.data, 'res');
+            alert('You successfully updated your account');
+          } catch (error) {
+            console.error(error);
+          }
+              };
     
 
 return(
-    
+    <>
+    {(id!==idcompany)&&
+    <h1>not found</h1>}
+    {(id===idcompany)&& 
 <div className="flex ">
 <img 
-className="w-[500px] h-screen "
+className="w-[700px] h-screen "
 src="https://i.pinimg.com/originals/41/4a/86/414a8690808037a6a744c40bdaea7cd9.jpg"
 alt=""/>
 <div className=" w-[1000px]  bg-white  flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
@@ -88,13 +104,7 @@ alt=""/>
                                 placeholder="your.email@mail.com" onChange={(e)=>setEmailCompany(e.target.value)} />
                         </div>
 
-                        <div className="mb-2 sm:mb-6">
-                            <label 
-                                className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">Password</label>
-                            <input type="password" id="password"
-                                className="bg-indigo-50 border-2 border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                                placeholder="Password" onChange={(e)=>setPasswordCompany(e.target.value)} />
-                        </div>
+    
                         <div className="mb-2 sm:mb-6">
                             <label 
                                 className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">New Password</label>
@@ -105,7 +115,7 @@ alt=""/>
                         
                         <div className="flex justify-end">
                         <button className="bg-blue-950 text-blue-400 border border-blue-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
-                        onClick={()=>{modifyProfile({companyName:companyName, ownerName:ownerName,phoneNumber:phoneNumber, emailCompany:emailCompany, passwordCompany:passwordCompany, newPassword:newPassword} )}}>
+                        onClick={()=>{modifyProfile({companyName:companyName, ownerName:ownerName,phoneNumber:phoneNumber, emailCompany:emailCompany, passwordCompany:newPassword} )}}>
                          <span className="bg-blue-400 shadow-blue-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
                         Save
                         </button>
@@ -119,6 +129,8 @@ alt=""/>
 </div>
 
 </div>
+}
+</>
 )
 }
 
