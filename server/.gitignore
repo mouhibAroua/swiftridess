@@ -6,6 +6,7 @@
 .pnp.js
 .yarn/install-state.gz
 .database-sequalize/index.js
+
 /.package-lock
 # testing
 /coverage

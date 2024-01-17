@@ -35,6 +35,7 @@ async function getUserById(req, res) {
   }
 }
 
+
 // Create a new user
 async function createUser(req, res) {
   try {
@@ -110,4 +111,5 @@ module.exports = {
   updateUserById,
   deleteUserById,
   getCompanyInfoByCarId,
+
 };

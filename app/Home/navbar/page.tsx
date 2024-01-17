@@ -1,6 +1,7 @@
 "use client"
-import "./nav.css"
+// import "../nav.css"
 import React, { useState, useRef, useEffect } from "react";
+
 interface MenuItem {
     title: string;
     path: string;
@@ -54,7 +55,7 @@ const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
                 {   
                     navigation.map((item, idx) => (
                         <li key={idx}>
-                            <a className="block text-black-600 lg:hover:bg-gray-50 lg:p-2.5" href={item.path}>
+                            <a className="text-black lg:p-2.5" href={item.path}>
                                 {item.title}
                             </a>
                         </li>
