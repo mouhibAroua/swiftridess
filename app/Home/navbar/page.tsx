@@ -70,8 +70,7 @@ const Navigation: React.FC = () => {
 
     const navigation: MenuItem[] = [
         { title: "Home", path: "/Home" },
-        { title: "About", path: "/" },
-        { title: "Contact", path: "/Contact" },
+        { title: "About", path: "/"  },
         { title: "Sign", path: "/UserLogin/Login" },
     ];
 
@@ -89,20 +88,20 @@ const Navigation: React.FC = () => {
                     </a>
                 </div>
                 <div className="flex-1 flex items-center justify-between">
-                    <div
-                     className={`bg-white absolute z-20 w-full top-16 left-0 p-4 border-b lg:static lg:block lg:border-none ${menuState ? '' : 'hidden'}`}>
+                    <div className={`bg-white absolute z-20 w-full top-16 left-0 p-4 border-b lg:static lg:block lg:border-none ${menuState ? '' : 'hidden'}`}>
                         <ul className="mt-12 space-y-5 lg:flex lg:space-x-6 lg:space-y-0 lg:mt-0">
                             {
                                 
                                 navigation.map((item, idx) => (
-                                    <li key={idx} className="text-black hover:text-gray-600">
-                                        <a href={item.path}>
-                                            {item.title}
+                                    <li key={idx} className="text-gray-600 hover:text-gray-900">
+                                        <a  href={item.path}>
+                                            {item.title}    
                                         </a>
                                     </li>
                                 ))
                             }
                         </ul>
+                        <button onClick={() => window.scrollTo({ top: 2000, behavior: "smooth" })} className="whyusb"> Why Us</button>
                         <ProfileDropDown 
                             class="mt-5 pt-5 border-t lg:hidden"
                         />

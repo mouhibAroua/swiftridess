@@ -24,7 +24,9 @@ const config: Config = {
       'slate':'#4b5563',
       'oronge':'#ea580c',
       'oronge-500':'#f97316',
-      
+      'blue-700':'#1d4ed8',
+      'orange-600':'#ea580c',
+
     },
     extend: {
       backgroundImage: {
