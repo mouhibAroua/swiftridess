@@ -39,21 +39,24 @@ return(
 <div className="flex ">
 <img 
 className="w-[500px] h-screen "
-src="https://i.pinimg.com/originals/9b/1c/65/9b1c65f4c4aedb26a0dae07ecce12eb9.jpg"
+src="https://i.pinimg.com/originals/41/4a/86/414a8690808037a6a744c40bdaea7cd9.jpg"
 alt=""/>
 <div className=" w-[1000px]  bg-white  flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
+
     <main className="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4">
+    
         <div className="p-2 md:p-4">
             <div className="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
                 <div className="grid max-w-2xl mx-auto mt-8">
                     <div className="items-center mt-8 sm:mt-14 text-[#202142]">
                         <div className="flex flex-col items-center w-full mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
                             <div className="w-full">
+                               
                                 <label 
                                     className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">
                                    Company Name</label>
                                 <input type="text" id="Company-Name"
-                                    className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                                    className="bg-indigo-50 border-2 border-blue-800 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-sky-600 block w-full p-2.5 "
                                     placeholder="Company Name" onChange={(e)=>setCompanyName(e.target.value)}/>
                             </div>
 
@@ -62,7 +65,7 @@ alt=""/>
                                     className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">
                                     Owner Name</label>
                                 <input type="text" id="owner"
-                                    className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                                    className="bg-indigo-50 border-2 border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
                                     placeholder="Owner Name" onChange={(e)=>setOwnerName(e.target.value)} />
                             </div>
 
@@ -72,7 +75,7 @@ alt=""/>
                                 className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">Your
                                 Phone Number</label>
                             <input type="text" id="phone"
-                                className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                                className="bg-indigo-50 border-2 border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
                                 placeholder="Phone Number" onChange={(e)=>setPhoneNumber(e.target.value)} />
                         </div>
 
@@ -81,7 +84,7 @@ alt=""/>
                                 className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">Your
                                 email</label>
                             <input type="email" id="email"
-                                className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                                className="bg-indigo-50 border-2 border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
                                 placeholder="your.email@mail.com" onChange={(e)=>setEmailCompany(e.target.value)} />
                         </div>
 
@@ -89,14 +92,14 @@ alt=""/>
                             <label 
                                 className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">Password</label>
                             <input type="password" id="password"
-                                className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                                className="bg-indigo-50 border-2 border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
                                 placeholder="Password" onChange={(e)=>setPasswordCompany(e.target.value)} />
                         </div>
                         <div className="mb-2 sm:mb-6">
                             <label 
                                 className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">New Password</label>
                             <input type="password" id="New-password"
-                                className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                                className="bg-indigo-50 border-2 border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
                                 placeholder="New Password" onChange={(e)=>setNewPassword(e.target.value)} />
                         </div>
                         
