@@ -1,4 +1,7 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState,useRef } from 'react';
+import { motion } from "framer-motion";
+import fadeIn from '../AboutUs/fadeIn';
 
 interface Testimonial {
     avatar: string;
@@ -7,6 +10,21 @@ interface Testimonial {
 }
 
 const Testimonials: React.FC = () => {
+    const [animationTriggered, setAnimationTriggered] = useState<boolean>(false);
+    const scrollDown = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleScroll = () => {
+          if (scrollDown.current) {
+            const down = scrollDown.current.getBoundingClientRect();
+            const vs = down.top < window.innerHeight
+            setAnimationTriggered(vs);
+          }
+        };
+        window.addEventListener('scroll', handleScroll);
+
+      }, []);
+
     const testimonials: Testimonial[] = [
         {
             avatar: "https://preview.redd.it/created-random-people-using-chatgpt-midjourney-do-you-know-v0-re9fc50i5dqb1.png?width=640&crop=smart&auto=webp&s=30408dbab2026d810eaa20862e51b7f46f331a6d",
@@ -26,6 +44,12 @@ const Testimonials: React.FC = () => {
     ];
 
     return (
+        <motion.div 
+        ref={scrollDown}
+        variants={fadeIn('up', 0.4)}
+         initial='hidden'
+        animate={animationTriggered ? 'show' : 'hidden'}
+        >
         <section className="relative py-14">
             <div className="relative z-10 max-w-screen-xl mx-auto px-4 md:px-8">
                 <div className="max-w-xl sm:text-center md:mx-auto">
@@ -64,6 +88,7 @@ const Testimonials: React.FC = () => {
             </div>
             <div className="absolute top-0 w-full h-[350px]" style={{ background: "linear-gradient(152.92deg, rgba(192, 132, 252, 0) 4.54%, rgba(232, 121, 249, 0) 34.2%, rgba(192, 132, 252, 0) 77.55%)" }}></div>
         </section>
+        </motion.div>
     )
 }
 

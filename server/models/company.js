@@ -22,7 +22,7 @@ const Company = sequelize.define('company', {
   },
   location: {
     type: DataTypes.STRING(45),
-    allowNull: false,
+    allowNull: true,
   },
   verification: {
     type: DataTypes.BOOLEAN,

@@ -1,20 +1,61 @@
+"use client"
+// AboutUs.tsx
+import React, { useEffect, useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+import fadeIn from './fadeIn';
+
 const AboutUs = () => {
-    return (
-        <div className="mt-[100px]">
-            <h1 className="flex justify-center font-semibold text-3xl">Unmatched excellence and customer satisfaction</h1>
+  const [animationTriggered, setAnimationTriggered] = useState<boolean>(false);
+  const scrollDown = useRef<HTMLDivElement>(null);
 
-            <div className="w-[900px] ml-60 mt-20">
-                <img src="https://images2.imgbox.com/7f/62/9xR78TOz_o.png" alt="" />
-                <p className="text-center mt-4 text-2xl">Our Dedication to providing exceptional services set us apart from the competition. From the Moment you engage with us , we strive to exceed your expectations in every interaction</p>
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollDown.current) {
+        const down = scrollDown.current.getBoundingClientRect();
+        const vs = down.top < window.innerHeight;
+        setAnimationTriggered(vs);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
 
-            </div>
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
-            <div className="flex ml-[70px] mt-[100px] space-x-40">
-                <div className="flex text-center font-medium italic">
-                </div>
-            </div>
-        </div>
-    );
-}
+  return (
+    <motion.div
+      className="mt-[100px]"
+      ref={scrollDown}
+      variants={fadeIn('up', 0.4)}
+      initial="hidden"
+      animate={animationTriggered ? 'show' : 'hidden'}
+    >
+      <h1 className="flex justify-center font-semibold text-3xl">
+        Unmatched excellence and customer satisfaction
+      </h1>
+
+      <motion.div
+        className="w-[900px] ml-60 mt-20"
+        variants={fadeIn('down', 0.6)} 
+      >
+        <motion.img
+          src="https://images2.imgbox.com/7f/62/9xR78TOz_o.png"
+          alt=""
+          variants={fadeIn('left', 0.6)} 
+        />
+        <p className="text-center mt-4 text-2xl">
+          Our dedication to providing exceptional services sets us apart from
+          the competition. From the moment you engage with us, we strive to
+          exceed your expectations in every interaction.
+        </p>
+      </motion.div>
+
+      <div className="flex ml-[70px] mt-[100px] space-x-40">
+        <div className="flex text-center font-medium italic"></div>
+      </div>
+    </motion.div>
+  );
+};
 
 export default AboutUs;
