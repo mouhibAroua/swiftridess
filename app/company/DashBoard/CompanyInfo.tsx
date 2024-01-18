@@ -13,11 +13,11 @@ const CompanyInfo: React.FC = () => {
   const [companyData, setCompanyData] = useState<Company | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  const idcompany = localStorage.getItem('idcompany')
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/company/getOne/5');
+        const response = await axios.get(`http://localhost:3000/api/company/getOne/${idcompany}`);
         setCompanyData(response.data);
       } catch (error) {
         setError('Error fetching data');

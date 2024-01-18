@@ -7,6 +7,7 @@ import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import './date.css';
 export default function BasicDateRangePicker() {
   return (
+    <div className='date'>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DateRangePicker']}>
         <DateRangePicker
@@ -15,5 +16,6 @@ export default function BasicDateRangePicker() {
         />
       </DemoContainer>
     </LocalizationProvider>
+    </div>
   );
 }
