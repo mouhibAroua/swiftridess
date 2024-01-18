@@ -13,7 +13,7 @@ const CompanyInfo: React.FC = () => {
   const [companyData, setCompanyData] = useState<Company | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const idcompany = localStorage.getItem('idcompany')
+  const idcompany = typeof window !== 'undefined' ? localStorage.getItem("idcompany") : null
   useEffect(() => {
     const fetchData = async () => {
       try {
