@@ -17,23 +17,17 @@ export default function MultipleSelectChip() {
 
   const legalIcon = new Icon ({
     iconUrl : 'https://icon-library.com/images/rent-car-icon/rent-car-icon-3.jpg',
-    iconSize : [35,35], 
-    iconAnchor : [22,94], 
-    popupAnchor : [-3, -76] 
+    iconSize : [35,35],   
+
 
   })
   const userMarker = new Icon ({
     iconUrl : 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-512.png',
     iconSize : [35,35], 
-    popupAnchor : [-3, -76] 
 
   })
   const mapContainerRef = useRef(null);
 
-  const [markerPos, setMarkerPos] = useState({
-    lat: 55.702868,
-    lng: 37.530865,
-  })
   const [fixedMarkerPos, setFixedMarkerPos] = useState({
     lat: 36.890308,
     lng: 10.180120,
@@ -86,7 +80,7 @@ export default function MultipleSelectChip() {
 
   return (
    <div ref={mapContainerRef}>
-      <FormControl sx={{ m: 1, width: 250, position: "relative", top: "-335px", right: "-40px" }}>
+      <FormControl sx={{ m: 1, width: 250, position: "relative", top: "-335px", right: "-70px" }}>
         <button className='mt-2 border rounded w-[230px] h-[55px]' onClick={() => setShowMap(!showMap)}>location</button>
         {showMap && (
           <MapContainer className='' center={{ lat: 36.859108, lng: 10.190414 }} zoom={16} style={{ height: '400px', width: '600px' }} scrollWheelZoom={true}>
@@ -100,7 +94,7 @@ export default function MultipleSelectChip() {
               </Marker>
             ))}
             
-            <LocationMarker />
+            <LocationMarker/>
           </MapContainer>
         )}
       </FormControl>
