@@ -21,7 +21,7 @@ const UpdateProfile=()=>{
     const [phoneNumber, setPhoneNumber] = useState<string>("")
     const [emailCompany, setEmailCompany] = useState<string>("")
     const [newPassword, setNewPassword] = useState<string>("")
-    const idcompany = localStorage.getItem("idcompany")
+    const idcompany = typeof window !== 'undefined' ? localStorage.getItem("idcompany") : null
     const {id} = useParams()
 const password=async (val:any)=>{
     let hashedNewPassword = await bcrypt.hash(newPassword, 10);
