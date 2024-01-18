@@ -22,20 +22,19 @@ const UpdateProfile=()=>{
     const [newPassword, setNewPassword] = useState<string>("")
     const idcompany = localStorage.getItem("idcompany")
     const {id} = useParams()
-
-      const modifyProfile = async (company:Object) => {
-        try {
+const password=async (val:any)=>{
+    let hashedNewPassword = await bcrypt.hash(newPassword, 10);
+    setNewPassword(hashedNewPassword)
     
-            let hashedNewPassword: string | null = null;
-      
-            if (newPassword) {
-              hashedNewPassword = await bcrypt.hash(newPassword, 10);
-            }
-      
-            const updatedCompany = {
-              ...company,
-              newPassword: hashedNewPassword,
-            };
+}
+      const modifyProfile = async (company:Object) => {
+        
+          const updatedCompany = {
+            ...company,
+            newPassword
+          };
+    
+        try {
       
             const response = await axios.put(`http://localhost:3000/api/company/profile/${idcompany}`, updatedCompany);
       
@@ -110,12 +109,13 @@ alt=""/>
                                 className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">New Password</label>
                             <input type="password" id="New-password"
                                 className="bg-indigo-50 border-2 border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                                placeholder="New Password" onChange={(e)=>setNewPassword(e.target.value)} />
+                                placeholder="New Password" onChange={(e)=>password(e.target.value)} />
                         </div>
                         
                         <div className="flex justify-end">
                         <button className="bg-blue-950 text-blue-400 border border-blue-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
-                        onClick={()=>{modifyProfile({companyName:companyName, ownerName:ownerName,phoneNumber:phoneNumber, emailCompany:emailCompany, passwordCompany:newPassword} )}}>
+                        onClick={(e)=>{e.preventDefault()
+                            modifyProfile({companyName:companyName, ownerName:ownerName,phoneNumber:phoneNumber, emailCompany:emailCompany} )}}>
                          <span className="bg-blue-400 shadow-blue-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
                         Save
                         </button>

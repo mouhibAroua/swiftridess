@@ -14,7 +14,8 @@ interface Car {
     image: string[];
     mileage: string;
     occasion:string;
-    passengers:string
+    passengers:string;
+    
 
 }
 
@@ -32,7 +33,7 @@ const addCar=()=>{
     const [image, setImage] = useState<string[]>([]);
     const [previewImage, setPreviewImage] = useState<string>("");
     const fileInputRef = useRef<HTMLInputElement>(null);
-
+    
     const addPicture = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
     
@@ -73,12 +74,17 @@ const addCar=()=>{
         registration: registration,
         mileage: mileage,
         occasion:occasion,
-        passengers: passengers
+        passengers: passengers,
       };
     
       const addNewCar = () => {
+        const idcompany = localStorage.getItem("idcompany")
+        const newCar : Car&{company_idcompany:string|null} = {
+          ...obj,
+          company_idcompany : idcompany
+        }
         axios
-          .post('http://localhost:3000/api/car/add', obj)
+          .post(`http://localhost:3000/api/car/add`, newCar)
           .then(() => {
             alert('Car added');
           })
