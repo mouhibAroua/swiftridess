@@ -230,7 +230,7 @@ const addCar=()=>{
     add Vehicle</button>
   </div>
   <div className=" space-y-5 sm:flex-row sm:space-y-0 gap-6">
-        <button className="ml-[300px] mt-[50px] text-white py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200 "
+        <button className="ml-[300px] mt-[100px] text-white py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200 "
         onClick={handleButtonClick}>
             Add Pictures</button>
          <input 
