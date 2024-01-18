@@ -56,6 +56,7 @@ const Testimonials: React.FC = () => {
                     <h3 className="text-black-500 text-3xl font-semibold sm:text-4xl">
                         Clients FeedBack
                     </h3>
+                    <hr className="border-t-4 border-oronge-500 mb-4 w-[380px] ml-[100px]" />
                 </div>
                 <div className="mt-12">
                     <ul className="grid items-center gap-6 sm:grid-cols-2 lg:grid-cols-3">
