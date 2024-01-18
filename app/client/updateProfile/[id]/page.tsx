@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useRef } from "react";
 import { useParams } from "next/navigation";
 import bcrypt from "bcryptjs"
-
+import Navigation from "@/app/Home/navbar/page";
 
 interface Client {
     id:string|null;
@@ -89,22 +89,14 @@ return(
   {(id!==userId)&&
   <h1>not found</h1>}
   {(id===userId)&&
-    
+    <div>
+      <Navigation/>
   <div className="flex justify-between">
-                    <a href="/Home">
-                        <img
-                            src="https://media.discordapp.net/attachments/1157269732219691038/1194220754376589352/cars-removebg-preview.png?ex=65af8fbf&is=659d1abf&hm=94eae9de317c04c8f6efeb2ce656743162493db62d430b29f3b8c0aa69da9b28&=&format=webp&quality=lossless&width=706&height=552" 
-                            width={120} 
-                            height={100}
-                            alt="Float UI logo"
-                        />
-                    </a>
-               
                 <div className="flex">
-<div className="max-h-screen justify-center items-center bg-white w-full flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
+<div className="justify-center items-center bg-gray-400 w-[700px] h-[600px] flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931] ml-[100px] mt-10 rounded-3xl">
         <div className="p-2 md:p-4">
             <div className="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
-                <div className="grid max-w-2xl mx-auto mt-8">
+                <div className="grid max-w-2xl mx-auto">
                     <div className="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
                         <img className="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500 hover:te"
                             src={previewImage}
@@ -124,7 +116,7 @@ return(
                         </div>
                     </div>
 
-                    <div className="items-center mt-8 sm:mt-14 text-[#202142]">
+                    <div className="items-center text-[#202142]">
 
                         <div
                             className="flex flex-col items-center w-full mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
@@ -168,9 +160,8 @@ return(
 
                         <div className="flex justify-end">
                             <button type="submit"
-                                className="bg-blue-950 text-blue-400 border border-blue-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
+                                className=" bg-gray-800 text-white border border-blue-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
                                 onClick={()=>{modifyProfile({id:userId,fullName:fullName,phoneNumber:phoneNumber,email:email,password:newPassword,image_user:imgUrl})}}>
-                                <span className="bg-blue-400 shadow-blue-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
                                 Save</button>
                         </div>
                         </div>
@@ -181,8 +172,9 @@ return(
 </div>
 <div className="h-screen w-[600px] overflow-hidden">
 <img
-className="h-full w-full object-cover"
+className="h-[700px] w-[500px] object-cover ml-[100px]"
 src="https://www.pixelstalk.net/wp-content/uploads/2016/10/BMW-F30-335i-1080x1920.jpg"/>
+</div>
 </div>
 </div>
 }

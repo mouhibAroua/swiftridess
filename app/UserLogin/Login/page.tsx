@@ -56,15 +56,16 @@ const Login = () => {
       </div>
       
       <ToastContainer
-      position="top-center"
-      autoClose={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      theme="colored"
-      />
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        />
       <div className="container" >
         <form onSubmit={handleSubmit} >
         <div className="card mx-auto">
@@ -83,7 +84,7 @@ const Login = () => {
             <span>Password</span>
           </div>
 
-          <button className="enter" onClick={()=>{notify();getUserIdFromLocalStorage()}} >Log In</button>
+          <button className="enter" onClick={()=>{getUserIdFromLocalStorage()}} >Log In</button>
           <div className='flex text-sm mt-3'>
           <h1  className='-mt-6 mb-4  '>Already have account  ?  </h1> <Link className='-mt-6 ' href={'/UserLogin/SignUp'}><span className='underline  cursor-pointer'>  Register Now</span></Link>
           </div>

@@ -9,10 +9,13 @@ import axios from 'axios';
 import ReactLeafletDriftMarker from "react-leaflet-drift-marker";
 import { FaPerson } from "react-icons/fa6";
 import {Icon} from 'leaflet';
+import { Modal } from "react-responsive-modal";
+import 'react-responsive-modal/styles.css';
 
 export default function MultipleSelectChip() {
   const [showMap, setShowMap] = useState<boolean>(false);
-  const [compData,setCompData] =useState<null>([])
+  const [compData,setCompData] =useState<any>([])
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
 
   const legalIcon = new Icon ({
@@ -80,25 +83,24 @@ export default function MultipleSelectChip() {
   }
 
   return (
-   <div ref={mapContainerRef}>
-      <FormControl sx={{ m: 1, width: 250, position: "relative", top: "-335px", right: "-70px" }}>
-        <button className='mt-2 border rounded w-[230px] h-[55px]' onClick={() => setShowMap(!showMap)}>location</button>
-        {showMap && (
-          <MapContainer className='' center={{ lat: 36.859108, lng: 10.190414 }} zoom={16} style={{ height: '400px', width: '600px' }} scrollWheelZoom={true}>
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            {compData.map((company,i) => (
-                <Marker key={i} position={{ lat: company.laltitude, lng: company.longtitude }} icon={legalIcon}>
-                <Popup>{company.companyName}</Popup>
-              </Marker>
-            ))}
-            
-            <LocationMarker/>
-          </MapContainer>
-        )}
-      </FormControl>
-    </div>
+    <div>
+    <FormControl sx={{ m: 1, width: 250, position: "relative", top: "-335px", right: "-70px" }}>
+      <button id='Location' className='mt-2 border rounded w-[230px] h-[55px]' onClick={() => setModalOpen(true)}>location</button>
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} center>
+        <MapContainer center={{ lat: 36.859108, lng: 10.190414 }} zoom={16} style={{ height: '400px', width: '600px' }} scrollWheelZoom={true}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {compData.map((company, i) => (
+            <Marker key={i} position={{ lat: company.laltitude, lng: company.longtitude }} icon={legalIcon}>
+              <Popup>{company.companyName}</Popup>
+            </Marker>
+          ))}
+          <LocationMarker />
+        </MapContainer>
+      </Modal>
+    </FormControl>
+  </div>
   );
 }

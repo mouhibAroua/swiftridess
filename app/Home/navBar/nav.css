@@ -1,3 +1,10 @@
+.navv {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; 
+}
 
 .whyusb{
 position: relative;
@@ -14,7 +21,14 @@ margin-left: 200px;
 
 .loout{
 position: relative;
-left: 10px;
+left: 20px;
 color: black;
 font-weight: bold;
 }
+
+.looutt{
+  position: relative;
+  left: 10px;
+  color: black;
+  font-weight: bold;
+  }
