@@ -1,7 +1,8 @@
 "use client"
-import axios from "axios";
-import { useState, useRef } from "react";
-import SideNav from "../../company/DashBoard/Sidenav"
+import { useState, useRef } from "react"
+import axios from "axios"
+import SideNav from "../../DashBoard/Sidenav"
+import { useParams } from "next/navigation"
 
 interface Car {
     price: number;
@@ -15,11 +16,10 @@ interface Car {
     mileage: string;
     occasion:string;
     passengers:string;
-    
-
 }
 
-const addCar=()=>{
+
+const UpdateCar = () => {
     const [price, setPrice] = useState<number>(0)
     const [brand, setBrand] =useState<string>("")
     const [model, setModel] =useState<string>("")
@@ -33,6 +33,8 @@ const addCar=()=>{
     const [image, setImage] = useState<string[]>([]);
     const [previewImage, setPreviewImage] = useState<string>("");
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const {id} =useParams()
+    const idcars = id
     
     const addPicture = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -77,16 +79,11 @@ const addCar=()=>{
         passengers: passengers,
       };
     
-      const addNewCar = () => {
-        const idcompany = localStorage.getItem("idcompany")
-        const newCar : Car&{company_idcompany:string|null} = {
-          ...obj,
-          company_idcompany : idcompany
-        }
+      const update = () => {
         axios
-          .post(`http://localhost:3000/api/car/add`, newCar)
+          .post(`http://localhost:3000/api/car/update/${idcars}`, obj)
           .then(() => {
-            alert('Car added');
+            alert('Car updated successfully');
           })
           .catch((err) => {
             console.log(err);
@@ -95,12 +92,14 @@ const addCar=()=>{
 
 
     return(
-      
        <>
-       
+    {(id!==idcars)&&
+    <h1>not found</h1>}
+    {(id===idcars)&& 
+       <div>
         <SideNav/>
-        <div className="mt-[100px] ml-[300px] bg-gradient-to-t from-gray-400 to-gray-800 w-[1000px] rounded-3xl">
-       <h1 className="text-center font-bold-5xl text-5xl  ml-50 text-white ">Add New Vehicle</h1>
+        <div className="mt-[100px] ml-[300px] bg-gradient-to-r from-gray-800 to-white-300 w-[1000px] rounded-tr-[100px] rounded-bl-[100px]">
+       <h1 className="text-center font-bold-5xl text-5xl  ml-50 text-white ">Update Vehicle</h1>
         <div className="grid grid-cols-2 ">
         <div className="grid ml-10 mt-[50px] space-y-4 ">
             
@@ -227,9 +226,8 @@ const addCar=()=>{
   
   
   <button className=" py-3.5 px-7 text-base font-large text-white focus:outline-none bg-gray-300 rounded-lg border border-indigo-200 focus:z-10 focus:ring-4 focus:ring-indigo-200  mt-[200px] ml-[150px] w-[300px]"
-  onClick={()=>{addNewCar()}}>
-    add Vehicle</button>
-    
+  onClick={()=>{update}}>
+    Update</button>
   </div>
   <div className=" space-y-5 sm:flex-col gap-6">
         <button className="ml-[200px] mt-[50px] text-white py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200 "
@@ -254,10 +252,10 @@ const addCar=()=>{
         </div>
         </div>
         </div>
+        </div>
+}
   </>
-
-        
     )
 }
 
-export default addCar
+export default UpdateCar
