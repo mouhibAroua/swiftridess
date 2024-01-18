@@ -44,6 +44,7 @@ console.log (userId)
 
     return (
         <div className={`relative ${props.class}`}>
+            {!userId? "":
             <div className="flex items-center space-x-4">
                 <button ref={profileRef} className="w-10 h-10 outline-none rounded-full ring-offset-2 ring-gray-200 ring-2 lg:focus:ring-indigo-600"
                     onClick={() => setState(!state)}
@@ -59,11 +60,12 @@ console.log (userId)
                     <span className="block text-sm text-black">john@gmail.com</span>
                 </div>
             </div>
+}
             <ul className={`bg-white top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
                 {   
                     navigation.map((item, idx) => (
                         <li key={idx}>
-                            <a className="block text-black lg:hover:bg-gray-50 lg:p-2.5" href={item.path}>
+                            <a className="block text-black lg:hover:bg-gray-50 lg:p-2.5 font-bold ml-2" href={item.path}>
                                 {item.title}
                             <br/>
                             </a>
