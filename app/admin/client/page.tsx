@@ -54,8 +54,8 @@ const client: React.FC =()=>{
            </Typography>
 
            <div className="companies-container">
-           {data && data.map((e,i) => (
-          <div key={i} className="com-box">
+          
+          <div  className="com-box">
 
 
 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -85,13 +85,14 @@ const client: React.FC =()=>{
                 <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
                     Latitude
                 </th>
-                {/* <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
+                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
                     verification 
-                </th> */}
+                </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
+        {data && data.map((e,i) => (
+            <tr >
                 <th scope="col" className="px-6 py-3">
                    {e.id}
                 </th>
@@ -114,17 +115,17 @@ const client: React.FC =()=>{
                 <td className="px-6 py-4">
                 {e.latitude}
                 </td>
-                {/* <td className="flex items-center px-6 py-4"> {e.verification}
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                <td className="flex items-center px-6 py-4"> {e.verification}
                     <a href="#" className="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
-                </td> */}
+                </td>
             </tr>
+        ))}
+
             </tbody>
         
                 </table>
                 </div>
                 </div>
-        ))}
       </div>
 
            </div>
@@ -133,3 +134,37 @@ const client: React.FC =()=>{
     )
 }
 export default client;
+
+
+// <div className="flex min-h-screen items-center justify-center">
+//   <div className="overflow-x-auto">
+//     <table className="min-w-full bg-white shadow-md rounded-xl">
+//       <thead>
+//         <tr className="bg-blue-gray-100 text-gray-700">
+//           <th className="py-3 px-4 text-left">id</th>
+//           <th className="py-3 px-4 text-left">fullName</th>
+//           <th className="py-3 px-4 text-left">Email</th>
+//           <th className="py-3 px-4 text-left">Phone Number </th>
+//           <th className="py-3 px-4 text-left">role</th>
+//           <th className="py-3 px-4 text-left">Longtitude</th>
+//           <th className="py-3 px-4 text-left">Latitude</th>
+//           <th className="py-3 px-4 text-left">Action</th>
+//         </tr>
+//       </thead>
+//       <tbody className="text-blue-gray-900">
+//         <tr className="border-b border-blue-gray-200">
+//           <td className="py-3 px-4">{e.id}</td>
+//           <td className="py-3 px-4">{e.fullName}</td>
+//           <td className="py-3 px-4">{e.email}</td>
+//           <td className="py-3 px-4">{e.phoneNumber}</td>
+//           <td className="py-3 px-4">{e.role}</td>
+//           <td className="py-3 px-4">{e.longitude}</td>
+//           <td className="py-3 px-4">{e.longitude}</td>
+//           <td className="py-3 px-4">
+//             <a href="#" className="font-medium text-blue-600 hover:text-blue-800">Edit</a>
+//           </td>
+//         </tr>
+//         </tbody>
+//         </table>
+//         </div>
+//         </div>

@@ -1,16 +1,19 @@
 "use client"
-import React , {useState} from "react"
+import React , {useState,useRef} from "react"
 import Sidebar from "../sidebar/page"
 import {Typography } from '@mui/material';
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import "./profile.module.css"
 import axios from "axios";
+import { useParams } from "next/navigation";
+import bcrypt from "bcryptjs"
+import Link from "next/link";
 
-interface Add {
+interface New {
+   id:string|null;
     fullName:string;
     role:string;
     phoneNumber:number;
-    longtitude:string;
     email:string;
     password:string;
     image_user:String;
@@ -18,37 +21,83 @@ interface Add {
 
 const profile:React.FC  = ()=>{
 const [fullName,setfullName]=useState<string>("")
-const [role,setRole]=useState<string>("")
+const [role,setrole]=useState<string>("")
 const [phoneNumber,setPhoneNumber]=useState<number>(0)
-const [longitude,setLongitude]=useState<string>("")
 const [email,setEmail]=useState<string>("")
+const [newPassword, setNewPassword] = useState<string>("")
 const [password,setPassword]=useState<string>("")
 const [image_user,setimage_user]=useState<string>("")
+const [previewImage, setPreviewImage] = useState<string>("");
+const fileInputRef = useRef<HTMLInputElement>(null); 
+const userId = localStorage.getItem('id')
+const {id} = useParams()
 
-const obj: Add = {
-  fullName:fullName,
-  image_user:image_user,
-  phoneNumber:phoneNumber,
-  email:email,
-  password:password,
-  longtitude:longitude,
-  role:role,
-};
 
-const addOne = () => {
-  console.log(obj);
-  
-  axios
-    .post('http://localhost:3000/api/users/add', obj)
-    .then(() => {
-      console.log("added");
+    
+const addPicture = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'pa4ezjqw');
+
+      axios
+        .post("http://api.cloudinary.com/v1_1/dfsyqvvim/image/upload", formData)
+        .then((res) => {
+          console.log('secure', res.data.secure_url);
+          setimage_user(res.data.secure_url);
+          setPreviewImage(res.data.secure_url);
+          console.log('url', image_user);
+        })
+        .catch((err) => {
+          console.log(formData);
+          console.log(err);
+        });
+    }
+  };
+
+  const handleButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+  const modifyProfile = async (user: New) => {
+    try {
+
+      let hashedNewPassword: string | null = null;
+
+      if (newPassword) {
+        hashedNewPassword = await bcrypt.hash(newPassword, 10);
+      }
+
+      const updatedUser = {
+        ...user,
+        newPassword: hashedNewPassword,
+        image_user: image_user,
+      };
+
+      const response = await axios.put(`http://localhost:3000/api/users/${userId}`, updatedUser);
       
-      alert('person added');
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+
+      console.log(response.data, 'res');
+      alert('You successfully updated your account');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+// const getOne = () => {
+//   console.log(obj);
+  
+//   axios
+//     .get(`http://localhost:3000/api/users/${id}`,obj)
+//     .then(() => {
+//       console.log("user");
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// };
     return (
       <div className="flex h-screen">
       <Sidebar/>
@@ -61,25 +110,49 @@ const addOne = () => {
            Profile
          </Typography>
          
-         <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+         <div >
       <div
-        className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+        className="absolute top-[-10rem] sm:top-[-20rem]"
         aria-hidden="true"
       >
-        <div
-          className="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
-          style={{
-            clipPath:
-              'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-          }}
-        />
+
       </div>
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Create New</h2>
+        
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Update your profile</h2>
         <p className="mt-2 text-lg leading-8 text-gray-600">
           Admin space 
         </p>
       </div>
+                
+<div className="max-h-screen justify-center items-center  w-full flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
+        <div className="p-2 md:p-4">
+            <div className="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
+                <div className="grid max-w-2xl mx-auto mt-8">
+                    <div className="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
+                        <img className="object-cover w-40 h-40 p-1 rounded ring-2 ring-indigo-300 dark:ring-indigo-500 hover:te"
+                            src={previewImage}
+                            alt=""/>
+                        <div className="flex flex-col space-y-5 sm:ml-8">
+                            <button type="button" 
+                                className="text-white py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200 "
+                                onClick={handleButtonClick}>
+                                Change picture
+                            </button>
+                            <input 
+                             ref={fileInputRef}
+                             type="file" 
+                             className="hidden"
+                             onChange={(e) =>{ addPicture(e) }} 
+                             />                        
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+
+           <div className="flex">
       <form action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div>
@@ -107,7 +180,7 @@ const addOne = () => {
                 id="role"
                 autoComplete="family-name"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                onChange={(e)=>setRole(e.target.value)} />
+                onChange={(e)=>setrole(e.target.value)} />
             </div>
           </div>
           <div className="sm:col-span-2">
@@ -126,7 +199,7 @@ const addOne = () => {
           </div>
           <div className="sm:col-span-2">
             <label htmlFor="longitude" className="block text-sm font-semibold leading-6 text-gray-900">
-              password
+              current password
             </label>
             <div className="mt-2.5">
               <input
@@ -139,17 +212,17 @@ const addOne = () => {
             </div>
           </div>
           <div className="sm:col-span-2">
-            <label htmlFor="role" className="block text-sm font-semibold leading-6 text-gray-900">
-              longitude
+            <label htmlFor="longitude" className="block text-sm font-semibold leading-6 text-gray-900">
+             new password
             </label>
             <div className="mt-2.5">
               <input
-                type="role"
-                name="role"
-                id="role"
-                autoComplete="role"
+                type="password"
+                name="password"
+                id="password"
+                autoComplete="password"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                onChange={(e)=>setLongitude(e.target.value)}/>
+                onChange={(e)=>setNewPassword(e.target.value)} />
             </div>
           </div>
           <div className="sm:col-span-2">
@@ -182,66 +255,28 @@ const addOne = () => {
                 onChange={(e)=>setPhoneNumber(+e.target.value)}/>
             </div>
           </div>
-          {/* <div className="sm:col-span-2">
-            <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">
-              Message
-            </label>
-            <div className="mt-2.5">
-              <textarea
-                name="message"
-                id="message"
-                rows={4}
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                defaultValue={''}
-              />
-            </div>
-          </div> */}
-          {/* <Switch.Group as="div" className="flex gap-x-4 sm:col-span-2">
-            <div className="flex h-6 items-center">
-              <Switch
-                checked={agreed}
-                onChange={setAgreed}
-                className={classNames(
-                  agreed ? 'bg-indigo-600' : 'bg-gray-200',
-                  'flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-                )}
-              >
-                <span className="sr-only">Agree to policies</span>
-                <span
-                  aria-hidden="true"
-                  className={classNames(
-                    agreed ? 'translate-x-3.5' : 'translate-x-0',
-                    'h-4 w-4 transform rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 transition duration-200 ease-in-out'
-                  )}
-                />
-              </Switch>
-            </div>
-            <Switch.Label className="text-sm leading-6 text-gray-600">
-              By selecting this, you agree to our{' '}
-              <a href="#" className="font-semibold text-indigo-600">
-                privacy&nbsp;policy
-              </a>
-              .
-            </Switch.Label>
-          </Switch.Group> */}
+
+
+
+
         </div>
         <div className="mt-10">
           <button
             type="submit"
-            className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            onClick={(e)=>{e.preventDefault()
-              addOne()}} >
-            add
+            className="block w-full rounded-md bg-gray-600 px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+             onClick={()=>{ modifyProfile({id:userId,fullName:fullName,image_user:image_user,phoneNumber:phoneNumber,email:email,password:newPassword,role:role})}}>
+            Done
+            {/* <Link href={{ pathname: '/admin/sidebar', query: {  fullName:fullName,image_user:image_user } }}></Link> */}
           </button>
+          
         </div>  
       </form>
     </div>
-  
-
-
+  </div>
+</div>
+</div>
       </div> 
-      </div>
-      </div>
+
     )
 }
 export default profile;

@@ -62,9 +62,10 @@ module.exports = {
         res.json(veh)
     },
     updateProfile:async (req,res)=>{
-        const {id}=req.params;
+        const idcompany=req.params.id;
+        console.log(idcompany);
         const comp=await company.update(req.body,{
-            where:{id}
+            where:{idcompany}
         })
         res.json(comp)
     },

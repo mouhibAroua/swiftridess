@@ -11,28 +11,72 @@ import PieChartOutlinedIcon from '@mui/icons-material/PieChartOutlined';
 import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 import ShowChartOutlinedIcon from '@mui/icons-material/ShowChartOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-
+import axios from "axios";
 import Link from 'next/link';
+import { log } from "console";
 
 interface MenuItem {
   title: string;
   path: string;
 }
+interface obj {
+  fullName:string;
+  image_user:string;
+}
 
+interface User{
+ 
+    id: number;
+    fullName: string;
+    image_user: string;
+}
 
-
-
-const Sidebar: React.FC = (props) => {
+const Sidebar: React.FC <obj>= (props) => {
   const [state, setState] = useState(false);
+  const [person,setPerson] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [fullName,setfullName]=useState<string>("")
+  const [image_user,setimage_user]=useState<string>("")
   const profileRef = useRef<HTMLButtonElement>(null);
+// let id=localStorage.getItem('id');
+
+// console.log(id)
 
 
+useEffect(() => {
+  const getOne = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/users/28`)
+      setPerson(response.data);
+      console.log("eya",response.data);
+      
+    } catch (error) {
+      setError('Error fetching data');
+    } finally {
+      setLoading(false);
+    }
+  };
 
-
+  getOne();
+}, []);
+// const getOne = () => { 
+//   axios
+//     .get(`http://localhost:3000/api/users/${id}`)
+//     .then(() => {
+//       console.log("user");
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+//  };
 
   const navigation: MenuItem[] = [
     { title: "View Profile", path: "/admin/profile" }
 ];
+
+
+
 
   useEffect(() => {
       const handleDropDown = (e: MouseEvent) => {
@@ -51,7 +95,7 @@ const Sidebar: React.FC = (props) => {
       <div className="col-span-3 bg-gray-800 text-white px-10 py-7">
         <List className="flex-col space-y-3">
 
-        <div className="flex items-center ">
+        <div className="flex items-center space-y-3 ">
   <Typography variant="h6" className="mt-2 mr-40" style={{ color: 'grey' }}>
     ADMINS
   </Typography>
@@ -61,19 +105,24 @@ const Sidebar: React.FC = (props) => {
 </div>
           <ListItem  className="flex items-center flex-col px-4 py-2 hover:bg-gray-1000" >
 
-                    <div>
-            <div className="flex items-center space-x-4">
-                <button ref={profileRef} className="w-15 h-15 outline-none rounded-full ring-offset-2 ring-gray-200 ring-2 lg:focus:ring-indigo-600"
-                    onClick={() => setState(!state)}>
-                    <img
-                        src="https://randomuser.me/api/portraits/men/46.jpg"
-                        className="w-full h-full rounded-full"
-                        alt="Profile"
-                    />
-                </button>
+                    
+                         
+                  <div>
+                  <div className="flex items-center space-x-4">
+            <button ref={profileRef} className="w-24 h-24 outline-none rounded-full ring-offset-2 ring-gray-100 ring-2 lg:focus:ring-indigo-600"
+                onClick={() => setState(!state)}>
+                <img
+                src={person?.image_user}
+                className="mw-50 h-50 rounded-full"
+                alt="Profile"
+               // onChange={(e)=>setimage_user(e.target.value)} 
+            />
+      
+            </button>
 
 
-            </div>
+        </div>
+                 
             
             <ul className={`bg-white top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
                 {   
@@ -86,10 +135,13 @@ const Sidebar: React.FC = (props) => {
                     ))
                 }
             </ul>
-        </div>
+        
+            <ListItemText onChange={(e)=>setfullName(e.target.value)} 
+            primary={<p className="mt-2"></p>} />
+            </div>    
 
-            <ListItemText primary={<p className="mt-2">NOURHEN ABIDI</p>} />
           </ListItem>
+          
           <ListItem>
             <ListItemIcon>
               <HomeOutlinedIcon color="primary" />
@@ -125,7 +177,7 @@ const Sidebar: React.FC = (props) => {
             <ListItemIcon>
               <EventOutlinedIcon color="primary" />
             </ListItemIcon>
-            <ListItemText primary="Calendar" />
+            <Link href={'/admin/calendar'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button ><ListItemText primary="Calendar" /></button></Link>
           </ListItem>
           <Typography variant="h6" className="mt-2" style={{ color: 'grey' }}>
              Charts
