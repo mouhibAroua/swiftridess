@@ -2,6 +2,7 @@
 // import "../nav.css"
 import React, { useState, useRef, useEffect } from "react";
 
+
 interface MenuItem {
     title: string;
     path: string;
@@ -14,12 +15,13 @@ interface ProfileDropDownProps {
 const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
     const [state, setState] = useState(false);
     const profileRef = useRef<HTMLButtonElement>(null);
+   const userId = localStorage.getItem('id');
 
     const navigation: MenuItem[] = [
-        { title: "Settings", path: "/" },
+        { title: "Settings", path: `/client/updateProfile/${userId}` },
         { title: "Log out", path: "/" },
     ];
- const userId = localStorage.getItem('id');
+ 
 
 
     useEffect(() => {
