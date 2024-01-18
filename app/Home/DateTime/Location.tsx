@@ -49,6 +49,7 @@ export default function MultipleSelectChip() {
         setShowMap(false);
       }
     };
+    console.log('hello')
 
     document.addEventListener('mousedown', handleOutsideClick);
 
