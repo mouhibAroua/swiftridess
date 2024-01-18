@@ -3,6 +3,9 @@ import Link from 'next/link';
 import './SignUp.css'
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const SignUp = () => {
 
   const [fullName, setFullName] = useState<string>("");
@@ -10,16 +13,17 @@ const SignUp = () => {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<number>(0);
-  const [longitude, setLongtitude] = useState<string>("");
-  const [latitude, setLaltitude] = useState<string>("");
+  // const [longitude, setLongtitude] = useState<string>("");
+  // const [latitude, setLaltitude] = useState<string>("");
 
   
   const router = useRouter();
+  const notify = () => toast("Your Account Created Succesfuly! please log in");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
-    if (!fullName || !phoneNumber || !longitude || !latitude || !email || !password) {
+    if (!fullName || !phoneNumber || !email || !password) {
       setError("All fields are necessary.");
       return;
     }
@@ -43,8 +47,6 @@ const SignUp = () => {
         body: JSON.stringify({
           fullName,
           phoneNumber,
-          longitude,
-          latitude,
           email,
           password,
         }),
@@ -98,20 +100,8 @@ const SignUp = () => {
             />
             <span className="user">Number</span>
           </div>
-          <div className="inputBox">
-            <input type="text" required={true} 
-            onChange={(e)=>setLongtitude(e.target.value)}
-            />
-            <span className="user">longtude</span>
-          </div>
-          <div className="inputBox">
-            <input type="text" required={true} 
-            onChange={(e)=>setLaltitude(e.target.value)}
-            />
-            <span className="user">latitude</span>
-          </div>
 
-          <button className="enter">register</button>
+          <button className="enter" onClick={()=>{notify()}}>register</button>
           {error && (
             <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
               {error}
