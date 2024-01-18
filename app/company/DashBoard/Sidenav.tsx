@@ -10,7 +10,8 @@ interface NavItem {
 }
 
 const Sidebar: React.FC = () => {
-    const idcompany = localStorage.getItem("idcompany")
+    const idcompany = typeof window !== 'undefined' ? localStorage.getItem("idcompany") : null
+
     const navigation: NavItem[] = [
       {
         href: 'http://localhost:3001/company/DashBoard',
