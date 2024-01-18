@@ -16,13 +16,14 @@ interface Company {
   longtitude:string;
   latitude:string;
   emailCompany:string;
-  passwordCompany:string;
-  PaymentVerification:number
+  PaymentVerification:boolean;
+  createdAt:Number;
+
 } 
 
 
 const company:React.FC =()=>{
-  const [companyData, setCompanyData] = useState<Company | null>(null);
+  const [companyData, setCompanyData] = useState<Company[]| null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -100,81 +101,92 @@ const company:React.FC =()=>{
            </Typography> */}
            
            <div className="companies-container">
-           {companyData && companyData.map((e,i) => (
-          <div key={i} className="com-box">
+           
+          <div className="com-box">
 
 
 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-
-                <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+            
+                </th>
+                <th scope="col" className="px-4 py-2">
                     id
                 </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
+                <th scope="col" className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
                     Company Name 
                 </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
+                <th scope="col" className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
                     Owner name 
                 </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
+                <th scope="col" className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
                     Email 
                 </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
+
+                <th scope="col" className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
                     Phone Number 
                 </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
+                <th scope="col" className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
                     Location 
                 </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
+                <th scope="col" className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
                     Longtitude 
                 </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
+                <th scope="col" className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
                     Latitude
                 </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
-                    Verification 
+                <th scope="col" className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                    Verification
                 </th>
+
             </tr>
         </thead>
         <tbody>
+        {companyData && companyData.map((e,i) => (
             <tr>
-                <th scope="col" className="px-6 py-3">
-                   {e.idcompany}
-                </th>
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
+              <td className="flex items-center px-4 py-2"> {e.PaymentVerification}
+                <input type="checkbox"/>
+                </td>
+  <span className="slider round"></span>
+                <td scope="col" className="px-4 py-2">
+                   {e.id}
+                </td>
+                <td scope="row" className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                 {e.companyName}
-                </th>
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
+                </td>
+                <td scope="row" className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                 {e.ownerName}
-                </th>
+                </td>
                 <td className="px-6 py-4 text-black ">
                 {e.emailCompany}
                 </td>
-                <td className="px-6 py-4 text-black ">
+
+                <td className="px-4 py-2">
                 {e.phoneNumber}
                 </td>
-                <td className="px-6 py-4 text-black ">
+                <td className="px-4 py-2 text-black ">
                 {e.location}
                 </td>
-                <td className="px-6 py-4 text-black ">
+                <td className="px-4 py-2 text-black ">
                 {e.longtitude}
                 </td>
-                <td className="px-6 py-4 text-black ">
+                <td className="px-4 py-2 text-black ">
                 {e.longtitude}
                 </td>
-                <td className="flex items-center px-6 py-4"> {e.verification}
-                    <a href="#" className="font-medium text-blue-600 dark:text-black hover:underline">Edit</a>
+                <td className="flex items-center px-4 py-2"> {e.verification}
                     <a href="#" className="font-medium text-red-600 dark:text-black hover:underline ms-3">Remove</a>
                 </td>
+
             </tr>
+              ))}
             </tbody>
         
                 </table>
                 </div>
                 </div>
-        ))}
+      
       </div>
       </div>
            </div>
@@ -184,21 +196,4 @@ const company:React.FC =()=>{
 }
 export default company;
 
-            {/* <div className="com-details">
-              <h3>
-                {e.companyName} {e.ownerName}
-              </h3>
-              <h3 style={{ display: "flex", alignItems: "center" }}>
-                 {e.phoneNumber}
-                <span style={{ margin: "07px" }}></span>
-                 {e.location}
-                <span style={{ margin: "07px" }}></span>
-                 {e.verification}
-              </h3>
-              <h3 style={{ display: "flex", alignItems: "center", position:"relative",top:"50px" }} >{e.longtitude} </h3>
-              <h3 style={{ display: "flex", alignItems: "center", position:"relative",top:"50px" }} >{e.emailCompany} </h3>
-              <h3 style={{ display: "flex", alignItems: "center", position:"relative",top:"50px" }} >{e.passwordCompany} </h3>
-              <Stack spacing={2} direction="row">
 
-      </Stack>
-            </div> */}
