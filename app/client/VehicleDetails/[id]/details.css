@@ -31,26 +31,41 @@ margin-bottom: 10px;
 .carimages{
 position: relative;
 top: -250px;
-margin-left: 10px;
+right: 700px;
 display: flex;
 object-fit: contain;
-gap: 50px; 
+gap: 110px; 
+width: 200px;
+max-width: 200px;
+height: 200px;
+max-height: 200px;
+border-radius: 10px;
 }
 
 .carImageItem {
     object-fit: contain;
     justify-content: space-between;
+    background-size: cover;
+    border-radius: 25px; 
 
   }
 
   #mainimage{
 position: relative;
-right: 700px;
 max-width: 700px;
+max-height: 700px;
 top: -650px;
+
+
   }
 
   body {
     overflow-x: hidden;
+  }
+
+  .arrows{
+position: relative;
+right: 100px;
+
   }
   

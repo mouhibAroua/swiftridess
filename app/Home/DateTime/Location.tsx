@@ -1,92 +1,101 @@
-"use client"
-import * as React from 'react';
-import { Theme, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
+"use client";
+import React, { useState, useEffect, useRef } from 'react';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Chip from '@mui/material/Chip';
-import "./location.css"
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
-
-function getStyles(name: string, personName: readonly string[], theme: Theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents,Tooltip } from 'react-leaflet';
+import "./location.css";
+import 'leaflet/dist/leaflet.css';
+import axios from 'axios';
+import ReactLeafletDriftMarker from "react-leaflet-drift-marker";
+import { FaPerson } from "react-icons/fa6";
+import {Icon} from 'leaflet';
+import { Modal } from "react-responsive-modal";
+import 'react-responsive-modal/styles.css';
+import { useRouter } from 'next/navigation';
 
 export default function MultipleSelectChip() {
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState<string[]>([]);
+  const [showMap, setShowMap] = useState<boolean>(false);
+  const [compData,setCompData] =useState<any>([])
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const router = useRouter()
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
+  const legalIcon = new Icon ({
+    iconUrl : 'https://icon-library.com/images/rent-car-icon/rent-car-icon-3.jpg',
+    iconSize : [35,35],   
+
+
+  })
+  const userMarker = new Icon ({
+    iconUrl : 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-512.png',
+    iconSize : [35,35], 
+
+  })
+
+
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/api/company/getall').then((res) => {
+        setCompData(res.data);
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+
+
+  function LocationMarker() {
+    const [position, setPosition] = useState<null>(null);
+    const map = useMapEvents({
+      click() {
+        map.locate();
+      },
+      locationfound(e) {
+        setPosition(e.latlng);
+        map.flyTo(e.latlng, map.getZoom());
+      },
+    });
+
+    return position === null ? null : (
+      <div>
+        <Marker  position={position} icon={userMarker} >
+       <Popup >You are here</Popup>
+       </Marker>
+      </div>
     );
-  };
+  }
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 250, position:"relative", top: "-335px", right: "-40px" }}>
-        <InputLabel id="demo-multiple-chip">Location</InputLabel>
-        <Select
-          labelId="demo-multiple-chip-label"
-          id="demo-multiple-chip"
-          multiple
-          value={personName}
-          onChange={handleChange}
-          input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-          renderValue={(selected) => (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-              {selected.map((value) => (
-                <Chip key={value} label={value} />
-              ))}
-            </Box>
-          )}
-          MenuProps={MenuProps}
-        >
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
-            >
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </div>
+    <FormControl sx={{ m: 1, width: 250, position: "relative", top: "-335px", right: "-70px" }}>
+      <button id='Location' className='mt-2 border rounded w-[230px] h-[55px]' onClick={() => setModalOpen(true)}>location</button>
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} center>
+        <MapContainer center={{ lat: 36.859108, lng: 10.190414 }} zoom={15} style={{ height: '400px', width: '600px' }} scrollWheelZoom={true}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          
+{compData.map((company, i) => (
+  <div key={i}>
+    <Marker position={{ lat: company.laltitude, lng: company.longtitude }} icon={legalIcon}>
+
+        <div>
+        <Popup>
+        <button onClick={() => router.push('client/searchedCar')}>View Details</button>
+        </Popup>
+          <Tooltip direction="bottom" offset={[0, 20]} opacity={1} permanent>
+            {company.companyName}
+          </Tooltip>
+          </div>   
+    </Marker>
+  </div>
+))}
+          <LocationMarker />
+        </MapContainer>
+      </Modal>
+    </FormControl>
+  </div>
   );
 }

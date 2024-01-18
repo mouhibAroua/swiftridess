@@ -34,13 +34,21 @@ module.exports = {
         })
         res.json(comp)
     },
-    addCar:async (req,res)=>{
-        const veh=await car.create(req.body);
-        res.json(veh)
-    },
+    
     getAllCar:async (req,res)=>{
         const veh=await car.findAll();
         res.json(veh)
+    },
+
+    addCar : async (req, res) => {
+      try { 
+        const { company_idcompany } = req.body;
+        const newCar = await car.create({ ...req.body, company_idcompany });
+        res.json(newCar);
+      } catch (error) {
+        console.error('Error adding car:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
     },
     getCarById:async (req,res)=>{
         const {id}=req.params;
@@ -62,9 +70,10 @@ module.exports = {
         res.json(veh)
     },
     updateProfile:async (req,res)=>{
-        const {id}=req.params;
+        const idcompany=req.params.id;
+        console.log(idcompany);
         const comp=await company.update(req.body,{
-            where:{id}
+            where:{idcompany}
         })
         res.json(comp)
     },
@@ -84,6 +93,32 @@ module.exports = {
         } catch (error) {
           console.error(error);
           return res.status(500).json({ error: 'Internal Server Error' });
+        }
+      },
+
+      getCarsByCompany: async (req, res) => {
+        const { id } = req.params;
+        try {
+          const carCount = await car.count({
+            where: { company_idcompany: id },
+          });
+          res.json({ carCount });
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ error: 'Internal Server Error' });
+        }
+      },
+
+      getAllCarsByCompany :  async (req, res) => {
+        const { id } = req.params;
+        try {
+          const carss = await car.findAll({
+            where: { company_idcompany: id },
+          });
+          res.json({ carss });
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ error: 'Internal Server Error' });
         }
       },
       

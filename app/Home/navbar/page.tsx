@@ -1,6 +1,7 @@
 "use client"
+// import "../nav.css"
 import React, { useState, useRef, useEffect } from "react";
-import "./nav.css"
+
 interface MenuItem {
     title: string;
     path: string;
@@ -35,6 +36,7 @@ const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
 
     return (
         <div className={`relative ${props.class}`}>
+            {!userId? "":
             <div className="flex items-center space-x-4">
                 <button ref={profileRef} className="w-10 h-10 outline-none rounded-full ring-offset-2 ring-gray-200 ring-2 lg:focus:ring-indigo-600"
                     onClick={() => setState(!state)}
@@ -47,14 +49,15 @@ const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
                 </button>
                 <div className="lg:hidden">
                     <span className="block">Micheal John</span>
-                    <span className="block text-sm text-gray-500">john@gmail.com</span>
+                    <span className="block text-sm text-black">john@gmail.com</span>
                 </div>
             </div>
+}
             <ul className={`bg-white top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
                 {   
                     navigation.map((item, idx) => (
                         <li key={idx}>
-                            <a className="block text-black-600 lg:hover:bg-gray-50 lg:p-2.5" href={item.path}>
+                            <a className="block text-black lg:hover:bg-gray-50 lg:p-2.5 font-bold ml-2" href={item.path}>
                                 {item.title}
                             </a>
                         </li>
@@ -70,14 +73,13 @@ const Navigation: React.FC = () => {
 
     const navigation: MenuItem[] = [
         { title: "Home", path: "/Home" },
-        { title: "About", path: "/" },
-        { title: "Contact", path: "/" },
-        { title: "Sign", path: "/" },
+        { title: "About", path: "/"  },
+        { title: "Sign", path: "/UserLogin/Login" },
     ];
 
   return (
-        <nav className="">
-            <div className="flex items-center space-x-8 py-3 px-4 max-w-screen-xl mx-auto md:px-8">
+        <nav className="navv">
+            <div className=" flex items-center space-x-8 py-3 px-4 max-w-screen-xl mx-auto md:px-8 text-black">
                 <div className="flex-none lg:flex-initial">
                     <a href="/Home">
                         <img
@@ -88,19 +90,21 @@ const Navigation: React.FC = () => {
                         />
                     </a>
                 </div>
-                <div className="flex-1 flex items-center justify-between">
-                    <div className={`bg-white absolute z-20 w-full top-16 left-0 p-4 border-b lg:static lg:block lg:border-none ${menuState ? '' : 'hidden'}`}>
-                        <ul className="mt-12 space-y-5 lg:flex lg:space-x-6 lg:space-y-0 lg:mt-0">
+                <div className="flex-1 flex items-center justify-between text-black">
+                    <div className={`bg-white  text-black absolute z-20 w-full top-16 left-0 p-4 border-b lg:static lg:block lg:border-none ${menuState ? '' : 'hidden'}`}>
+                        <ul className="mt-12 space-y-5  text-black lg:flex lg:space-x-6 lg:space-y-0 lg:mt-0">
                             {
+                                
                                 navigation.map((item, idx) => (
-                                    <li key={idx} className="text-gray-600 hover:text-gray-900">
-                                        <a href={item.path}>
-                                            {item.title}
+                                    <li key={idx} className="text-red-800">
+                                        <a  href={item.path} className="text-black" >
+                                            {item.title }  
                                         </a>
                                     </li>
                                 ))
                             }
                         </ul>
+                        <button onClick={() => window.scrollTo({ top: 2000, behavior: "smooth" })} className="whyusb"> Why Us</button>
                         <ProfileDropDown 
                             class="mt-5 pt-5 border-t lg:hidden"
                         />
@@ -110,7 +114,7 @@ const Navigation: React.FC = () => {
                             class="hidden lg:block"
                         />
                         <button 
-                            className="outline-none text-gray-400 block lg:hidden"
+                            className="outline-none text-black block lg:hidden"
                             onClick={() => setMenuState(!menuState)}
                         >
                             {

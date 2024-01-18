@@ -1,12 +1,14 @@
-import Head from "./navBar/page"
+import Head from "./navbar/page"
 import Add from "./Add/page";
 import Marques from "./CarModels/Marques"
 import Date from "./DateTime/Date"
-import Time from "./DateTime/Time"
 import Location from "./DateTime/Location"
 import MostRatedCars from "./CarModels/MostRatedCars"
 import Stats from "./stats/page"
-
+import Occaion from "./SearchBuyOccasion/page";
+import AboutUs from "./AboutUs/page";
+import ClientFeedBack from "./ClientFeedBack/page";
+import Foot from "./footer/page"
 const Home = () => {
     return ( 
         <div>
@@ -14,10 +16,13 @@ const Home = () => {
             <Add/>
             <Marques/>
             <Date/>
-            <Time/>
             <Location/>
             <MostRatedCars/>
             <Stats/>
+            <Occaion/>
+            <AboutUs/>
+            <ClientFeedBack/>
+            <Foot/>
         </div>
      );
 }

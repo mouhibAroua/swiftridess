@@ -1,4 +1,7 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState,useRef } from 'react';
+import { motion } from "framer-motion";
+import fadeIn from '../AboutUs/fadeIn';
 
 interface Testimonial {
     avatar: string;
@@ -7,31 +10,53 @@ interface Testimonial {
 }
 
 const Testimonials: React.FC = () => {
+    const [animationTriggered, setAnimationTriggered] = useState<boolean>(false);
+    const scrollDown = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleScroll = () => {
+          if (scrollDown.current) {
+            const down = scrollDown.current.getBoundingClientRect();
+            const vs = down.top < window.innerHeight
+            setAnimationTriggered(vs);
+          }
+        };
+        window.addEventListener('scroll', handleScroll);
+
+      }, []);
+
     const testimonials: Testimonial[] = [
         {
-            avatar: "https://repertoire-artistestunisiens.com/wp-content/uploads/2016/09/samir-loussif-300x300.jpg",
-            name: "Samir Lousif",
-            quote: "Bent L 7ay ya wkhayeni tekwi kay"
+            avatar: "https://preview.redd.it/created-random-people-using-chatgpt-midjourney-do-you-know-v0-re9fc50i5dqb1.png?width=640&crop=smart&auto=webp&s=30408dbab2026d810eaa20862e51b7f46f331a6d",
+            name: "Emma Thompson",
+            quote: "Fantastic service! The vehicle was clean, well-maintained, and the rental process was smooth. Will definitely be renting from you again."
         },
         {
-            avatar: "https://www.tuniscope.com/uploads/images/content/maktoub-300809-1.jpg",
-            name: "Dali",
-            quote: "Dali 3omrou ma yo7sol"
+            avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fHww",
+            name: "James Rodriguez",
+            quote: "Impressed with the variety of vehicles available. The staff was helpful, and the online booking made it convenient. Highly recommend!"
         },
         {
-            avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Samara_rappeur.jpg/800px-Samara_rappeur.jpg",
-            name: "Samara riahi",
-            quote: "chteswa flousi ya houma eeeeeeee"
+            avatar: "https://preview.redd.it/created-random-people-using-chatgpt-midjourney-do-you-know-v0-xc8pg40i5dqb1.png?width=640&crop=smart&auto=webp&s=4029ddd24fbe7e577359e7e6d1f0c49bec2b4856",
+            name: "Olivia Martinez",
+            quote: "Great experience! The pick-up and drop-off were quick, and the car exceeded my expectations. Will be my go-to rental company from now on."
         },
     ];
 
     return (
+        <motion.div 
+        ref={scrollDown}
+        variants={fadeIn('up', 0.4)}
+         initial='hidden'
+        animate={animationTriggered ? 'show' : 'hidden'}
+        >
         <section className="relative py-14">
             <div className="relative z-10 max-w-screen-xl mx-auto px-4 md:px-8">
                 <div className="max-w-xl sm:text-center md:mx-auto">
                     <h3 className="text-black-500 text-3xl font-semibold sm:text-4xl">
                         Clients FeedBack
                     </h3>
+                    <hr className="border-t-4 border-oronge-500 mb-4 w-[380px] ml-[100px]" />
                 </div>
                 <div className="mt-12">
                     <ul className="grid items-center gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -64,6 +89,7 @@ const Testimonials: React.FC = () => {
             </div>
             <div className="absolute top-0 w-full h-[350px]" style={{ background: "linear-gradient(152.92deg, rgba(192, 132, 252, 0) 4.54%, rgba(232, 121, 249, 0) 34.2%, rgba(192, 132, 252, 0) 77.55%)" }}></div>
         </section>
+        </motion.div>
     )
 }
 

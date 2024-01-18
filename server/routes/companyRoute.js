@@ -9,6 +9,10 @@ router.get('/company/getall', CompanyController.getAllCom);
 
 router.get('/company/getOne/:id', CompanyController.getOneCom);
 
+router.get('/company/cars/:id', CompanyController.getCarsByCompany);
+
+router.get('/company/allcars/:id', CompanyController.getAllCarsByCompany);
+
 // GET user by ID
 router.get('/car/:id', CompanyController.getCarById);
 
@@ -16,7 +20,7 @@ router.get('/car/:id', CompanyController.getCarById);
 router.post('/car/add', CompanyController.addCar);
 
 // PUT update a user by ID
-router.put('/car/:id', CompanyController.updateCar);
+router.put('/car/update/:id', CompanyController.updateCar);
 
 
 router.put('/company/profile/:id', CompanyController.updateProfile);
