@@ -97,17 +97,17 @@ const addCar=()=>{
     return(
       
        <>
-       
+       <div className="   bg-gray-800 ">
         <SideNav/>
       
         
-        <div className=" bg-gray-800 mb-[-50px]">
-       <h1 className="text-center font-bold-5xl text-5xl  ml-80 text-white ">Add New Vehicle</h1>
+        
+       <h1 className="text-center font-bold-5xl text-5xl  ml-70 text-white ">Add New Vehicle</h1>
         <div className="grid grid-cols-2">
-        <div className="flex flex-col ml-[300px] mt-[50px] ">
+        <div className="flex flex-col ml-[300px] mt-[50px] space-y-1 ">
             
              
-  <label  className="ml-[200px] block text-gray-800 font-bold text-lg"
+  <label  className="ml-[200px] block text-white  text-lg"
     >Price/Day :</label>
  
     <input
@@ -116,7 +116,7 @@ const addCar=()=>{
       className="block w-[400px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800 ml-[100px]"
     />
   
-  <label  className="ml-[200px] block text-gray-800 font-bold text-lg"
+  <label  className="ml-[200px] block  text-white  text-lg"
     >Brand :</label>
   
     <input
@@ -128,7 +128,7 @@ const addCar=()=>{
  
   
   
-  <label  className="ml-[200px] block text-gray-800 font-bold text-lg"
+  <label  className="ml-[200px] block  text-white  text-lg"
     >Model :</label>
   
     <input
@@ -140,7 +140,7 @@ const addCar=()=>{
  
  
   
-  <label  className="ml-[200px] block text-gray-800 font-bold text-lg"
+  <label  className="ml-[200px] block  text-white  text-lg"
     >Type :</label>
  
   <select className="block w-[400px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800 ml-[100px]" 
@@ -154,7 +154,7 @@ const addCar=()=>{
        </select>
  
  
-  <label  className="ml-[200px] block text-gray-800 font-bold text-lg"
+  <label  className="ml-[200px] block  text-white  text-lg"
     >Registration :</label>
   
     <input
@@ -164,7 +164,7 @@ const addCar=()=>{
       className="block w-[400px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800 ml-[100px]"
     />
   
-  <label  className="ml-[200px] block text-gray-800 font-bold text-lg"
+  <label  className="ml-[200px] block  text-white  text-lg"
     >Fuel :</label>
   
   <select className="block w-[400px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800 ml-[100px]" 
@@ -177,7 +177,7 @@ const addCar=()=>{
    
     
  
-  <label  className="ml-[200px] block text-gray-800 font-bold text-lg"
+  <label  className="ml-[200px] block  text-white  text-lg"
     >Mileage :</label>
   
     <input
@@ -189,7 +189,7 @@ const addCar=()=>{
   
   
   
-  <label  className="ml-[200px] block text-gray-800 font-bold text-lg"
+  <label  className="ml-[200px] block  text-white  text-lg"
     >Transmission :</label>
  
     <input
@@ -201,7 +201,7 @@ const addCar=()=>{
  
   
   
-  <label  className="ml-[200px] block text-gray-800 font-bold text-lg"
+  <label  className="ml-[200px] block  text-white  text-lg"
     >Occassion :</label>
   
   <select className="block w-[400px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800 ml-[100px]" 
@@ -212,7 +212,7 @@ const addCar=()=>{
           <option value="Transporter">Transporter</option>
        </select>
  
-  <label  className="ml-[200px] block text-gray-800 font-bold text-lg"
+  <label  className="ml-[200px] block  text-white  text-lg"
     >Passenger :</label>
   
   <select className="block w-[400px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800 ml-[100px]" 
@@ -225,9 +225,9 @@ const addCar=()=>{
   
   
   
-  <button className="text-white py-3.5 px-7 text-base font-large text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200 mb-0 mt-10 ml-[150px] w-[300px]"
+  <button className="text-white py-3.5 px-7 text-base font-large text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200  mt-[200px] ml-[150px] w-[300px]"
   onClick={()=>{addNewCar()}}>
-    add car</button>
+    add Vehicle</button>
   </div>
   <div className=" space-y-5 sm:flex-row sm:space-y-0 gap-6">
         <button className="ml-[300px] mt-[50px] text-white py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200 "
