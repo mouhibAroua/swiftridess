@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState} from "react";
 import bcrypt from "bcryptjs"
 import { useParams } from "next/navigation";
+import Sidebar from "../../DashBoard/Sidenav";
 
 interface Company {
     idcompany:string;
@@ -51,12 +52,10 @@ return(
     {(id!==idcompany)&&
     <h1>not found</h1>}
     {(id===idcompany)&& 
+    <div>
+    <Sidebar/>
 <div className="flex ">
-<img 
-className="w-[700px] h-screen "
-src="https://i.pinimg.com/originals/41/4a/86/414a8690808037a6a744c40bdaea7cd9.jpg"
-alt=""/>
-<div className=" w-[1000px]  bg-white  flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
+<div className=" w-[900px] justify-center rounded-[100px] h-[600px] mt-[100px] ml-[400px] bg-white  flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931] bg-gray-300">
 
     <main className="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4">
     
@@ -113,10 +112,10 @@ alt=""/>
                         </div>
                         
                         <div className="flex justify-end">
-                        <button className="bg-blue-950 text-blue-400 border border-blue-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
+                        <button className=" bg-back text-blue-400 border border-blue-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
                         onClick={(e)=>{e.preventDefault()
                             modifyProfile({companyName:companyName, ownerName:ownerName,phoneNumber:phoneNumber, emailCompany:emailCompany} )}}>
-                         <span className="bg-blue-400 shadow-blue-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
+                    
                         Save
                         </button>
                         </div>
@@ -127,7 +126,7 @@ alt=""/>
         </div>
     </main>
 </div>
-
+</div>
 </div>
 }
 </>
