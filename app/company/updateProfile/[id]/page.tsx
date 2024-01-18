@@ -70,7 +70,7 @@ return(
                                     className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">
                                    Company Name</label>
                                 <input type="text" id="Company-Name"
-                                    className="bg-indigo-50 border-2 border-blue-800 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-sky-600 block w-50 p-2.5 "
+                                    className="bg-indigo-50 border-2 border-blue-800 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-sky-600 block w-60 p-2.5 "
                                     placeholder="Company Name" onChange={(e)=>setCompanyName(e.target.value)}/>
                             </div>
 
@@ -79,7 +79,7 @@ return(
                                     className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">
                                     Owner Name</label>
                                 <input type="text" id="owner"
-                                    className="bg-indigo-50 border-2 border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-50 p-2.5 "
+                                    className="bg-indigo-50 border-2 border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-60 p-2.5 "
                                     placeholder="Owner Name" onChange={(e)=>setOwnerName(e.target.value)} />
                             </div>
 
