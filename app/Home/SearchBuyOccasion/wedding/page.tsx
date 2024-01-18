@@ -1,52 +1,40 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "./allvehicles.css";
+"use client"
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Link from 'next/link';  
+import "../../../client/CarBrands/brands.css"
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Nav from "../../../Home/navbar/page"
 
-interface Car {
-  brand: string;
-  model: string;
-  rating: number;
-  image: string;
-  fuelType: string;
-  passengers: string;
-  type: string;
-  price: string;
-  idcars:number;
-}
-
-const idcompany = localStorage.getItem('idcompany')
-const TopRatedCars: React.FC = () => {
-  const [allCars, setAllCars] = useState<Car[]>([]);
+const CarList: React.FC = () => {
+  const [cars, setCars] = useState<any[]>([]);
 
   useEffect(() => {
-    const fetchAllCars = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/company/allcars/${idcompany}`);
-        setAllCars(response.data.carss); 
+        const response = await axios.get('http://localhost:3000/api/car/getallcars');
+        setCars(response.data.filter((car: any) => car.occasion === 'wedding'));
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching car data', error);
       }
     };
-  
-    fetchAllCars();
+
+    fetchData();
   }, []);
-  
-console.log(allCars)
+
   return (
     <div>
-      <h2
-        id="texting"
-        className="text-3xl font-bold mb-4 text-center text-gold-100"
+      <Nav/>
+      <h1
       >
-      </h2>
+        Wedding Vehicles
+      </h1>
       <div className="car-container">
-        {allCars.map((car) => (
+        {cars.map((car) => (
           <div key={car.idcars} className="car-box">
             <img
               src={car.image[0]}
@@ -58,7 +46,7 @@ console.log(allCars)
                 {car.brand} {car.model}
               </h3>
               <h3 style={{ display: "flex", alignItems: "center" }}>
-                <PersonOutlineIcon /> {car.passengers}
+              <PersonOutlineIcon /> {car.passengers}
                 <span style={{ margin: "07px" }}></span>
                 <LocalGasStationIcon /> {car.fuelType}
                 <span style={{ margin: "07px" }}></span>
@@ -66,15 +54,17 @@ console.log(allCars)
               </h3>
               <h3 style={{ display: "flex", alignItems: "center", position:"relative",top:"50px" }} >{car.price} DT/Day</h3>
               <Stack spacing={2} direction="row">
-                <Button className="but" size="small" variant="contained" style={{ backgroundColor: '#C0C0C0', color: 'black' }}>Update</Button>
-              </Stack>
+              <Link target="_blank" href={`/client/VehicleDetails/${car.idcars}` }>
+              <Button className = "but"size="small" variant="contained" style={{ backgroundColor: '#C0C0C0', color: 'black'  }}>Rent Now</Button>
+      </Link>
+      </Stack>
             </div>
           </div>
-          
         ))}
       </div>
     </div>
   );
 };
 
-export default TopRatedCars;  
+
+export default CarList;
