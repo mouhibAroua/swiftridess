@@ -1,11 +1,20 @@
-a {
-    color: black;
-  }
 
-  .whyusb{
+.whyusb{
 position: relative;
 top: -23px;
 margin-left: 200px;
 
 
   }
+
+.bg-white {
+  background-color: transparent;
+}
+
+
+.loout{
+position: relative;
+left: 10px;
+color: black;
+font-weight: bold;
+}

@@ -5,11 +5,43 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import "./location.css";
 import 'leaflet/dist/leaflet.css';
+import axios from 'axios';
+import ReactLeafletDriftMarker from "react-leaflet-drift-marker";
+import { FaPerson } from "react-icons/fa6";
+import {Icon} from 'leaflet';
 
 export default function MultipleSelectChip() {
   const [showMap, setShowMap] = useState<boolean>(false);
+  const [compData,setCompData] =useState<null>([])
 
+
+  const legalIcon = new Icon ({
+    iconUrl : 'https://icon-library.com/images/rent-car-icon/rent-car-icon-3.jpg',
+    iconSize : [35,35],   
+
+
+  })
+  const userMarker = new Icon ({
+    iconUrl : 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-512.png',
+    iconSize : [35,35], 
+
+  })
   const mapContainerRef = useRef(null);
+
+  const [fixedMarkerPos, setFixedMarkerPos] = useState({
+    lat: 36.890308,
+    lng: 10.180120,
+  })
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/api/company/getall').then((res) => {
+        setCompData(res.data);
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
@@ -39,29 +71,30 @@ export default function MultipleSelectChip() {
 
     return position === null ? null : (
       <div>
-  
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/1334px-Map_marker.svg.png" alt="" />
-          <Popup  position={position}>You are here</Popup>
-
+        <Marker  position={position} icon={userMarker} >
+       <Popup >You are here</Popup>
+       </Marker>
       </div>
     );
   }
 
   return (
-    <div ref={mapContainerRef}>
-      <FormControl sx={{ m: 1, width: 250, position: "relative", top: "-335px", right: "-40px" }}>
+   <div ref={mapContainerRef}>
+      <FormControl sx={{ m: 1, width: 250, position: "relative", top: "-335px", right: "-70px" }}>
         <button className='mt-2 border rounded w-[230px] h-[55px]' onClick={() => setShowMap(!showMap)}>location</button>
         {showMap && (
-          <MapContainer className='' center={{ lat: 36.890308, lng: 10.180120 }}
-            zoom={16}
-            style={{ height: '400px', width: '600px' }}
-            scrollWheelZoom={true}
-          >
+          <MapContainer className='' center={{ lat: 36.859108, lng: 10.190414 }} zoom={16} style={{ height: '400px', width: '600px' }} scrollWheelZoom={true}>
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <LocationMarker />
+            {compData.map((company,i) => (
+                <Marker key={i} position={{ lat: company.laltitude, lng: company.longtitude }} icon={legalIcon}>
+                <Popup>{company.companyName}</Popup>
+              </Marker>
+            ))}
+            
+            <LocationMarker/>
           </MapContainer>
         )}
       </FormControl>
