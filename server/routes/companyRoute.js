@@ -20,7 +20,7 @@ router.get('/car/:id', CompanyController.getCarById);
 router.post('/car/add', CompanyController.addCar);
 
 // PUT update a user by ID
-router.put('/car/:id', CompanyController.updateCar);
+router.put('/car/update/:id', CompanyController.updateCar);
 
 
 router.put('/company/profile/:id', CompanyController.updateProfile);
