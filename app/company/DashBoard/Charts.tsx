@@ -9,10 +9,12 @@ interface CarData {
 
 const CarDetails: React.FC = () => {
     const [carData, setCarData] = useState<CarData | null>(null);
+    const idcompany = localStorage.getItem('idcompany')
+
     useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/company/cars/1');
+        const response = await axios.get(`http://localhost:3000/api/company/cars/${idcompany}`);
         setCarData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
