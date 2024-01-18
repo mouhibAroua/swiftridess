@@ -55,9 +55,9 @@ return(
     <div>
     <Sidebar/>
 <div className="flex ">
-<div className=" w-[900px] justify-center rounded-[100px] h-[600px] mt-[100px] ml-[400px] bg-white  flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931] bg-gray-300">
+<div className=" w-[800px] justify-center rounded-[100px] h-[550px] mt-[80px] ml-[420px] bg-white  flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931] bg-gray-300">
 
-    <main className="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4">
+    <main className="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4 ">
     
         <div className="p-2 md:p-4">
             <div className="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
