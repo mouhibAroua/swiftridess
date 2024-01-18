@@ -99,7 +99,7 @@ const UpdateCar = () => {
        <div>
         <SideNav/>
         <div className="mt-[100px] ml-[300px] bg-gradient-to-r from-gray-800 to-white-300 w-[1000px] rounded-tr-[100px] rounded-bl-[100px]">
-       <h1 className="text-center font-bold-5xl text-5xl  ml-50 text-white ">Update Vehicle</h1>
+       <h1 className="text-center font-bold-5xl text-[70px]  ml-50 text-white font-serif">Update Vehicle</h1>
         <div className="grid grid-cols-2 ">
         <div className="grid ml-10 mt-[50px] space-y-4 ">
             
