@@ -20,24 +20,24 @@ interface Car {
   idcars:number;
 }
 
-
+const idcompany = localStorage.getItem('idcompany')
 const TopRatedCars: React.FC = () => {
   const [allCars, setAllCars] = useState<Car[]>([]);
 
   useEffect(() => {
     const fetchAllCars = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/car/getallcars");
-        const carsData: Car[] = response.data;
-        setAllCars(carsData);
+        const response = await axios.get(`http://localhost:3000/api/company/allcars/${idcompany}`);
+        setAllCars(response.data.carss); 
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
+  
     fetchAllCars();
   }, []);
-
+  
+console.log(allCars)
   return (
     <div>
       <h2

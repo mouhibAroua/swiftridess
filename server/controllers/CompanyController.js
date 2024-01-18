@@ -34,13 +34,21 @@ module.exports = {
         })
         res.json(comp)
     },
-    addCar:async (req,res)=>{
-        const veh=await car.create(req.body);
-        res.json(veh)
-    },
+    
     getAllCar:async (req,res)=>{
         const veh=await car.findAll();
         res.json(veh)
+    },
+
+    addCar : async (req, res) => {
+      try { 
+        const { company_idcompany } = req.body;
+        const newCar = await car.create({ ...req.body, company_idcompany });
+        res.json(newCar);
+      } catch (error) {
+        console.error('Error adding car:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
     },
     getCarById:async (req,res)=>{
         const {id}=req.params;
