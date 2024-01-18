@@ -49,6 +49,7 @@ export default function MultipleSelectChip() {
         setShowMap(false);
       }
     };
+    console.log('hello')
 
     document.addEventListener('mousedown', handleOutsideClick);
 
@@ -81,7 +82,7 @@ export default function MultipleSelectChip() {
   return (
    <div ref={mapContainerRef}>
       <FormControl sx={{ m: 1, width: 250, position: "relative", top: "-335px", right: "-70px" }}>
-        <button className='mt-2 border rounded w-[230px] h-[55px]' onClick={() => setShowMap(!showMap)}>location</button>
+        <button id='Location'className='mt-2 border rounded w-[230px] h-[55px]' onClick={() => setShowMap(!showMap)}>location</button>
         {showMap && (
           <MapContainer className='' center={{ lat: 36.859108, lng: 10.190414 }} zoom={16} style={{ height: '400px', width: '600px' }} scrollWheelZoom={true}>
             <TileLayer
