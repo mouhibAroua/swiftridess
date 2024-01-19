@@ -1,6 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&display=swap');
 #Location{
 position: relative;
 top: 108px;
-
-
+right: -180px;
+width: 1000px;
+font-family: 'Poppins', sans-serif;
+background-color: #9ca3af;
+border-radius: 10px;
+border-color: transparent transparent transparent;
 }
