@@ -99,7 +99,7 @@ return(
                 <div className="flex flex-col md:flex-row md:flex-1 ">
                   <div className="p-4 py-6  md:flex md:flex-col ">
                     <div className="flex flex-col md:flex-row md:flex-1 ml-[-300px]">
-                        <img className="object-cover bg-gray-400 w-[400px] h-[650px] mt-[-120px] "
+                        <img className="object-cover bg-gray-400 w-[400px] h-[545px] mt-[-72px] "
                             src={previewImage}
                             alt=""/>
                             </div>
