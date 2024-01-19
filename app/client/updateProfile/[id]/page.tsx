@@ -93,7 +93,7 @@ return(
       <Navigation/>
   <div className="flex justify-between">
                 <div className="flex">
-<div className=" bg-slate ml-80 mt-36 w-[1000px] h-[600px] flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931] ">
+<div className=" bg-slate ml-80 mt-10 w-[1000px] h-[600px] flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931] ">
         <div className="p-2 md:p-4 ">
             <div className="px-6 pb-8 mt-8  sm:rounded-lg">
                 <div className="flex flex-col md:flex-row md:flex-1 ">
