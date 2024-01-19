@@ -11,6 +11,10 @@ interface ProfileDropDownProps {
     class: string;
 }
 
+interface users {
+    image: string;
+}
+
 const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
     const [state, setState] = useState(false);
     const profileRef = useRef<HTMLButtonElement>(null);
