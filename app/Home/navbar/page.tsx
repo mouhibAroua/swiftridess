@@ -73,7 +73,6 @@ const Navigation: React.FC = () => {
 
     const navigation: MenuItem[] = [
         { title: "Home", path: "/Home" },
-        { title: "About", path: "/"  },
         { title: "Sign", path: "/UserLogin/Login" },
     ];
 

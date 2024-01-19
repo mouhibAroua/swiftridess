@@ -81,7 +81,7 @@ const UpdateCar = () => {
     
       const update = () => {
         axios
-          .post(`http://localhost:3000/api/car/update/${idcars}`, obj)
+          .put(`http://localhost:3000/api/car/update/${idcars}`, obj)
           .then(() => {
             alert('Car updated successfully');
           })
@@ -226,7 +226,7 @@ const UpdateCar = () => {
   
   
   <button className=" py-3.5 px-7 text-base font-large text-white focus:outline-none bg-gray-300 rounded-lg border border-indigo-200 focus:z-10 focus:ring-4 focus:ring-indigo-200  mt-[200px] ml-[150px] w-[300px]"
-  onClick={()=>{update}}>
+  onClick={()=>{update()}}>
     Update</button>
   </div>
   <div className=" space-y-5 sm:flex-col gap-6">

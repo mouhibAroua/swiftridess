@@ -4,8 +4,8 @@ import axios from "axios";
 import PeopleIcon from "@mui/icons-material/People";
 import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+
 interface Cars {
   idcars: string;
   price: number;
@@ -18,15 +18,16 @@ interface Cars {
 }
 
 const AllCars: React.FC<Cars> = ({ idcompany }) => {
-  const id = localStorage.getItem("idcompany");
+  const id = typeof window !== 'undefined' ? localStorage.getItem("idcompany"): null
   const [companyCars, setCompanyCars] = useState<Cars[]>([]);
-  const router = useRouter();
+  
   useEffect(() => {
     axios
       .get(`http://localhost:3000/api/company/allcars/${id}`)
+      
+      
       .then((res) => {
-        console.log("eee", res.data.carss);
-
+        console.log("rr",id);
         setCompanyCars(res.data.carss);
       })
       .catch((err) => {
@@ -47,7 +48,7 @@ const AllCars: React.FC<Cars> = ({ idcompany }) => {
               className="bg-white rounded-lg shadow-md h-[400px] w-[300px]"
             >
               <img
-                className="flex"
+                className="w-[300px] h-[400px]"
                 src={car.image[0]}
                 alt={`Car ${car.brand}`}
               />
