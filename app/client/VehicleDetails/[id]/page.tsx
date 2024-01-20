@@ -142,7 +142,6 @@ const CarInfo = ({ carId }: CarInfoProps) => {
                 <AddRoadIcon /> Mileage : {carInfo.mileage}
               </p>
               <Location />
-              <Time />
               <Company />
               <Date />
               <Rating />

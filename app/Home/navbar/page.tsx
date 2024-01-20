@@ -1,5 +1,5 @@
 "use client"
-// import "../nav.css"
+ import "./nav.css"
 import React, { useState, useRef, useEffect } from "react";
 
 interface MenuItem {
@@ -73,7 +73,6 @@ const Navigation: React.FC = () => {
 
     const navigation: MenuItem[] = [
         { title: "Home", path: "/Home" },
-        { title: "About", path: "/"  },
         { title: "Sign", path: "/UserLogin/Login" },
     ];
 
