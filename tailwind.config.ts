@@ -26,6 +26,9 @@ const config: Config = {
       'oronge-500':'#f97316',
       'blue-700':'#1d4ed8',
       'orange-600':'#ea580c',
+      'Teal-100':'#ccfbf1',
+      'Teal-600':'#0d9488',
+      'Teal-700': '#0f766e'
 
     },
     extend: {
