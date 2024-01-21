@@ -1,5 +1,4 @@
 "use client"
-// AboutUs.tsx
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import fadeIn from './fadeIn';
@@ -25,7 +24,7 @@ const AboutUs = () => {
 
   return (
     <motion.div
-      className="mt-[100px]"
+      className="mt-[100px] p-6  " 
       ref={scrollDown}
       variants={fadeIn('up', 0.4)}
       initial="hidden"
@@ -35,14 +34,11 @@ const AboutUs = () => {
         Unmatched excellence and customer satisfaction
       </h1>
 
-      <motion.div
-        className="w-[900px] ml-60 mt-20"
-        variants={fadeIn('down', 0.6)} 
-      >
+      <motion.div className="w-[900px] ml-60 mt-20" variants={fadeIn('down', 0.6)}>
         <motion.img
           src="https://images2.imgbox.com/7f/62/9xR78TOz_o.png"
           alt=""
-          variants={fadeIn('left', 0.6)} 
+          variants={fadeIn('left', 0.6)}
         />
         <p className="text-center mt-4 text-2xl">
           Our dedication to providing exceptional services sets us apart from

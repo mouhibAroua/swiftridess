@@ -10,6 +10,7 @@ const userHasCars = require('./models/user_carss')
 const Cart =require ('./models/cart.js')
 const product = require ('./models/product.js')
 const userRoutes=require('./routes/usersRoute.js')
+const chatRouter=require('./routes/chatRoute.js')
 const companyRoutes=require('./routes/companyRoute.js')
 const loginRoutes=require ('./routes/loginRoute.js')
 const signupRoutes=require('./routes/singupRoute.js')
@@ -37,6 +38,7 @@ app.use('/api',signupRoutes)
 
 
 app.use('/api',userRoutes)
+app.use('/api',chatRouter)
 app.use('/api',companyRoutes)
 
 app.listen(PORT, () => {

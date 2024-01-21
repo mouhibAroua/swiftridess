@@ -31,6 +31,11 @@ const Reservation = sequelize.define('reservation', {
     type: DataTypes.DATE,
     allowNull: false,
   },
+  accepted: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false, 
+  },
 }, {
   tableName: 'reservation',
   indexes: [
