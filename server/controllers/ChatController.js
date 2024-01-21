@@ -28,5 +28,44 @@ module.exports = {
         })
         res.json(cha)
     },
-    
+    getAllChatsByCompanyId: async (req, res) => {
+        try {
+            const { companyId } = req.params;
+            const chats = await chat.findAll({
+                where: { company_idcompany: companyId },
+            });
+
+            res.json(chats);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    },
+    getAllChatsByUserId: async (req, res) => {
+        try {
+            const { userId } = req.params;
+            const chats = await chat.findAll({
+                where: { client_id: userId },
+            });
+
+            res.json(chats);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    },
+    getAllChatsByUserIdAndCompanyId: async (req, res) => {
+        try {
+            const { userId, companyId } = req.params;
+
+            const chats = await chat.findAll({
+                where: { 
+                    client_id: userId,
+                    company_idcompany: companyId,
+                },
+            });
+
+            res.json(chats);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    },
 }

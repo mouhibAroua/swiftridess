@@ -1,7 +1,9 @@
 "use client"
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import ChatIcon from '@mui/icons-material/Chat';
+import { Modal } from "react-responsive-modal";
+import Home from "../../chat/page"
 interface Chat {
     client_id: number;
     roomId: number;
@@ -10,13 +12,18 @@ interface Chat {
 interface User {
     id: number;
     fullName: string;
-    
 }
 
+interface oneChat {
+    roomId: number;
+    content:string;
+}
 export default function Contact() {
     const [allChat, setAllChat] = useState<Chat[]>([]);
     const [allUsers, setAllUsers] = useState<User[]>([]);
-
+    const [modalOpen, setModalOpen] = useState<boolean>(false);
+    const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
+    const [oneChat,setoneChat]=useState<oneChat[]>([])
     const companyId = localStorage.getItem("idcompany");
 
     useEffect(() => {
@@ -28,7 +35,7 @@ export default function Contact() {
                 console.error(err);
             });
     }, [companyId]);
-
+console.log("chat",allChat)
     useEffect(() => {
         const fetchUsers = async () => {
             try {
@@ -38,7 +45,10 @@ export default function Contact() {
                 });
 
                 const users = await Promise.all(usersPromises);
-                setAllUsers(users);
+                const uniqueUserNames = Array.from(new Set(users.map(user => user.fullName)));
+                const uniqueUsers = uniqueUserNames.map(name => users.find(user => user.fullName === name)!);
+
+                setAllUsers(uniqueUsers);
             } catch (error) {
                 console.error(error);
             }
@@ -49,19 +59,34 @@ export default function Contact() {
         }
     }, [allChat]);
 
+    const handleUserClick = (userId: number) => {
+        axios.get(`http://localhost:3000/api/chats/user/${selectedUserId}/company/${companyId}`).then(res=>{
+            setoneChat(res.data)
+        }).catch(err=>console.error(err))
+        setSelectedUserId(userId);
+        setModalOpen(true);
+    };
+    // const firstObject = oneChat[0]
+    // const l=firstObject.roomId
+    // console.log("onechat",l)
+    console.log("onechat",oneChat[0]?oneChat[0].roomId:"")
     return (
         <div>
             <h1>Contact Component</h1>
-           <h3>all the customers who contacted you</h3>
-           {
-              allUsers.map((user) => {
-                return (
+            <h3>All the customers who contacted you</h3>
+            {
+                allUsers.map((user) => (
                     <div key={user.id}>
-                        <h5>{user.fullName}</h5>
+                        <button onClick={() => handleUserClick(user.id)}>
+                            <ChatIcon />
+                            <h5>{user.fullName}</h5>
+                        </button>
                     </div>
-                )
-            })
-           }
+                ))
+            }
+            <Modal open={modalOpen} onClose={() => setModalOpen(false)} center>
+                {selectedUserId && <Home userId={selectedUserId}  idRoom={oneChat[0]?oneChat[0].roomId:""}/>}
+            </Modal>
         </div>
     );
 }

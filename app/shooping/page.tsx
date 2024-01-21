@@ -1,5 +1,5 @@
 "use client"
-// import Nav from "../Nav/page";
+import Nav from "./nav/page";
 import React,{useEffect,useState} from "react";
 import { FaArrowRight } from "react-icons/fa";
 import axios from 'axios'
@@ -20,9 +20,9 @@ import { SiYoutubegaming } from 'react-icons/si';
 import Image from 'next/image';
 // import img from "../Image/high.png"
 import { log } from "console";
-// import { useCartStore } from "../stores/CartStore";
+import { useCartStore } from "./stores/CartStore";
 const Home: React.FC = () => {
-//   const cartStore = useCartStore();
+  const cartStore = useCartStore();
   const [products, setProducts] = useState<any[]>([]);
   const [showAddToCart, setShowAddToCart] = useState<boolean>(false);
   const [index, setIndex] = useState<number>(-1);
@@ -31,7 +31,7 @@ const Home: React.FC = () => {
   const [change, setChange] = useState(false);
   const [index1, setIndex1] = useState(1);
   const [best,setBest]=useState([]);
-  const userId = localStorage.getItem('userId');
+  const userId = localStorage.getItem('idcompany');
    const router = useRouter();
   useEffect(() => {
     axios.get(`http://localhost:3000/api/products/allProducts`)
@@ -54,30 +54,20 @@ const Home: React.FC = () => {
       .then((res) => { console.log(res); })
       .catch((err) => console.log(err));
   };
-const addWished=(wished:any)=>{
-  console.log("add to wishlist working fine!")
-const toWishlist={
-  NameWish:wished.Name,
-  WishPrice:wished.Price,
-  userUserID:userId
-}
-axios.post("http://localhost:3000/api/wish/addwish",toWishlist).then((result)=>{
-  console.log(result.data)
-}).catch((err)=>{console.log(err.message)})
-}
+
   return(
     <>
-{/* <Nav /> */}
 
 
 
+<Nav/>
 
 <div>
 <hr className='text-gray-300'/>
 <hr className='text-gray-300'/>
            <div className=' flex justify-start m-11 gap-32 mt-40'>
          
-           <div className=' w-4/5 h-96 bg-black grid grid-cols-2'>
+           <div className=' w-4/5 h-96  grid grid-cols-2'>
             <div className='flex items-center '>
             <div className='grid gap-8'>
             <span>
@@ -92,7 +82,7 @@ axios.post("http://localhost:3000/api/wish/addwish",toWishlist).then((result)=>{
            </div>
            </div>
            <hr id="hr-unique" className=' rotate-90 w-96 absolute top-16 text-gray-300'/>
-           </div>
+  </div>
 
 
 
@@ -129,13 +119,13 @@ axios.post("http://localhost:3000/api/wish/addwish",toWishlist).then((result)=>{
                 CartImage: el.ProductImage,
                 Price: el.Price,
                 Quantity: el.Quantity,
-                userUserID: userId,
+                company_idcompany: userId,
               })
             }}
           >
             Add To Cart
           </button>
-        )}          <Link href={`/ProductDetails/${el.ProductID}`} ><img className=' w-40' src={el.ProductImage[0]?el.ProductImage[0]:el.ProductImage} alt="" onClick={()=>{
+        )}          <Link href={`/shooping/ProcutDetails/${el.ProductID}`} ><img className=' w-40' src={el.ProductImage[0]?el.ProductImage[0]:el.ProductImage} alt="" onClick={()=>{
             }} /></Link>
             
           </div>
@@ -148,7 +138,7 @@ axios.post("http://localhost:3000/api/wish/addwish",toWishlist).then((result)=>{
                 ))}
                  </div>
                  <div style={{'margin-left':'40%','margin-bottom':'10%'}} className='flex justify-center items-center w-80 h-16 bg-red mt-16 '>
-         <Link href='/Product' > <h1 onClick={()=>{}} className='text-white cursor-pointer' > View el Products</h1>   </Link>
+         <Link href='/shooping/Product' > <h1 onClick={()=>{}} className='text-white cursor-pointer' > View el Products</h1>   </Link>
         </div>
       <hr className='w-5/6 ml-20 text-gray-300 mb-32'/>
     </div>
@@ -244,7 +234,7 @@ axios.post("http://localhost:3000/api/wish/addwish",toWishlist).then((result)=>{
           <h1 className="text-5xl font-medium mt-10">Best Selling Products</h1>
           <button
             onClick={() => {
-              router.push('/Product');
+              router.push('/shooping/Poduct');
               
             }}
             className="absolute right-60 mt-8 text-red  w-32 h-12"
