@@ -25,4 +25,9 @@ router.get('/company/reservation/:idcompany', UserController.getReservationById)
 
 router.post('/company/reservation/:userid/:vehicleid', UserController.createReservation);
 
+router.post('/company/reservation/accept', UserController.acceptReservation); 
+
+router.delete('/company/reservation/delete', UserController.deleteReservation); 
+
+
 module.exports = router;
