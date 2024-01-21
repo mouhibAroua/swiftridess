@@ -57,10 +57,12 @@ const DateRangePicker = () => {
       </img>
       <p id="priceday" style={{ marginBottom: '10px' }}>Price/Day: {pricePerDay} DT</p>
       </div>
+      
       <div>
         {pricePerDay !== null && (
     <p className='totals' style={{ marginTop: '20px',position:"relative",top:"280px",right:"730px" }}>Total: ${calculateTotal() * pricePerDay}</p>
     )}
+    <div>    <button className='Buttonres'>Reserve Now</button></div>
       </div>
     </div>
   );

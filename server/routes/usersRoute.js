@@ -18,9 +18,11 @@ router.put('/users/:id', UserController.updateUserById);
 // DELETE a user by ID
 router.delete('/users/:id', UserController.deleteUserById);
 
+
 router.get('/company/car/:id', UserController.getCompanyInfoByCarId);
 
+router.get('/company/reservation/:idcompany', UserController.getReservationById);
 
-
+router.post('/company/reservation/:userid/:vehicleid', UserController.createReservation);
 
 module.exports = router;
