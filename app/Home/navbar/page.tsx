@@ -1,7 +1,7 @@
 "use client"
 import "./nav.css"
 import React, { useState, useRef, useEffect } from "react";
-
+import { useMediaQuery } from 'react-responsive';
 interface MenuItem {
     title: string;
     path: string;
@@ -42,11 +42,40 @@ console.log (userId)
         };
     }, []);
 
+
+    ///testing scroll
+    const [header,setHeader] =useState<boolean>(false)
+    const [nav,setNav]=useState<boolean>(false)
+    const deskMode=useMediaQuery({
+        query:'(min-width:1300px)',
+    })
+    useEffect(() => {
+        const handleScroll=()=>{
+            if(window.scrollY>0){
+                setHeader(true)
+            }else{
+                setHeader(false)
+            }
+            window.addEventListener('scroll',handleScroll)
+
+            return ()=>{
+                window.removeEventListener('scroll',handleScroll)
+            }
+        }
+        console.log(header)
+    },[])
+  
+
     return (
-        <div className={`relative ${props.class}`}>
+        <header
+        className={`${
+          header ? 'fixed top-0 left-0 right-0 bg-white shadow-md' : ''
+        } py-4 mx-auto z-90 transition-all duration-300`}
+      >
+        <div className={`relative ${props.class}`}  >
             {!userId? "":
             <div className="flex items-center space-x-4">
-                <button ref={profileRef} className="w-10 h-10 outline-none rounded-full ring-offset-2 ring-gray-200 ring-2 lg:focus:ring-indigo-600"
+                <button ref={profileRef} className="w-10 h-10 outline-none rounded-full ring-offset-2 ring-gray-200 ring-2 lg:focus:ring-indigo-600 -mt-8"
                     onClick={() => setState(!state)}
                 >
                     {!userId?"":<img
@@ -76,6 +105,7 @@ console.log (userId)
                 }
             </ul>
         </div>
+        </header>
     );
 };
 
@@ -91,7 +121,7 @@ const Navigation: React.FC = () => {
   return (
         <nav className="navv">
             <div className=" flex items-center space-x-8 py-3 px-4 max-w-screen-xl mx-auto md:px-8 text-black">
-                <div className="flex-none lg:flex-initial">
+                <div className="flex-none lg:flex-initial -mt-6">
                     <a href="/Home">
                         <img
                             src="https://media.discordapp.net/attachments/1157269732219691038/1194220754376589352/cars-removebg-preview.png?ex=65af8fbf&is=659d1abf&hm=94eae9de317c04c8f6efeb2ce656743162493db62d430b29f3b8c0aa69da9b28&=&format=webp&quality=lossless&width=706&height=552" 
@@ -108,7 +138,7 @@ const Navigation: React.FC = () => {
                                 
                                 navigation.map((item, idx) => (
                                     <li key={idx} className="text-red-800">
-                                        <a  href={item.path} className="text-black" >
+                                        <a  href={item.path} className="text-white" >
                                             {item.title }  
                                         </a>
                                     </li>
@@ -120,12 +150,12 @@ const Navigation: React.FC = () => {
                             class="mt-5 pt-5 border-t lg:hidden"
                         />
                     </div>
-                    <div className="flex-1 flex items-center justify-end space-x-2 sm:space-x-6">
+                    <div className="flex-1 flex items-center justify-end space-x-2 sm:space-x-6 ">
                         <ProfileDropDown 
                             class="hidden lg:block"
                         />
                         <button 
-                            className="outline-none text-black block lg:hidden"
+                            className="outline-none text-black block lg:hidden "
                             onClick={() => setMenuState(!menuState)}
                         >
                             {
