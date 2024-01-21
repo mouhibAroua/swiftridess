@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./reserv.css"
 import Sidebar from '../DashBoard/Sidenav';
+import Conf from "./conf"
 interface ReservationData {
   currentDateTime: string;
   user: {
@@ -44,6 +45,7 @@ const ReservationComponent: React.FC = () => {
         <div className="info-section">
           <h2 className='title'>Reservation Information</h2>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
+            
   <p className='elements'>Full Name:</p>
   <p className='elements'>Phone Number:</p>
   <p className='elements'>Email:</p>
@@ -51,8 +53,7 @@ const ReservationComponent: React.FC = () => {
   <p className='elements'>Car Brand:</p>
   <p className='elements'>Car Model:</p>
   <p className='elements'>Reservation Date:</p>
-  <p className='elements'>Return Date:</p>
-
+  <p className='elements'>Return Date:</p>      <div><Conf/></div>
 </div>
 
 
@@ -61,15 +62,12 @@ const ReservationComponent: React.FC = () => {
           <table style={{ display: 'flex',textAlign:"center" }} >
             
                 <td id='name'>{reservation.user.fullName}</td>
-                <br/>
-                <br/>
                 <td id='phone' >{reservation.user.phoneNumber}</td>
                 <td id='email' >{reservation.user.email}</td>
                 <td id='serial' >{reservation.car.serialCar}</td>
                 <td id='brand' >{reservation.car.brand}</td>
                 <td id='model' >{reservation.car.model}</td>
                 <td id='current' >{reservation.currentDateTime}</td>
-            
                 <td id='return'>{reservation.returnDate}</td>
 
           </table>
@@ -80,6 +78,7 @@ const ReservationComponent: React.FC = () => {
         <p>Loading...</p>
       )}
     </div>
+    
   );
 };
 
