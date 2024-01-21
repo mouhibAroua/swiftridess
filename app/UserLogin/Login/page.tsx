@@ -84,7 +84,7 @@ const Login = () => {
           </div>
 
           <button className="enter" onClick={()=>{getUserIdFromLocalStorage()}} >Log In</button>
-          <div className='flex text-sm mt-3'>
+          <div className='flex text-sm mt-3 text-white'>
           <h1  className='-mt-6 mb-4  '>Already have account  ?  </h1> <Link className='-mt-6 ' href={'/UserLogin/SignUp'}><span className='underline  cursor-pointer'>  Register Now</span></Link>
           </div>
          
