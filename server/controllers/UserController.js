@@ -73,6 +73,7 @@ async function deleteUserById(req, res) {
     const deleted = await User.destroy({
       where: { id },
     });
+    
     if (deleted) {
       res.json({ message: 'User deleted successfully' });
     } else {
@@ -103,6 +104,21 @@ async function getCompanyInfoByCarId(req, res) {
     res.status(500).json({ error: error.message });
   }
 }
+//Search a user by fullName
+const searchbyName= async (req,res) => {
+  try{
+    const fullName= req.params.name
+  const result = await User.findAll({
+    where: {
+      fullName: fullName,
+    },
+  })
+  res.status(200).json(result)
+      } catch (error) {
+        console.error('Error')
+        res.status(500).json({error: error.message});
+      }
+}
 
 module.exports = {
   getAllUsers,
@@ -111,5 +127,5 @@ module.exports = {
   updateUserById,
   deleteUserById,
   getCompanyInfoByCarId,
-
+  searchbyName,
 };

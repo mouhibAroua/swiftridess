@@ -31,7 +31,7 @@ interface User{
     image_user: string;
 }
 
-const Sidebar: React.FC <obj>= (props) => {
+const Sidebar: React.FC <{}>= (props) => {
   const [state, setState] = useState(false);
   const [person,setPerson] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -39,7 +39,7 @@ const Sidebar: React.FC <obj>= (props) => {
   const [fullName,setfullName]=useState<string>("")
   const [image_user,setimage_user]=useState<string>("")
   const profileRef = useRef<HTMLButtonElement>(null);
-// let id=localStorage.getItem('id');
+  let id=localStorage.getItem('id');
 
 // console.log(id)
 
@@ -47,7 +47,7 @@ const Sidebar: React.FC <obj>= (props) => {
 useEffect(() => {
   const getOne = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/users/28`)
+      const response = await axios.get(`http://localhost:3000/api/users/${id}`)
       setPerson(response.data);
       console.log("eya",response.data);
       
@@ -93,9 +93,9 @@ useEffect(() => {
     <div className=" fixed top-0 buttom-0 flex h-screen ">
       {/* Sidebar */}
       <div className="col-span-3 bg-gray-800 text-white px-10 py-7">
-        <List className="flex-col space-y-3">
+        <List className="flex-col space-y-2">
 
-        <div className="flex items-center space-y-3 ">
+        <div className="flex items-center justify-between">
   <Typography variant="h6" className="mt-2 mr-40" style={{ color: 'grey' }}>
     ADMINS
   </Typography>
@@ -136,7 +136,7 @@ useEffect(() => {
                 }
             </ul>
         
-            <ListItemText onChange={(e)=>setfullName(e.target.value)} 
+            <ListItemText 
             primary={<p className="mt-2"></p>} />
             </div>    
 
@@ -155,13 +155,13 @@ useEffect(() => {
             <ListItemIcon >
               <GroupOutlinedIcon color="primary" />
             </ListItemIcon>
-            <Link href={'/admin/client'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Users" /></button></Link>
+            <Link href={'/admin/client'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Clients" /></button></Link>
           </ListItem>
           <ListItem button >
             <ListItemIcon >
               <ContactMailOutlinedIcon color="primary"/>
             </ListItemIcon>
-            <Link href={'/admin/company'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Contacts information" /></button></Link>
+            <Link href={'/admin/company'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Companies" /></button></Link>
           </ListItem>
           <Typography variant="h6" className="mt-2" style={{ color: 'grey' }}>
              Details
@@ -186,19 +186,19 @@ useEffect(() => {
             <ListItemIcon>
               <PublicOutlinedIcon color="primary" />
             </ListItemIcon>
-            <ListItemText primary="Geography " />
+            <Link href={'/admin/geo'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Geography " /></button></Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
               <PieChartOutlinedIcon color="primary" />
             </ListItemIcon>
-            <ListItemText primary="Pie Chart" />
+            <Link href={'/admin/pie'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Pie Chart" /></button></Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
               <BarChartOutlinedIcon color="primary"/>
             </ListItemIcon>
-            <ListItemText primary="Graph Chart" />
+            <Link href={'/admin/bar'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button >  <ListItemText primary="Graph Chart" /></button></Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
