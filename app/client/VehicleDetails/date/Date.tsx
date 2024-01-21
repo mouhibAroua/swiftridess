@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
 import "./date.css"
+import ReservationForm from '../reservation/page'
 const DateRangePicker = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
@@ -57,10 +58,14 @@ const DateRangePicker = () => {
       </img>
       <p id="priceday" style={{ marginBottom: '10px' }}>Price/Day: {pricePerDay} DT</p>
       </div>
+      
       <div>
         {pricePerDay !== null && (
     <p className='totals' style={{ marginTop: '20px',position:"relative",top:"280px",right:"730px" }}>Total: ${calculateTotal() * pricePerDay}</p>
     )}
+    <div>    
+      <ReservationForm/>
+    </div>
       </div>
     </div>
   );

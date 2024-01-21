@@ -1,7 +1,7 @@
 const User = require('../models/users');
 const Cars=require('../models/vehicles');
 const Company=require('../models/company');
-
+const Reservation=require('../models/reservation');
 const jwt =require('jsonwebtoken')
 
 
@@ -83,6 +83,136 @@ async function deleteUserById(req, res) {
   }
 }
 
+
+
+///Reservation////
+
+
+function calculateReturnDate(currentDate) {
+  const returnDate = new Date(currentDate);
+  returnDate.setMonth(returnDate.getMonth() + 3);
+  return returnDate;
+}
+
+async function getReservationById(req, res) {
+  const { idcompany } = req.params;
+  const currentDate = new Date();
+  const formattedCurrentDate = currentDate.toLocaleDateString();
+  const returnDate = new Date(currentDate);
+  returnDate.setMonth(returnDate.getMonth() + 3);
+  try {
+    if (isNaN(idcompany)) {
+      return res.status(400).json({ error: 'Invalid idcompany provided' });
+    }
+
+    const idcompanyValue = parseInt(idcompany, 10);
+
+    const reservationData = await Reservation.findAll({
+      where: { idcompany: idcompanyValue },
+      include: [
+        { model: User, as: 'user' },
+        {
+          model: Cars,
+          as: 'car',
+          include: [
+            {
+              model: Company,
+              as: 'company',
+              attributes: [
+                'idcompany',
+                'companyName',
+                'ownerName',
+                'phoneNumber',
+                'location',
+                'verification',
+                'longtitude',
+                'laltitude',
+                'emailCompany',
+                'passwordCompany',
+              ],
+            },
+          ],
+        },
+      ],
+    });
+
+    if (reservationData.length === 0) {
+      return res.status(404).json({ error: `No reservations found for Company ID ${idcompanyValue}` });
+    }
+
+    const response = reservationData.map((reservation) => {
+      const userInfo = reservation.user.toJSON();
+      const carInfo = reservation.car.toJSON();
+      const userAttributes = ['fullName', 'phoneNumber', 'email'];
+
+      const filteredUserInfo = userAttributes.reduce((acc, attribute) => {
+        if (userInfo.hasOwnProperty(attribute)) {
+          acc[attribute] = userInfo[attribute];
+        }
+        return acc;
+      }, {});
+
+      return {
+        currentDateTime: formattedCurrentDate.toLocaleString(),
+        returnDate: returnDate.toLocaleDateString(),
+        user: filteredUserInfo,
+        car: {
+          serialCar: carInfo.serialCar,
+          brand: carInfo.brand,
+          model: carInfo.model,
+        },
+      };
+    });
+
+    return res.status(200).json(response);
+  } catch (error) {
+    console.error('Error fetching reservations info:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+}
+
+
+async function createReservation(req, res) {
+  try {
+    const { userid, vehicleid } = req.params;
+    if (isNaN(userid) || isNaN(vehicleid)) {
+      return res.status(400).json({ error: 'Invalid user or vehicle ID provided' });
+    }
+    const iduserValue = parseInt(userid, 10);
+    const idvehicleValue = parseInt(vehicleid, 10);
+    const car = await Cars.findByPk(idvehicleValue, {
+      include: [{ model: Company, as: 'company' }],
+    });
+
+    if (!car) {
+      return res.status(404).json({ error: 'Car not found' });
+    }
+    const idcompanyValue = car.company.idcompany;
+
+    const currentDate = new Date();
+    const returnDate = calculateReturnDate(currentDate); 
+    const newReservation = await Reservation.create({
+      iduser: iduserValue,
+      idcar: idvehicleValue,
+      idcompany: idcompanyValue,
+      startDate: currentDate,
+      returnDate: returnDate,
+    });
+    return res.status(201).json(newReservation);
+  } catch (error) {
+    console.error('Error creating reservation:', error.message);
+    return res.status(500).json({ error: error.message });
+  }
+}
+
+
+function calculateReturnDate(currentDate) {
+  const returnDate = new Date(currentDate);
+  returnDate.setMonth(returnDate.getMonth() + 3);
+  return returnDate;
+}
+
+      
 async function getCompanyInfoByCarId(req, res) {
   const { id } = req.params;
   try {
@@ -104,12 +234,67 @@ async function getCompanyInfoByCarId(req, res) {
   }
 }
 
+
+async function deleteReservation(req, res) {
+  try {
+    const { phoneNumber } = req.body;
+    if (!phoneNumber) {
+      return res.status(400).json({ error: 'Phone number is required' });
+    }
+    const user = await User.findOne({ where: { phoneNumber } });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const reservations = await Reservation.findAll({
+      where: { id: user.id }, 
+    });
+    if (reservations.length === 0) {
+      return res.status(404).json({ error: 'No reservations found for this user' });
+    }
+    await Promise.all(reservations.map((reservation) => reservation.destroy()));
+    return res.status(204).json({ success: true, message: 'Reservations successfully deleted' });
+  } catch (error) {
+    console.error('Error deleting reservation:', error.message);
+    return res.status(500).json({ error: error.message });
+  }
+}
+
+async function acceptReservation(req, res) {
+  try {
+    const { phoneNumber } = req.body;
+    if (!phoneNumber) {
+      return res.status(400).json({ error: 'Phone number is required' });
+    }
+    const user = await User.findOne({ where: { phoneNumber } });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const affectedRows = await Reservation.update(
+      { accepted: true },
+      { where: { iduser: user.id } }
+    );
+    if (affectedRows > 0) {
+      return res.status(200).json({ success: true, message: 'Reservations successfully accepted' });
+    } else {
+      return res.status(404).json({ error: 'No reservations found for this user' });
+    }
+  } catch (error) {
+    console.error('Error accepting reservation:', error.message);
+    return res.status(500).json({ error: error.message });
+  }
+}
+
+
 module.exports = {
   getAllUsers,
   getUserById,
   createUser,
   updateUserById,
   deleteUserById,
+  getReservationById,
+  createReservation,
   getCompanyInfoByCarId,
-
+  deleteReservation,
+  acceptReservation,
 };
