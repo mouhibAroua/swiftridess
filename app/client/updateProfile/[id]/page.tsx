@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { useParams } from "next/navigation";
 import bcrypt from "bcryptjs"
 import Navigation from "@/app/Home/navbar/page";
+import NotFound from "@/app/notFound/page";
 
 interface Client {
     id:string|null;
@@ -87,7 +88,7 @@ const UpdateProfile=()=>{
 return(    
   <>
   {(id!==userId)&&
-  <h1>not found</h1>}
+  <NotFound/>}
   {(id===userId)&&
     <div>
       <Navigation/>
