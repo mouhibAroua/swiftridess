@@ -71,27 +71,27 @@ export default function MultipleSelectChip() {
     <FormControl sx={{ m: 1, width: 250, position: "relative", top: "-335px", right: "-70px" }}>
       <button id='Location' className='mt-2 border rounded w-[230px] h-[55px]' onClick={() => setModalOpen(true)}>Search For The Nearest Company</button>
       <Modal open={modalOpen} onClose={() => setModalOpen(false)} center>
-        <MapContainer center={{ lat: 36.859108, lng: 10.190414 }} zoom={15} style={{ height: '400px', width: '600px' }} scrollWheelZoom={true}>
+        <MapContainer center={{ lat: 36.859108, lng: 10.190414 }} zoom={15} style={{ height: '500px', width: '700px' }} scrollWheelZoom={true}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           
-{compData.map((company, i) => (
-  <div key={i}>
-    <Marker position={{ lat: company.laltitude, lng: company.longtitude }} icon={legalIcon}>
+            {compData.map((company, i) => (
+              <div key={i}>
+                <Marker position={{ lat: company.laltitude, lng: company.longtitude }} icon={legalIcon}>
 
-        <div>
-        <Popup>
-        <button onClick={() => router.push('client/searchedCar')}>View Details</button>
-        </Popup>
-          <Tooltip direction="bottom" offset={[0, 20]} opacity={1} permanent>
-            {company.companyName}
-          </Tooltip>
-          </div>   
-    </Marker>
-  </div>
-))}
+                    <div>
+                    <Popup>
+                    <button onClick={() => router.push('client/searchedCar')}>View Vehicles</button>
+                    </Popup>
+                      <Tooltip direction="bottom" offset={[0, 20]} opacity={1} permanent>
+                        {company.companyName}
+                      </Tooltip>
+                      </div>   
+                </Marker>
+              </div>
+            ))}
           <LocationMarker />
         </MapContainer>
       </Modal>

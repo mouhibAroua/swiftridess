@@ -8,6 +8,8 @@ const config: Config = {
   ],
   theme: {
     colors:{
+      transparent: 'transparent',
+      current: 'currentColor',
       'back':'#a39ea4',
       'inputs':'#f5f5f5',
       'red':'#db4444',
