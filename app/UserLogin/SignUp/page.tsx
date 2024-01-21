@@ -108,7 +108,7 @@ const SignUp = () => {
               {error}
             </div>
           )}
-          <div className='flex text-sm '>
+          <div className='flex text-sm text-white'>
           <h1  className=' mb-4'>Already have account  ?</h1><Link className=' ' href={'/UserLogin/Login'}><span className='underline  cursor-pointer'>  Log in</span></Link>
           </div>
         </div>
