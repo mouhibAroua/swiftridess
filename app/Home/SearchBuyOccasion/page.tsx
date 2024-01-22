@@ -60,7 +60,7 @@ const Occasion = () => {
         </motion.div>
         </Link>
 
-        <Link href={`http://localhost:3001/Home/SearchBuyOccasion/daily` }>
+        <Link href={`http://localhost:3001/Home/SearchBuyOccasion/trans` }>
         <motion.div
           className="w-60 text-center mb-4"
           variants={fadeIn('left', 0.8)}

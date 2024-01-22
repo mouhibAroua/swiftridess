@@ -1,25 +1,30 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import style from"./chat.module.css"
+import axios from "axios";
 interface IMsgDataTypes {
   roomId:  number;
   company_idcompany:  number;
   client_id:  number;
   content: String;
 }
+interface userDataTypes {
+  fullName:string;
+  image_user:string;
+}
 
-const ChatPage = ({ socket, userId, roomId }: any) => {
+const ChatPage = ({ socket, userId, roomId,companyId }: any) => {
   console.log(socket);
   
   const [currentMsg, setCurrentMsg] = useState("");
   const [chat, setChat] = useState<IMsgDataTypes[]>([]);
-
+  const [user,setUser]=useState<userDataTypes[]>([]);
   const sendData = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (currentMsg !== "") {
       const msgData: IMsgDataTypes = {
         roomId,
-        company_idcompany:1,
+        company_idcompany:companyId,
         client_id: userId,
         content: currentMsg,
       };
@@ -36,13 +41,19 @@ const ChatPage = ({ socket, userId, roomId }: any) => {
   }, [socket]);
 console.log(chat);
 
+useEffect(() => {
+  axios.get(`http://localhost:3000/api/users/${userId}`)
+    .then(e=>{
+       setUser(e.data)
+    }).catch(error=>console.error(error))
+  },[userId])
 
   return (
     <div className={style.chat_div}>
       <div className={style.chat_border}>
         <div style={{ marginBottom: "1rem" }}>
           <p>
-            Name: <b>{userId}</b> and Room Id: <b>{roomId}</b>
+            Name: <b>{user.fullName}</b>
           </p>
         </div>
         <div>
@@ -59,6 +70,7 @@ console.log(chat);
                 className={style.chatProfileSpan}
                 style={{ textAlign: client_id == userId ? "right" : "left" }}
               >
+                {/* {<img src={user.image_user} alt="" />} */}
                 {client_id}
               </span>
               <h3 style={{ textAlign: client_id == userId ? "right" : "left" }}>
