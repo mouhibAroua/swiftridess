@@ -21,7 +21,7 @@ const UpdateProfile=()=>{
     const [phoneNumber, setPhoneNumber] = useState<string>("")
     const [emailCompany, setEmailCompany] = useState<string>("")
     const [newPassword, setNewPassword] = useState<string>("")
-    const idcompany = localStorage.getItem("idcompany")
+    const idcompany = typeof window !== 'undefined' ? localStorage.getItem("idcompany") : null
     const {id} = useParams()
 const password=async (val:any)=>{
     let hashedNewPassword = await bcrypt.hash(newPassword, 10);
@@ -54,23 +54,23 @@ return(
     {(id===idcompany)&& 
     <div>
     <Sidebar/>
-<div className="flex ">
-<div className=" w-[800px] justify-center rounded-[100px] h-[550px] mt-[80px] ml-[420px] bg-white  flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931] bg-gray-300">
+<div className="flex bg-gradient-to-br from-gray-400 to-gray-300 h-screen ">
+    
+<div className=" w-[800px] rounded-md h-[550px] mt-[100px] ml-[400px] bg-white  flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931] bg-gray-300">
 
     <main className="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4 ">
-    
+    <h1 className="font-serif text-center font-bold text-[40px]">Update Profile</h1>
         <div className="p-2 md:p-4">
-            <div className="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
-                <div className="grid max-w-2xl mx-auto mt-8">
-                    <div className="items-center mt-8 sm:mt-14 text-[#202142]">
-                        <div className="flex flex-col items-center w-full mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
+            <div className="w-full px-6 pb-8 mt-5 sm:max-w-xl sm:rounded-lg">
+                <div className="grid max-w-2xl mx-auto mt-2">
+                    <div className=" ml-8 mt-2 text-[#202142]">
+                        <div className="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
                             <div className="w-full">
-                               
                                 <label 
                                     className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">
                                    Company Name</label>
                                 <input type="text" id="Company-Name"
-                                    className="bg-indigo-50 border-2 border-blue-800 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-sky-600 block w-full p-2.5 "
+                                    className="bg-indigo-50 border-2 border-blue-800 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-sky-600 block w-60 p-2.5 "
                                     placeholder="Company Name" onChange={(e)=>setCompanyName(e.target.value)}/>
                             </div>
 
@@ -79,7 +79,7 @@ return(
                                     className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">
                                     Owner Name</label>
                                 <input type="text" id="owner"
-                                    className="bg-indigo-50 border-2 border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                                    className="bg-indigo-50 border-2 border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-60 p-2.5 "
                                     placeholder="Owner Name" onChange={(e)=>setOwnerName(e.target.value)} />
                             </div>
 

@@ -19,7 +19,7 @@ const Add=() => {
 
 
   return (
-    <div className="flex items-center justify-center mt-20">
+    <div className="flex items-center justify-center mt-28 bg-gray-600">
       <div className="flex">
         <motion.div
           className="flex flex-col justify-center p-4 gap-2 "

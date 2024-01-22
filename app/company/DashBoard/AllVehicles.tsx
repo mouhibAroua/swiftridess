@@ -7,6 +7,7 @@ import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Link from "next/link";
 
 interface Car {
   brand: string;
@@ -66,7 +67,10 @@ console.log(allCars)
               </h3>
               <h3 style={{ display: "flex", alignItems: "center", position:"relative",top:"50px" }} >{car.price} DT/Day</h3>
               <Stack spacing={2} direction="row">
-                <Button className="but" size="small" variant="contained" style={{ backgroundColor: '#C0C0C0', color: 'black' }}>Update</Button>
+                <Button className="but" size="small" variant="contained" style={{ backgroundColor: '#C0C0C0', color: 'black' }}>
+                <Link target = "_blank" href={`/company/updateCar/${car.idcars}`}>Update
+                </Link>
+                </Button>
               </Stack>
             </div>
           </div>

@@ -6,7 +6,9 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
-
+import ChatIcon from '@mui/icons-material/Chat';
+import { Modal } from "react-responsive-modal";
+import Home from "../../../chat/page"
 interface CompanyInfo {
   idcompany: number;
   companyName: string;
@@ -28,9 +30,13 @@ const CarCompanyInfo: React.FC<CarCompanyInfoProps> = ({ }) => {
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+const userId=localStorage.getItem("id")
   var currentUrl = window.location.href;
     var endPoint=currentUrl.split("/")
     var i=endPoint[endPoint.length-1]
+
   useEffect(() => {
     const fetchCompanyInfo = async () => {
       try {
@@ -65,6 +71,13 @@ const CarCompanyInfo: React.FC<CarCompanyInfoProps> = ({ }) => {
       <p><LocationOnIcon/> {companyInfo.location}</p>
     <div className='bottomSection'>
     <p>Contact:</p>
+    {!userId?" ":<button onClick={() => setModalOpen(true)}>
+ <ChatIcon/>Contact Us
+ </button>
+}
+<Modal open={modalOpen} onClose={() => setModalOpen(false)} center>
+  <Home company={companyInfo.idcompany}/>
+</Modal>
       <p><LocalPhoneIcon/> {companyInfo.phoneNumber}</p>
       <p><EmailIcon/> {companyInfo.emailCompany}</p>
     </div>

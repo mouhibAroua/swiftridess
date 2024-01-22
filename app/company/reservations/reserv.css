@@ -1,0 +1,83 @@
+.title{
+    position: relative;
+    left: 680px;
+    top: 50px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+table {
+    font-family: arial, sans-serif;
+    width: 100%;
+    position: relative;
+    left: 250px;
+    top: 100px;
+  }
+
+
+.elements {
+    position: relative;
+    left: 250px;
+top: 80px;
+width: 160px;
+  }
+  
+  td{
+
+    margin: auto; 
+    text-align: center;
+    max-width: 100px;
+  }
+
+  #name{
+    position: relative;
+    right: 60px;
+  }
+
+  #phone{
+    position: relative;
+    right: 90px;
+  }
+
+  #email{
+    position: relative;
+    right: 160px;
+  }
+
+  #serial{
+    position: relative;
+    right: 200px;
+  }
+
+  #brand{
+    position: relative;
+    right: 210px;
+  }
+
+  #model{
+    position: relative;
+    right: 210px;
+  }
+
+  #current{
+    position: relative;
+    right: 210px;
+  }
+
+  #return{
+    position: relative;
+    right: 230px;
+  }
+
+    body {
+    overflow-x: hidden;
+  }
+
+  .buttonss{
+    position: relative;
+    right: 1000px;
+    top: -50px;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  

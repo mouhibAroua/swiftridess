@@ -15,7 +15,6 @@ const Home = () => {
             <Head/>
             <Add/>
             <Marques/>
-            <Date/>
             <Location/>
             <MostRatedCars/>
             <Stats/>

@@ -10,7 +10,8 @@ interface NavItem {
 }
 
 const Sidebar: React.FC = () => {
-    const idcompany = localStorage.getItem("idcompany")
+    const idcompany = typeof window !== 'undefined' ? localStorage.getItem("idcompany") : null
+
     const navigation: NavItem[] = [
       {
         href: 'http://localhost:3001/company/DashBoard',
@@ -26,6 +27,15 @@ const Sidebar: React.FC = () => {
         
         icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-10">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clip-rule="evenodd" />
+        </svg>
+        ,
+    },
+    {
+        href: 'http://localhost:3001/company/reservations',
+        name: 'Reservations',
+        
+        icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-10">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" clip-rule="evenodd" />
         </svg>
         ,
     },

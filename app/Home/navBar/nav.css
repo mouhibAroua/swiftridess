@@ -3,19 +3,22 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; 
+  z-index: 1000;
+  background:#111827;
+  height: 89px;
 }
 
 .whyusb{
 position: relative;
 top: -23px;
-margin-left: 200px;
+margin-left: 120px;
 
 
   }
 
 .bg-white {
   background-color: transparent;
+  color: white;
 }
 
 

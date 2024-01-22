@@ -16,8 +16,7 @@ import Company from "../companyInfo/CompanyInfo";
 import Foot from "../../../Home/footer/page";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import Rating from "../rating/Rating"
 interface Car {
   id: string;
   brand: string;
@@ -102,6 +101,11 @@ const CarInfo = ({ carId }: CarInfoProps) => {
       {carInfo ? (
         <div>
           <Navv />
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+
           <p className="name">
             {carInfo.brand} {carInfo.model}{" "}
           </p>
@@ -138,9 +142,10 @@ const CarInfo = ({ carId }: CarInfoProps) => {
                 <AddRoadIcon /> Mileage : {carInfo.mileage}
               </p>
               <Location />
-              <Time />
               <Company />
               <Date />
+              <Rating />
+
             </div>
           </div>
 

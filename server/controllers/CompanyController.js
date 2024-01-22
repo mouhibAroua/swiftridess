@@ -56,9 +56,10 @@ module.exports = {
         res.json(veh)
     },
     updateCar:async (req,res)=>{
-        const {id}=req.params;
+      console.log(req.params);
+        const idcars=req.params.id;
         const veh=await car.update(req.body,{
-            where:{id}
+            where:{idcars}
         })
         res.json(veh)
     },
@@ -70,8 +71,7 @@ module.exports = {
         res.json(veh)
     },
     updateProfile:async (req,res)=>{
-        const idcompany=req.params.id;
-        console.log(idcompany);
+        const idcompany=req.params.id
         const comp=await company.update(req.body,{
             where:{idcompany}
         })
