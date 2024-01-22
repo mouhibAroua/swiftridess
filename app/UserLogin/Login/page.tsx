@@ -50,8 +50,8 @@ const Login = () => {
     }
   };
   return (
-    <div className='flex justify-center items-center h-screen'>
-          <div className="video-background ">
+    <div className='flex justify-center items-center h-screen '>
+          <div className="video-background  ">
               <video src={process.env.PUBLIC_URL+"/assets/video3.mp4"} loop autoPlay muted className='object-cover absolute h-screen w-screen -z-10 top-0 left-0'></video>
           </div>
       <ToastContainer
