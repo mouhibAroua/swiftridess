@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 import ChatIcon from '@mui/icons-material/Chat';
 import { Modal } from "react-responsive-modal";
 import Home from "../../chat/page"
+import './contact.css'
+import PersonIcon from '@mui/icons-material/Person';
+import SideNav from "../DashBoard/Sidenav"
 interface Chat {
     client_id: number;
     roomId: number;
@@ -66,20 +69,30 @@ console.log("chat",allChat)
         setSelectedUserId(userId);
         setModalOpen(true);
     };
+
+    const formattedDate = new Date("2024-01-21T19:50:18").toLocaleDateString();
+    const formattedTime = new Date("2024-01-21T19:50:18").toLocaleTimeString();
     // const firstObject = oneChat[0]
     // const l=firstObject.roomId
     // console.log("onechat",l)
     console.log("onechat",oneChat[0]?oneChat[0].roomId:"")
     return (
         <div>
-            <h1>Contact Component</h1>
-            <h3>All the customers who contacted you</h3>
+            <h1 className="title"> Chats <ChatIcon /> </h1>
+            <SideNav/>
             {
                 allUsers.map((user) => (
                     <div key={user.id}>
                         <button onClick={() => handleUserClick(user.id)}>
-                            <ChatIcon />
-                            <h5>{user.fullName}</h5>
+                        <h5 className="chats" style={{ borderBottom: '1px solid #ccc', width: '200%', paddingBottom: '5px' }}>
+   <PersonIcon />
+    {user.fullName}
+    <p>Recieved at: {formattedDate} {formattedTime}</p>
+
+
+</h5>
+                     
+
                         </button>
                     </div>
                 ))
