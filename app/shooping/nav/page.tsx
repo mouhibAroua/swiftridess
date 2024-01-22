@@ -9,7 +9,8 @@ import { CgProfile } from 'react-icons/cg';
 // import Logout from '../Logout';
 import axios from 'axios';
 import { useCartStore } from '../stores/CartStore';
-
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import "./nav.css"
 
 const Nav: React.FC = (props:{}) => {
   const router = useRouter()
@@ -44,49 +45,32 @@ const Nav: React.FC = (props:{}) => {
       <nav>
         <div className='flex items-center justify-center gap-2 h-16 bg-black text-white'>
           <h3 className='text-sm md:text-base'>
-            Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
+            Keep An Eye On The Shop For Discounts
           </h3>
-          <span className='text-base underline cursor-pointer ml-11'>Shop Now!</span>
-          <select name='language' className='text-white bg-black'>
-            <option>English</option>
-          </select>
         </div>
         <div className='flex justify-center gap-8 mt-11 mb-6 ml-20'>
-        <img className='absolute left-10 font-bold text-3xl mb-7 mr-36'
+        <img id="logo" className='absolute left-10 font-bold text-3xl top-20	 mr-36'
                             src="https://media.discordapp.net/attachments/1157269732219691038/1194220754376589352/cars-removebg-preview.png?ex=65af8fbf&is=659d1abf&hm=94eae9de317c04c8f6efeb2ce656743162493db62d430b29f3b8c0aa69da9b28&=&format=webp&quality=lossless&width=706&height=552" 
                             width={120} 
                             height={20}
                             alt="Float UI logo"
                         />
           {/* <h1 className='absolute left-10 font-bold text-3xl mb-7 mr-36'></h1> */}
-          <Link href='../../company/DashBoard'>Home</Link>
-          <Link href='../../shooping'>Shooping</Link>
+          <Link className="ktiba" href='../../company/DashBoard'>Dashboard</Link>
+          <Link className="ktiba" href='../../shooping'>Store</Link>
          
          
      
           <div className='w-auto h-8 flex items-center gap-16 right-10 ml-10'>
-            <input
-              onChange={(e) => setSearchValue(e.target.value)}
-              type='search'
-              placeholder='What are you looking for?'
-              className='bg-gray-200 p-2 text-xs rounded w-56 h-9'
-            />
-            <IoSearchOutline
-              onClick={handleSearch}
-              size={25}
-              className='cursor-pointer'
-            />
            
             <div className='w-5 h-5  bg-red-500 rounded-full  flex justify-center items-center text-white'>
               {cartStore.cart.length}
             </div>
             <AiOutlineShoppingCart
-              className='cursor-pointer'
+              className='cart'
               size={25}
               onClick={() => navigateTo('/shooping/cart')}
             /><div className="userDropdown">
-             {userId ? <img className="w-12 h-10 relative right-[-10px]" src="https://images-ext-1.discordapp.net/external/XjoCJLwMNJQrMq0DTYawsY9vY5xN64W8eyoIOoLqT1k/https/cdn-icons-png.flaticon.com/512/149/149071.png?format=webp&quality=lossless&width=581&height=581" alt=""/> : "" } 
-            {/* {showAccount && <AccountDropDown />}  */}
             </div>
             
             {/* <Logout/> */}

@@ -15,14 +15,18 @@ interface users {
     image: string;
 }
 
+
 const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
     const [state, setState] = useState(false);
     const profileRef = useRef<HTMLButtonElement>(null);
     const userId = localStorage.getItem('id');
-    
+    const logout=()=>{
+        localStorage.removeItem('id');
+        localStorage.removeItem('idcompany');
+        window.location.reload();
+    }
     const navigation: MenuItem[] = [
         { title: "Settings", path:  `http://localhost:3001/client/updateProfile/${userId}` },
-        { title: "Log out", path: "/" },
     ];
  
 
@@ -87,13 +91,15 @@ const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
                 </div>
             </div>
 }
-            <ul className={`bg-white top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
+            <ul className={`bg-white top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}style={{ backgroundColor: 'rgba(128, 128, 128, 0.53)',backdropFilter:"blur(20px)" }}>
                 {   
                     navigation.map((item, idx) => (
                         <li key={idx}>
                             <a className="block text-black lg:hover:bg-gray-50 lg:p-2.5 font-bold ml-2" href={item.path}>
                                 {item.title}
+                                
                             </a>
+                            <button onClick={() =>logout() } className="loout"> LogOut</button>
                         </li>
                     ))
                 }
@@ -131,7 +137,7 @@ const Navigation: React.FC = () => {
                                 
                                 navigation.map((item, idx) => (
                                     <li key={idx} className="text-red-800">
-                                        <a  href={item.path} className="text-white" >
+                                        <a  href={item.path} className="text-white"  >
                                             {item.title }  
                                         </a>
                                     </li>
@@ -146,11 +152,15 @@ const Navigation: React.FC = () => {
                     <div className="flex-1 flex items-center justify-end space-x-2 sm:space-x-6 ">
                         <ProfileDropDown 
                             class="hidden lg:block"
+                            
                         />
+                        
                         <button 
                             className="outline-none text-black block lg:hidden "
+                            
                             onClick={() => setMenuState(!menuState)}
                         >
+                            <div style={{ backgroundColor: 'rgba(128, 128, 128, 0.53)' }}>
                             {
                                 menuState ? (
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -162,7 +172,9 @@ const Navigation: React.FC = () => {
                                     </svg>
                                 )
                             }
+                            </div>
                         </button>
+                        
                     </div>
                 </div>
             </div>

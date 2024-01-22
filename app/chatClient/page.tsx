@@ -12,6 +12,11 @@ interface userDataTypes {
   fullName:string;
   image_user:string;
 }
+interface companyDataTypes{
+  companyName:string;
+  ownerName:string;
+}
+
 
 const ChatPage = ({ socket, userId, roomId,companyId }: any) => {
   console.log(socket);
@@ -19,6 +24,8 @@ const ChatPage = ({ socket, userId, roomId,companyId }: any) => {
   const [currentMsg, setCurrentMsg] = useState("");
   const [chat, setChat] = useState<IMsgDataTypes[]>([]);
   const [user,setUser]=useState<userDataTypes[]>([]);
+  const [company, setCompany] = useState<companyDataTypes[]>([]);
+
   const sendData = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (currentMsg !== "") {
@@ -48,12 +55,18 @@ useEffect(() => {
     }).catch(error=>console.error(error))
   },[userId])
 
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/company/getOne/${companyId}`)
+      .then(e=>{
+         setCompany(e.data)
+      }).catch(error=>console.error(error))
+    },[userId])
   return (
     <div className={style.chat_div}>
       <div className={style.chat_border}>
         <div style={{ marginBottom: "1rem" }}>
           <p>
-            Name: <b>{user.fullName}</b>
+            Name: <b>{user.fullName || company.companyName}</b>
           </p>
         </div>
         <div>
@@ -70,7 +83,6 @@ useEffect(() => {
                 className={style.chatProfileSpan}
                 style={{ textAlign: client_id == userId ? "right" : "left" }}
               >
-                {/* {<img src={user.image_user} alt="" />} */}
                 {client_id}
               </span>
               <h3 style={{ textAlign: client_id == userId ? "right" : "left" }}>

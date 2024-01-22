@@ -67,7 +67,7 @@ export default function MultipleSelectChip() {
   }
 
   return (
-    <div>
+    <div className='mapp'>
     <FormControl sx={{ m: 1, width: 250, position: "relative", top: "-335px", right: "-70px" }}>
       <button id='Location' className='mt-2 border rounded w-[230px] h-[55px]' onClick={() => setModalOpen(true)}>Search For The Nearest Company</button>
       <Modal open={modalOpen} onClose={() => setModalOpen(false)} center>
