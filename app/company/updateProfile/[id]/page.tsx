@@ -4,6 +4,7 @@ import { useState} from "react";
 import bcrypt from "bcryptjs"
 import { useParams } from "next/navigation";
 import Sidebar from "../../DashBoard/Sidenav";
+import NotFound from "@/app/notFound/page";
 
 interface Company {
     idcompany:string;
@@ -50,7 +51,7 @@ const password=async (val:any)=>{
 return(
     <>
     {(id!==idcompany)&&
-    <h1>not found</h1>}
+    <NotFound/>}
     {(id===idcompany)&& 
     <div>
     <Sidebar/>
