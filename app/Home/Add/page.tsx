@@ -7,7 +7,7 @@ const Add=() => {
   const [chnageImage, setChangeImage] = useState<number>(0);
 
   const images: string[] = [
-      'https://www.cupraofficial.tn/content/dam/public/cupra-website/cupra-global-navigation/models/cupra-range/x-large/cupra-formentor-model-conversion.png?imwidth=320'
+      "https://cdn.discordapp.com/attachments/1113064451806076990/1194582998566326302/navigation_1.png?ex=65ba1b9d&is=65a7a69d&hm=598fc236bd4ccf31df2ea097c6b8edc440607cf677cd04677cf2bacffef090f1& "
   ];
   const changeImage = () => {
     setChangeImage((pr) => (pr + 1) % images.length);

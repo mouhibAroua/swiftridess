@@ -126,7 +126,7 @@ const Navigation: React.FC = () => {
                                 
                                 navigation.map((item, idx) => (
                                     <li key={idx} className="text-red-800">
-                                        <a  href={item.path} className="text-white" >
+                                        <a  href={item.path} className="text-white"  >
                                             {item.title }  
                                         </a>
                                     </li>
@@ -141,11 +141,15 @@ const Navigation: React.FC = () => {
                     <div className="flex-1 flex items-center justify-end space-x-2 sm:space-x-6 ">
                         <ProfileDropDown 
                             class="hidden lg:block"
+                            
                         />
+                        
                         <button 
                             className="outline-none text-black block lg:hidden "
+                            
                             onClick={() => setMenuState(!menuState)}
                         >
+                            <div style={{ backgroundColor: 'rgba(128, 128, 128, 0.53)' }}>
                             {
                                 menuState ? (
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -157,7 +161,9 @@ const Navigation: React.FC = () => {
                                     </svg>
                                 )
                             }
+                            </div>
                         </button>
+                        
                     </div>
                 </div>
             </div>
