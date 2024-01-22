@@ -204,6 +204,8 @@ async function createReservation(req, res) {
     return res.status(500).json({ error: error.message });
   }
 }
+
+
 function calculateReturnDate(currentDate) {
   const returnDate = new Date(currentDate);
   returnDate.setMonth(returnDate.getMonth() + 3);
@@ -233,6 +235,56 @@ async function getCompanyInfoByCarId(req, res) {
 }
 
 
+async function deleteReservation(req, res) {
+  try {
+    const { phoneNumber } = req.body;
+    if (!phoneNumber) {
+      return res.status(400).json({ error: 'Phone number is required' });
+    }
+    const user = await User.findOne({ where: { phoneNumber } });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const reservations = await Reservation.findAll({
+      where: { id: user.id }, 
+    });
+    if (reservations.length === 0) {
+      return res.status(404).json({ error: 'No reservations found for this user' });
+    }
+    await Promise.all(reservations.map((reservation) => reservation.destroy()));
+    return res.status(204).json({ success: true, message: 'Reservations successfully deleted' });
+  } catch (error) {
+    console.error('Error deleting reservation:', error.message);
+    return res.status(500).json({ error: error.message });
+  }
+}
+
+async function acceptReservation(req, res) {
+  try {
+    const { phoneNumber } = req.body;
+    if (!phoneNumber) {
+      return res.status(400).json({ error: 'Phone number is required' });
+    }
+    const user = await User.findOne({ where: { phoneNumber } });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const affectedRows = await Reservation.update(
+      { accepted: true },
+      { where: { iduser: user.id } }
+    );
+    if (affectedRows > 0) {
+      return res.status(200).json({ success: true, message: 'Reservations successfully accepted' });
+    } else {
+      return res.status(404).json({ error: 'No reservations found for this user' });
+    }
+  } catch (error) {
+    console.error('Error accepting reservation:', error.message);
+    return res.status(500).json({ error: error.message });
+  }
+}
+
 
 module.exports = {
   getAllUsers,
@@ -243,4 +295,6 @@ module.exports = {
   getReservationById,
   createReservation,
   getCompanyInfoByCarId,
+  deleteReservation,
+  acceptReservation,
 };

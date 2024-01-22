@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const SignUp = () => {
 
   const [fullName, setFullName] = useState<string>("");
@@ -65,16 +66,16 @@ const SignUp = () => {
       setError("Error during registration.");
     }
   };
-
+  
 
     return ( 
-        <div  className='flex justify-center items-center h-screen' style={{ backgroundColor: '#9ca3af' }}>
-          <div className='max-w-[1700px] ml-20'>
-           <img src="https://inv.assets.ansira.net/ChromeColorMatch/us/TRANSPARENT_cc_2023LRS070007_01_1280_1AA.png" alt="" />
+        <div  className='flex justify-center items-center h-screen' >
+           <div className="video-background ">
+              <video src={process.env.PUBLIC_URL+"/assets/video3.mp4"} loop autoPlay muted className='object-cover absolute h-screen w-screen -z-10 top-0 left-0'></video>
           </div>
-          <div className="container ">
+          <div className="container " >
           <form onSubmit={handleSubmit}>
-        <div className="card mx-auto">
+        <div className="card mx-auto border ">
           <a className="login">sign up</a>
           <div className="inputBox">
             <input type="text" required={true} 
@@ -107,7 +108,7 @@ const SignUp = () => {
               {error}
             </div>
           )}
-          <div className='flex text-sm '>
+          <div className='flex text-sm text-white'>
           <h1  className=' mb-4'>Already have account  ?</h1><Link className=' ' href={'/UserLogin/Login'}><span className='underline  cursor-pointer'>  Log in</span></Link>
           </div>
         </div>
