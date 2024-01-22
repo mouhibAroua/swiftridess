@@ -44,6 +44,7 @@ const calendar =()=>{
       selected.event.remove();
     }
   };
+
     return (
         <div className="flex h-screen">
         <Sidebar/>

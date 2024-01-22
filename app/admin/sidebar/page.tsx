@@ -39,7 +39,7 @@ const Sidebar: React.FC <{}>= (props) => {
   const [fullName,setfullName]=useState<string>("")
   const [image_user,setimage_user]=useState<string>("")
   const profileRef = useRef<HTMLButtonElement>(null);
-  let id=localStorage.getItem('id');
+  let id= typeof window !== 'undefined' ? localStorage.getItem("id"): null;
 
 // console.log(id)
 
@@ -92,7 +92,7 @@ useEffect(() => {
   return (
     <div className=" fixed top-0 buttom-0 flex h-screen ">
       {/* Sidebar */}
-      <div className="col-span-3 bg-gray-800 text-white px-10 py-7">
+      <div className="col-span-3 bg-gray-800 text-white px-7 py-7 w-[250px]">
         <List className="flex-col space-y-2">
 
         <div className="flex items-center justify-between">
@@ -100,7 +100,7 @@ useEffect(() => {
     ADMINS
   </Typography>
  
-  <MenuOutlinedIcon />
+  {/* <MenuOutlinedIcon /> */}
 
 </div>
           <ListItem  className="flex items-center flex-col px-4 py-2 hover:bg-gray-1000" >
@@ -113,7 +113,8 @@ useEffect(() => {
                 onClick={() => setState(!state)}>
                 <img
                 src={person?.image_user}
-                className="mw-50 h-50 rounded-full"
+                 className="mw-50 h-50 rounded-full"
+          
                 alt="Profile"
                // onChange={(e)=>setimage_user(e.target.value)} 
             />
@@ -198,7 +199,7 @@ useEffect(() => {
             <ListItemIcon>
               <BarChartOutlinedIcon color="primary"/>
             </ListItemIcon>
-            <Link href={'/admin/bar'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button >  <ListItemText primary="Graph Chart" /></button></Link>
+            {/* <Link href={'/admin/bar'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button >  <ListItemText primary="Graph Chart" /></button></Link> */}
           </ListItem>
           <ListItem button>
             <ListItemIcon>

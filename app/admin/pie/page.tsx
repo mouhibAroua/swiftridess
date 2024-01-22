@@ -1,10 +1,10 @@
 "use client"
 import React, {useEffect} from "react";
-// import { PieChart, Pie,Cell } from 'recharts';
+
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 
 
-const pie =()=>{
+const pie: React.FC  =()=>{
 
   const data01 = [
     { name: 'Group A', value: 400 },

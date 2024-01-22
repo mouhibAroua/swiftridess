@@ -12,8 +12,6 @@ interface Client {
   image_user: string;
   phoneNumber: string;
   email:string;
-  longitude:string;
-  latitude:string;
   role:string;
 } 
 
@@ -91,12 +89,7 @@ const client: React.FC =()=>{
                 <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
                 Role 
                 </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
-                    Longtitude 
-                </th>
-                <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
-                    Latitude
-                </th>
+
                 <th scope="col" className="px-6 py-3 hover:bg-gray-200 cursor-pointer">
                     Verification 
                 </th>
@@ -121,12 +114,7 @@ const client: React.FC =()=>{
                 <td className="px-6 py-4">
                 {e.role}
                 </td>
-                <td className="px-6 py-4">
-                {e.longitude}
-                </td>
-                <td className="px-6 py-4">
-                {e.latitude}
-                </td>
+
                 <td className="flex items-center px-6 py-4"> 
                  <button onClick={() => { deletee(e.id) }}> <a href="#" className="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a></button>  
                 </td>

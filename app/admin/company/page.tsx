@@ -10,7 +10,6 @@ interface Company {
   companyName: string;
   ownerName: string;
   phoneNumber: string;
-  location: string;
   verification : number;
   longtitude:string;
   latitude:string;
@@ -109,9 +108,7 @@ console.log(response.data);
                 <th scope="col" className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
                     Phone Number 
                 </th>
-                <th scope="col" className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
-                    Location 
-                </th>
+
                 <th scope="col" className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
                     Longtitude 
                 </th>
@@ -146,9 +143,6 @@ console.log(response.data);
 
                 <td className="px-4 py-2">
                 {e.phoneNumber}
-                </td>
-                <td className="px-4 py-2 text-black ">
-                {e.location}
                 </td>
                 <td className="px-4 py-2 text-black ">
                 {e.longtitude}
