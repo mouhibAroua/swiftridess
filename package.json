@@ -78,7 +78,8 @@
     "socket.io-client": "^4.7.3",
     "styled-components": "^6.1.8",
     "token": "^0.1.0",
-    "web": "^0.0.2"
+    "web": "^0.0.2",
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
