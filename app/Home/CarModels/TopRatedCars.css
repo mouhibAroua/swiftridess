@@ -9,7 +9,7 @@
     border-radius: 5px;
     padding: 10px;
     width: 350px;
-    height: 320px;
+    height: 470px;
     background-color: transparent;
     margin-bottom: 20px;
     position: relative;
@@ -18,9 +18,10 @@
   }
   
   .car-image {
-    width: 300px; 
-    object-fit: cover; 
+    width: 350px; 
+    object-fit: scale-down; 
     border-radius: 5px; 
+    height: 300px;
   }
   
   .car-details {

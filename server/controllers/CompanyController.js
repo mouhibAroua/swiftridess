@@ -28,9 +28,9 @@ module.exports = {
         res.json(comp)
     },
     deleteCom:async (req,res)=>{
-        const {id}=req.params;
+        const idcompany=req.params.id;
         const comp=await company.destroy({
-            where:{id}
+            where:{idcompany}
         })
         res.json(comp)
     },
@@ -56,9 +56,10 @@ module.exports = {
         res.json(veh)
     },
     updateCar:async (req,res)=>{
-        const {id}=req.params;
+      console.log(req.params);
+        const idcars=req.params.id;
         const veh=await car.update(req.body,{
-            where:{id}
+            where:{idcars}
         })
         res.json(veh)
     },
@@ -70,8 +71,7 @@ module.exports = {
         res.json(veh)
     },
     updateProfile:async (req,res)=>{
-        const idcompany=req.params.id;
-        console.log(idcompany);
+        const idcompany=req.params.id
         const comp=await company.update(req.body,{
             where:{idcompany}
         })
@@ -121,6 +121,19 @@ module.exports = {
           res.status(500).json({ error: 'Internal Server Error' });
         }
       },
+       searchByName: async (req, res)=> {
+        try {
+      const companyName = req.params.name
+      const search= await company.findAll({
+        where: { companyName: companyName},
+      })
+      return res.status(200).json(search)
+        }
+        catch (error) {
+          console.error('Error');
+          res.status(500).json({ error: error.message });
+        }
+      }
       
 
 }

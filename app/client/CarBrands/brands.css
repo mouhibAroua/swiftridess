@@ -21,7 +21,7 @@
   
   .car-image {
     width: 300px; 
-    object-fit: cover; 
+    object-fit: scale-down; 
     border-radius: 5px; 
   }
   

@@ -9,7 +9,7 @@ interface CarData {
 
 const CarDetails: React.FC = () => {
     const [carData, setCarData] = useState<CarData | null>(null);
-    const idcompany = localStorage.getItem('idcompany')
+    const idcompany = typeof window !== 'undefined' ? localStorage.getItem("idcompany") : null
 
     useEffect(() => {
     const fetchData = async () => {

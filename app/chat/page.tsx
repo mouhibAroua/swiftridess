@@ -1,42 +1,57 @@
 "use client";
 import { io } from "socket.io-client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChatPage from "../chatClient/page";
 import styles from"./chat.module.css"
-export default function Home() {
+import axios from "axios";
+// import { error } from "console";
+export default function Home({idRoom,user,company}:any) {
+  
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/allChat`)
+      .then(e=>{
+         setChat(e.data)
+      }).catch(error=>console.error(error))
+    },[])
+
+    
+
+  const idcompany=localStorage.getItem(("idcompany"))
+  const id=localStorage.getItem("id")
   const [showChat, setShowChat] = useState(false);
-  const [userId, setUserId] = useState(0);
+  const [chat, setChat] = useState([]);
+  const [userId, setUserId] = useState(id || user);
   const [showSpinner, setShowSpinner] = useState(false);
-  const [roomId, setroomId] = useState(0);
-  const [clientId,setClientId]=useState(1)
+  const [roomId, setRoomId] = useState(0);
+  const [companyId,setCompanyId]=useState(idcompany || company )
   var socket: any;
   socket = io("http://localhost:7000");
 console.log(socket,"socket");
 
+console.log("idroom",idRoom,"user",userId)
+
   const handleJoin = () => {
-    if (userId !== 0 && roomId !== 0 && clientId !==0) {
-      console.log(userId, "userId", roomId, "roomId" ,clientId,"clientId");
+    if(!idcompany){setRoomId(chat.length+1)}
+    else{setRoomId(idRoom)}
       socket.emit("join_room", roomId);
       setShowSpinner(true);
 
       setTimeout(() => {
         setShowChat(true);
         setShowSpinner(false);
-      }, 4000);
-    } else {
-      alert("Please fill in Username and Room Id");
-    }
+      }, 2000);
+   
   };
 
   return (
     <div>
-              <h1>test</h1>
+           
 
       <div
         className={styles.main_div}
         style={{ display: showChat ? "none" : "" }}
       >
-        <input
+        {/* <input
           className={styles.main_input}
           type="text"
           placeholder="Username"
@@ -49,17 +64,17 @@ console.log(socket,"socket");
           placeholder="room id"
           onChange={(e) => setroomId(e.target.value)}
           disabled={showSpinner}
-        />
+        /> */}
         <button className={styles.main_button} onClick={() => handleJoin()}>
           {!showSpinner ? (
-            "Join"
+            "How can I help you"
           ) : (
             <div className={styles.loading_spinner}></div>
           )}
         </button>
       </div>
       <div style={{ display: !showChat ? "none" : "" }}>
-        <ChatPage socket={socket} roomId={roomId} userId={userId} />
+        <ChatPage socket={socket} roomId={roomId} userId={userId}  companyId={companyId}/>
       </div>
     </div>
   );

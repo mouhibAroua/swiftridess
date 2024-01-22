@@ -3,6 +3,10 @@ import Link from 'next/link';
 import './SignUp.css'
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 const SignUp = () => {
 
   const [fullName, setFullName] = useState<string>("");
@@ -10,16 +14,17 @@ const SignUp = () => {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<number>(0);
-  const [longitude, setLongtitude] = useState<string>("");
-  const [latitude, setLaltitude] = useState<string>("");
+  // const [longitude, setLongtitude] = useState<string>("");
+  // const [latitude, setLaltitude] = useState<string>("");
 
   
   const router = useRouter();
+  const notify = () => toast("Your Account Created Succesfuly! please log in");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
-    if (!fullName || !phoneNumber || !longitude || !latitude || !email || !password) {
+    if (!fullName || !phoneNumber || !email || !password) {
       setError("All fields are necessary.");
       return;
     }
@@ -43,8 +48,6 @@ const SignUp = () => {
         body: JSON.stringify({
           fullName,
           phoneNumber,
-          longitude,
-          latitude,
           email,
           password,
         }),
@@ -63,16 +66,16 @@ const SignUp = () => {
       setError("Error during registration.");
     }
   };
-
+  
 
     return ( 
-        <div  className='flex justify-center items-center h-screen' style={{ backgroundColor: '#9ca3af' }}>
-          <div className='max-w-[1700px] ml-20'>
-           <img src="https://inv.assets.ansira.net/ChromeColorMatch/us/TRANSPARENT_cc_2023LRS070007_01_1280_1AA.png" alt="" />
+        <div  className='flex justify-center items-center h-screen' >
+           <div className="video-background ">
+              <video src={process.env.PUBLIC_URL+"/assets/video3.mp4"} loop autoPlay muted className='object-cover absolute h-screen w-screen -z-10 top-0 left-0'></video>
           </div>
-          <div className="container ">
+          <div className="container " >
           <form onSubmit={handleSubmit}>
-        <div className="card mx-auto">
+        <div className="card mx-auto border ">
           <a className="login">sign up</a>
           <div className="inputBox">
             <input type="text" required={true} 
@@ -98,26 +101,14 @@ const SignUp = () => {
             />
             <span className="user">Number</span>
           </div>
-          <div className="inputBox">
-            <input type="text" required={true} 
-            onChange={(e)=>setLongtitude(e.target.value)}
-            />
-            <span className="user">longtude</span>
-          </div>
-          <div className="inputBox">
-            <input type="text" required={true} 
-            onChange={(e)=>setLaltitude(e.target.value)}
-            />
-            <span className="user">latitude</span>
-          </div>
 
-          <button className="enter">register</button>
+          <button className="enter" onClick={()=>{notify()}}>register</button>
           {error && (
             <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
               {error}
             </div>
           )}
-          <div className='flex text-sm '>
+          <div className='flex text-sm text-white'>
           <h1  className=' mb-4'>Already have account  ?</h1><Link className=' ' href={'/UserLogin/Login'}><span className='underline  cursor-pointer'>  Log in</span></Link>
           </div>
         </div>
