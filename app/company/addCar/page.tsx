@@ -205,7 +205,6 @@ const addCar=()=>{
  <div className="grid grid-cols-2">
   <label  className="block  text-white  text-lg"
     >Serial Number:</label>
- 
     <input
     onChange={(e)=>setSerialCar(e.target.value)}
       type="text"
