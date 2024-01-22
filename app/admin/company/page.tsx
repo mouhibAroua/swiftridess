@@ -124,9 +124,6 @@ console.log(response.data);
         <tbody>
         {companyData && companyData.map((e,i) => (
             <tr key={i}>
-              <td className="flex items-center px-4 py-2"> {e.PaymentVerification}
-                <input type="checkbox"/>
-                </td>
   <span className="slider round"></span>
                 <td scope="col" className="px-4 py-2">
                    {e.idcompany}

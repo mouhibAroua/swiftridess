@@ -13,7 +13,7 @@ import ShowChartOutlinedIcon from '@mui/icons-material/ShowChartOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import axios from "axios";
 import Link from 'next/link';
-import { log } from "console";
+
 
 interface MenuItem {
   title: string;
@@ -104,28 +104,25 @@ useEffect(() => {
 
 </div>
           <ListItem  className="flex items-center flex-col px-4 py-2 hover:bg-gray-1000" >
-
-                    
-                         
+ 
                   <div>
                   <div className="flex items-center space-x-4">
             <button ref={profileRef} className="w-24 h-24 outline-none rounded-full ring-offset-2 ring-gray-100 ring-2 lg:focus:ring-indigo-600"
                 onClick={() => setState(!state)}>
                 <img
                 src={person?.image_user}
-                 className="mw-50 h-50 rounded-full"
+                 className="w-full h-full rounded-full"
           
                 alt="Profile"
                // onChange={(e)=>setimage_user(e.target.value)} 
             />
-      
             </button>
 
 
         </div>
                  
             
-            <ul className={`bg-white top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
+            <ul className={`bg-grey top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
                 {   
                     navigation.map((item, idx) => (
                         <li key={idx}>
@@ -189,23 +186,18 @@ useEffect(() => {
             </ListItemIcon>
             <Link href={'/admin/geo'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Geography " /></button></Link>
           </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <PieChartOutlinedIcon color="primary" />
-            </ListItemIcon>
-            <Link href={'/admin/pie'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Pie Chart" /></button></Link>
-          </ListItem>
+
           <ListItem button>
             <ListItemIcon>
               <BarChartOutlinedIcon color="primary"/>
             </ListItemIcon>
-            {/* <Link href={'/admin/bar'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button >  <ListItemText primary="Graph Chart" /></button></Link> */}
+            <Link href={'/admin/BarChart'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button >  <ListItemText primary="Graph Chart" /></button></Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
               <ShowChartOutlinedIcon color="primary" />
             </ListItemIcon>
-            <Link href={'/admin/Chart'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Line" /></button></Link>
+            <Link href={'/admin/LineChart'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Line" /></button></Link>
           </ListItem>
         </List>
       </div>

@@ -3,7 +3,7 @@ import React ,{useState , useEffect} from "react";
 import { Typography } from "@mui/material";
 import Sidebar from "../sidebar/page"
 import axios from "axios";
-
+import Navbar from "../navbar/page"
 
 
 interface Client {
@@ -20,7 +20,7 @@ const client: React.FC =()=>{
   const [data, setData] = useState<Client[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  const [searched,setSearched]=useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +37,21 @@ const client: React.FC =()=>{
     fetchData();
   }, []);
 
+  const search = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/users/getName/${searched}`);
 
+      if (!response.ok) {
+        console.error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const searchData: Client[] = await response.json();
+      setData(searchData);
+      console.log("found", searchData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const deletee = async (id:number) => {
     try {
       await fetch(`http://localhost:3000/api/users/${id}`, {
@@ -48,7 +62,9 @@ const client: React.FC =()=>{
       console.error("delete category:", error);
     }
   };
-
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearched(event.target.value);
+  };
     return (
       <div>
         <div className="flex h-screen">
@@ -59,6 +75,18 @@ const client: React.FC =()=>{
            {/* Your main content goes here */}
            <div>
 
+<div className="mb-4">
+              <input
+                type="text"
+                placeholder="Search ...."
+                value={searched}
+                onChange={handleSearchChange}
+                className="p-2 border border-gray-300 rounded-md"
+              />
+              <button onClick={search} className="ml-2 p-2 bg-blue-500 text-white rounded-md">
+                Search
+              </button>
+            </div>
            <Typography variant="h1" fontWeight="bold" style={{ color: '#000080' }}>
              list clients 
            </Typography>

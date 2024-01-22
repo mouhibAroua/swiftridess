@@ -9,7 +9,7 @@ router.get('/users/getall', UserController.getAllUsers);
 // GET user by ID
 router.get('/users/:id', UserController.getUserById);
 //search user by name
-// router.get('/users/getName/:name', UserController.searchbyName);
+ router.get('/users/getName/:name', UserController.searchByName);
 // POST create a new user
 router.post('/users/add', UserController.createUser);
 
