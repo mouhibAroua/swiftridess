@@ -105,10 +105,12 @@ const StatsSection: React.FC = () => {
               {countedStats.map((item, idx) => (
                 <li key={idx} className="text-center px-2 md:px-20">
                   <h4 className="text-4xl text-black font-semibold">+ {item.current}</h4>
+                  <hr className="border-t-4 border-oronge-500 w-16 rotate-90 mr-[150px]"/>
                   <p className="mt-3 font-medium text-black">{item.title}</p>
                 </li>
               ))}
             </ul>
+
           </div>
         </div>
       </section>
