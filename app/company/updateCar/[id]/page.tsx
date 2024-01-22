@@ -1,8 +1,10 @@
 "use client"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import axios from "axios"
 import SideNav from "../../DashBoard/Sidenav"
 import { useParams } from "next/navigation"
+import NotFound from "@/app/notFound/page"
+
 
 interface Car {
     price: number;
@@ -19,22 +21,24 @@ interface Car {
 }
 
 
-const UpdateCar = () => {
-    const [price, setPrice] = useState<number>(0)
-    const [brand, setBrand] =useState<string>("")
-    const [model, setModel] =useState<string>("")
-    const [type, setType] =useState<string>("")
-    const [transmission, setTransmission] =useState<string>("")
-    const [fuelType, setFuelType] =useState<string>("")
-    const [registration, setRegistration] =useState<string>("")
-    const [mileage, setMileage] =useState<string>("")
-    const [occasion, setOccassion] =useState<string>("")
-    const [passengers, setPassengers] =useState<string>("")
-    const [image, setImage] = useState<string[]>([]);
+const UpdateCar = ({ carData }: { carData: Car | null }) => {
+    const [price, setPrice] = useState<number>(carData?.price || 0)
+    const [brand, setBrand] =useState<string>(carData?.brand || '')
+    const [model, setModel] =useState<string>(carData?.model || '')
+    const [type, setType] =useState<string>(carData?.type || '')
+    const [transmission, setTransmission] =useState<string>(carData?.transmission || '')
+    const [fuelType, setFuelType] =useState<string>(carData?.fuelType || '')
+    const [registration, setRegistration] =useState<string>(carData?.registration || '')
+    const [mileage, setMileage] =useState<string>(carData?.mileage || '')
+    const [occasion, setOccassion] =useState<string>(carData?.occasion || '')
+    const [passengers, setPassengers] =useState<string>(carData?.passengers || '')
+    const [image, setImage] = useState<string[]>(carData?.image||[]);
     const [previewImage, setPreviewImage] = useState<string>("");
     const fileInputRef = useRef<HTMLInputElement>(null);
     const {id} =useParams()
     const idcars = id
+
+    
     
     const addPicture = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -65,21 +69,22 @@ const UpdateCar = () => {
         }
       };
 
-      const obj: Car = {
-        price: price,
-        image: image,
-        brand:brand,
-        model: model,
-        type: type,
-        transmission: transmission,
-        fuelType: fuelType,
-        registration: registration,
-        mileage: mileage,
-        occasion:occasion,
-        passengers: passengers,
-      };
+     
     
       const update = () => {
+        const obj: Car = {
+          price,
+          image,
+          brand,
+          model,
+          type,
+          transmission,
+          fuelType,
+          registration,
+          mileage,
+          occasion,
+          passengers
+        };
         axios
           .put(`http://localhost:3000/api/car/update/${idcars}`, obj)
           .then(() => {
@@ -94,7 +99,7 @@ const UpdateCar = () => {
     return(
        <>
     {(id!==idcars)&&
-    <h1>not found</h1>}
+    <NotFound/>}
     {(id===idcars)&& 
        <div>
         <SideNav/>

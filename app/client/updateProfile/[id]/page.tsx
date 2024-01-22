@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { useParams } from "next/navigation";
 import bcrypt from "bcryptjs"
 import Navigation from "@/app/Home/navbar/page";
+import NotFound from "@/app/notFound/page";
 
 interface Client {
     id:string|null;
@@ -87,19 +88,19 @@ const UpdateProfile=()=>{
 return(    
   <>
   {(id!==userId)&&
-  <h1>not found</h1>}
+  <NotFound/>}
   {(id===userId)&&
     <div>
       <Navigation/>
   <div className="flex justify-between">
                 <div className="flex">
-<div className=" bg-slate ml-80 mt-36 w-[1000px] h-[600px] flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931] ">
+<div className=" bg-slate ml-80 mt-40 w-[1000px] h-[600px] flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931] ">
         <div className="p-2 md:p-4 ">
             <div className="px-6 pb-8 mt-8  sm:rounded-lg">
                 <div className="flex flex-col md:flex-row md:flex-1 ">
                   <div className="p-4 py-6  md:flex md:flex-col ">
                     <div className="flex flex-col md:flex-row md:flex-1 ml-[-300px]">
-                        <img className="object-cover bg-gray-400 w-[400px] h-[650px] mt-[-120px] "
+                        <img className="object-cover bg-gray-400 w-[400px] h-[545px] mt-[-72px] "
                             src={previewImage}
                             alt=""/>
                             </div>

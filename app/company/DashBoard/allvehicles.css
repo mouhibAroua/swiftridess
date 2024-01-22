@@ -1,26 +1,30 @@
 .car-container {
-    display: flex;
-    gap: 190px;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  width: 70%; 
+  
+    
   }
   
   .car-box {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
-    width: 350px;
-    height: 320px;
+    width: 250px;
+    height: 290px;
     background-color: transparent;
     margin-bottom: 20px;
     position: relative;
-    top: -20px;
+    top: 20px;
     right: -350px;
     flex: 0 1 30%; /* Adjust the flex-basis value as needed */
 
   }
   
   .car-image {
-    width: 300px; 
+    width: 100%;
+    height:100%; 
     object-fit: cover; 
     border-radius: 5px; 
   }
@@ -33,6 +37,6 @@
 
   .but{
 position: relative;
-right: -350px;
+right: -150px;
 top: 5px;
 }

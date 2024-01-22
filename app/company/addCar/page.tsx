@@ -15,6 +15,7 @@ interface Car {
     mileage: string;
     occasion:string;
     passengers:string;
+    serialCar: string;
     
 
 }
@@ -31,6 +32,7 @@ const addCar=()=>{
     const [occasion, setOccassion] =useState<string>("")
     const [passengers, setPassengers] =useState<string>("")
     const [image, setImage] = useState<string[]>([]);
+    const [serialCar, setSerialCar] =useState<string>("")
     const [previewImage, setPreviewImage] = useState<string>("");
     const fileInputRef = useRef<HTMLInputElement>(null);
     
@@ -75,6 +77,7 @@ const addCar=()=>{
         mileage: mileage,
         occasion:occasion,
         passengers: passengers,
+        serialCar: serialCar
       };
     
       const addNewCar = () => {
@@ -199,7 +202,16 @@ const addCar=()=>{
       className="block w-[300px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800"
     />
  </div>
-  
+ <div className="grid grid-cols-2">
+  <label  className="block  text-white  text-lg"
+    >Serial Number:</label>
+    <input
+    onChange={(e)=>setSerialCar(e.target.value)}
+      type="text"
+      name="inputname"
+      className="block w-[300px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800"
+    />
+ </div>
   <div className="grid grid-cols-2">
   <label  className="block  text-white  text-lg"
     >Occassion:</label>
