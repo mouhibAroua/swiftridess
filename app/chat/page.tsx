@@ -22,17 +22,16 @@ export default function Home({idRoom,user,company}:any) {
   const [chat, setChat] = useState([]);
   const [userId, setUserId] = useState(id || user);
   const [showSpinner, setShowSpinner] = useState(false);
-  const [roomId, setRoomId] = useState(0);
+  const [roomId, setRoomId] = useState(chat.length+1);
   const [companyId,setCompanyId]=useState(idcompany || company )
   var socket: any;
   socket = io("http://localhost:7000");
 console.log(socket,"socket");
 
-console.log("idroom",idRoom,"user",userId)
 
   const handleJoin = () => {
-    if(!idcompany){setRoomId(chat.length+1)}
-    else{setRoomId(idRoom)}
+    // if(!idcompany){setRoomId()}
+    // else{setRoomId(idRoom)}
       socket.emit("join_room", roomId);
       setShowSpinner(true);
 
@@ -42,6 +41,7 @@ console.log("idroom",idRoom,"user",userId)
       }, 2000);
    
   };
+  console.log("idroom",roomId,"user",userId)
 
   return (
     <div>
@@ -67,7 +67,7 @@ console.log("idroom",idRoom,"user",userId)
         /> */}
         <button className={styles.main_button} onClick={() => handleJoin()}>
           {!showSpinner ? (
-            "How can I help you"
+            "Chat Now"
           ) : (
             <div className={styles.loading_spinner}></div>
           )}

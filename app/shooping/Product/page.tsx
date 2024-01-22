@@ -5,6 +5,8 @@ import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import axios from "axios"
 import Link from 'next/link'; 
+import "../shopss.css"
+
 import { log } from "console";
 const Product: React.FC = () => {
   const [All, setAll] = useState<any[]>([]);
@@ -49,14 +51,11 @@ return (
       <div className='flex  gap-4 flex-wrap shadow-sm'>
       {All.map((All,i)=>(
         <div key={i} className=''>
-          <div className='w-80 h-72 bg-gray mt-10 flex-wrap'
+          <div className='w-80 h-72  mt-10 flex-wrap'
           onMouseEnter={()=>{setShowAddToCart(!showAddToCart)
             setIndex(i)}}
           onMouseLeave={()=>{setShowAddToCart(!showAddToCart)
           setIndex(-1)}}>
-          <div className=' top-full left-0 w-20 rounded h-8 bg-red flex justify-center items-center text-white '>-{All.Discount}%</div>
-          <div className='bg-white w-12 h-12 rounded-full flex items-center justify-center float-right'><FaRegHeart size={20}/> </div>
-          <div className='bg-white w-12 h-12 rounded-full flex items-center justify-center float-right'><MdOutlineRemoveRedEye size={20}/></div>
           {index === i && showAddToCart && (
           <button
             className="cursor-pointer w-80 h-11 bg-black text-white flex justify-center items-center absolute mt-56"
@@ -72,13 +71,13 @@ return (
           >
             Add To Cart
           </button>
-        )}          <Link href={`/shooping/ProcutDetails/${All.ProductID}`} ><img className=' w-40' src={All.ProductImage[0]?All.ProductImage[0]:All.ProductImage} alt="" onClick={()=>{
+        )}          <Link href={`/shooping/ProcutDetails/${All.ProductID}`} ><img className='mainimgss' src={All.ProductImage[0]?All.ProductImage[0]:All.ProductImage} alt="" onClick={()=>{
             }} /></Link>
             
           </div>
           <h1>{All.Name}</h1>
          <div className='flex gap-4'>
-         <h1 className='text-red'>${All.Price}</h1><h1 className='text-gray-300 line-through	'>{(All.Price / (1 - All.Discount/ 100)).toFixed(2)}</h1>
+         <h1 className='text-red'>{All.Price} DT</h1>
          </div>
         </div>
       ))}

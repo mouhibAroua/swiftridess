@@ -1,0 +1,10 @@
+.ktiba{
+    position: relative;
+    right: 350px;
+}
+
+.cart{
+    position: relative;
+    left: 500px;
+    cursor: pointer;
+}
