@@ -104,7 +104,7 @@ const StatsSection: React.FC = () => {
             <ul className="flex flex-col items-center justify-center gap-y-5 sm:flex-row sm:flex-wrap lg:divide-x">
               {countedStats.map((item, idx) => (
                 <li key={idx} className="text-center px-2 md:px-20">
-                  <h4 className="text-4xl text-black font-semibold">{item.current}</h4>
+                  <h4 className="text-4xl text-black font-semibold">+ {item.current}</h4>
                   <p className="mt-3 font-medium text-black">{item.title}</p>
                 </li>
               ))}

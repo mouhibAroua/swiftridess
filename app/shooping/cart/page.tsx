@@ -86,17 +86,14 @@ router.push(path)
           
         ))}
 
-        <div>
-          <button className='shadow border-gray-300 border mt-10 w-40 h-14 border rounded text-sm'></button>
-          <button className='shadow border-gray-300 border mt-10 w-40 h-14 border rounded text-sm float-right mr-56'></button>
-        </div>
+
 
         <div className='mt-20 '>
           <input className='border-gray-300 border rounded w-48 h-12 text-center text-sm' type="text" placeholder='Coupon Code' />
           <button className='ml-3 bg-red w-40 h-12 border rounded text-white text-sm'>Apply Coupon</button>
         </div>
 
-        <div className='float-right -mt-28 mr-56  shadow border-black border rounded w-80  text-start  '>
+        <div className='mt-10 ml-80  shadow border-black border rounded w-80  text-start  '>
           <h1 className='ml-5 mt-2'>Cart Total</h1>
           <h3 className='ml-5 mt-6'>Subtotal: {cartData.reduce((total, item) => total + calculateSubtotal(item.quantity || 1, item.Price), 0)}$</h3>
           <hr className="text-gray-300 w-5/6 text-center" />

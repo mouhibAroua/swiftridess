@@ -15,14 +15,18 @@ interface users {
     image: string;
 }
 
+
 const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
     const [state, setState] = useState(false);
     const profileRef = useRef<HTMLButtonElement>(null);
     const userId = localStorage.getItem('id');
-    
+    const logout=()=>{
+        localStorage.removeItem('id');
+        localStorage.removeItem('idcompany');
+        window.location.reload();
+    }
     const navigation: MenuItem[] = [
         { title: "Settings", path:  `http://localhost:3001/client/updateProfile/${userId}` },
-        { title: "Log out", path: "/" },
     ];
  
 
@@ -93,7 +97,9 @@ const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
                         <li key={idx}>
                             <a className="block text-black lg:hover:bg-gray-50 lg:p-2.5 font-bold ml-2" href={item.path}>
                                 {item.title}
+                                
                             </a>
+                            <button onClick={() =>logout() } className="loout"> LogOut</button>
                         </li>
                     ))
                 }

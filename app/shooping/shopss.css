@@ -1,0 +1,28 @@
+.footerss{
+    position: relative;
+    top: 500px;
+    left: 250px;
+}
+
+.footersss{
+    position: relative;
+    top: 550px;
+}
+
+.otherimgs{
+    object-fit: scale-down; 
+width: 50%;
+height: 100px;
+position: relative;
+right: 200px;
+top: 100px;
+}
+
+.footerssss{
+    position: relative;
+}
+
+.mainimgss{
+    object-fit: scale-down; 
+height: 290px;
+}
