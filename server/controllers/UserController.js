@@ -283,10 +283,24 @@ async function acceptReservation(req, res) {
     console.error('Error accepting reservation:', error.message);
     return res.status(500).json({ error: error.message });
   }
+};
+async function searchByName(req, res) {
+  try {
+const fullName = req.params.name
+const search= await User.findAll({
+  where: { fullName: fullName},
+})
+return res.status(200).json(search)
+  }
+  catch (error) {
+    console.error('Error');
+    res.status(500).json({ error: error.message });
+  }
 }
 
 
 module.exports = {
+  searchByName,
   getAllUsers,
   getUserById,
   createUser,

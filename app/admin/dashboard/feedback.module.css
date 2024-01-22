@@ -1,0 +1,53 @@
+.container{
+/* background-color:#f1f5f9; */
+padding: 20px;
+
+width: 500px;  
+margin-left: -70px;
+margin-top: 200px;
+}
+.title{
+    font-size: large;
+    margin-bottom: 10px;
+    font-weight: 200;
+    color:rgb(82, 80, 80);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+/* .name{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.comment{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+} */
+.table{
+    width: 100px;
+}
+.table td{
+padding: 30px;
+}
+.table p{
+    padding: 40px;
+}
+.user{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.userImage{
+    object-fit: cover;
+    border-radius: 50%  ;
+}
+/* .pye{
+    height: 450px;
+    background-color:#f1f5f9;
+    padding: 20px;
+    border-radius: 20px;
+    width: 600px;  
+} */
+.cont{
+    height: 450px;
+    /* background-color: rgb(247, 243, 234); */
+    padding: 20px;
+    border-radius: 10px;
+    width: 600px;  
+}
