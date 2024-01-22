@@ -24,7 +24,7 @@ const AboutUs = () => {
 
   return (
     <motion.div
-      className="mt-[100px] p-6  " 
+      className="mt-[100px] p-6  bg-gray-600" 
       ref={scrollDown}
       variants={fadeIn('up', 0.4)}
       initial="hidden"

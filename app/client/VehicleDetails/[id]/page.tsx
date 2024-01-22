@@ -9,9 +9,7 @@ import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import ToysIcon from "@mui/icons-material/Toys";
 import AddRoadIcon from "@mui/icons-material/AddRoad";
-import Location from "../location/Location";
 import Date from "../date/Date";
-import Time from "../time/Time";
 import Company from "../companyInfo/CompanyInfo";
 import Foot from "../../../Home/footer/page";
 import { Modal } from "react-responsive-modal";
@@ -141,7 +139,6 @@ const CarInfo = ({ carId }: CarInfoProps) => {
               <p className="info">
                 <AddRoadIcon /> Mileage : {carInfo.mileage}
               </p>
-              <Location />
               <Company />
               <Date />
               <Rating />
