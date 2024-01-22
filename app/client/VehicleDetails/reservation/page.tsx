@@ -11,7 +11,7 @@ const ReservationForm: React.FC = () => {
   const reservation=()=>{
     axios.post(`http://localhost:3000/api/company/reservation/${userId}/${i}`).then(res=>{
       console.log(res)
-      setDialogOpen(true);  // Open the dialog after successful reservation
+      setDialogOpen(true);  
     }).catch(err=>{
       console.error(err)
     })

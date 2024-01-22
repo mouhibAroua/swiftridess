@@ -5,7 +5,7 @@ import ChatPage from "../chatClient/page";
 import styles from"./chat.module.css"
 import axios from "axios";
 // import { error } from "console";
-export default function Home({user,company}:any) {
+export default function Home({idRoom,user,company}:any) {
   
   useEffect(() => {
     axios.get(`http://localhost:3000/api/allChat`)
@@ -28,11 +28,11 @@ export default function Home({user,company}:any) {
   socket = io("http://localhost:7000");
 console.log(socket,"socket");
 
-
+console.log("idroom",idRoom,"user",userId)
 
   const handleJoin = () => {
     if(!idcompany){setRoomId(chat.length+1)}
-    // else{setRoomId(idRoom)}
+    else{setRoomId(idRoom)}
       socket.emit("join_room", roomId);
       setShowSpinner(true);
 
