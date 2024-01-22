@@ -11,15 +11,20 @@ interface ProfileDropDownProps {
     class: string;
 }
 
+interface users {
+    image: string;
+}
+
 const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
     const [state, setState] = useState(false);
     const profileRef = useRef<HTMLButtonElement>(null);
-
+    const userId = localStorage.getItem('id');
+    
     const navigation: MenuItem[] = [
-        { title: "Settings", path: "/" },
+        { title: "Settings", path:  `http://localhost:3001/client/updateProfile/${userId}` },
         { title: "Log out", path: "/" },
     ];
- const userId = localStorage.getItem('id');
+ 
 
 
     useEffect(() => {
