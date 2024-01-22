@@ -59,11 +59,10 @@ const Nav: React.FC = (props:{}) => {
                             alt="Float UI logo"
                         />
           {/* <h1 className='absolute left-10 font-bold text-3xl mb-7 mr-36'></h1> */}
-  
-          <Link href='../../shooping'>Home</Link>
-          <Link href='../Contact'>  </Link>
-          <Link href='../AboutUS'>  </Link>
-          <Link href='../Signup'>  <p style={{ marginRight: '5%' }}>  </p></Link>
+          <Link href='../../company/DashBoard'>Home</Link>
+          <Link href='../../shooping'>Shooping</Link>
+         
+         
      
           <div className='w-auto h-8 flex items-center gap-16 right-10 ml-10'>
             <input
