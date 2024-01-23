@@ -15,7 +15,8 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string>('');
 
-  const notify = () => toast("Your Account Created Succesfuly! please log in");
+ 
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 
     event.preventDefault();
@@ -54,17 +55,7 @@ const Login = () => {
           <div className="video-background  ">
               <video src={process.env.PUBLIC_URL+"/assets/video3.mp4"} loop autoPlay muted className='object-cover absolute h-screen w-screen -z-10 top-0 left-0'></video>
           </div>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        />
+      <ToastContainer/>
       <div className="container" >
         <form onSubmit={handleSubmit} >
         <div className="card mx-auto">

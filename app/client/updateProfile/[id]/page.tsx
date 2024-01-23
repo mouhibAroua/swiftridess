@@ -5,7 +5,8 @@ import { useParams } from "next/navigation";
 import bcrypt from "bcryptjs"
 import Navigation from "@/app/Home/navbar/page";
 import NotFound from "@/app/notFound/page";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface Client {
     id:string|null;
     fullName: string;
@@ -14,7 +15,16 @@ interface Client {
     email: string;
     password: string
   }
-
+  const notify = () => toast.success('You successfully updated your account !', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    });
 const UpdateProfile=()=>{
   
     const [imgUrl, setImgUrl] = useState<string>("");
@@ -76,7 +86,7 @@ const UpdateProfile=()=>{
           const response = await axios.put(`http://localhost:3000/api/users/${userId}`, updatedUser);
     
           console.log(response.data, 'res');
-          alert('You successfully updated your account');
+          notify()
         } catch (error) {
           console.error(error);
         }
@@ -92,6 +102,7 @@ return(
   {(id===userId)&&
     <div>
       <Navigation/>
+      <ToastContainer/>
   <div className="flex justify-between">
                 <div className="flex">
 <div className=" bg-slate ml-80 mt-40 w-[1000px] h-[600px] flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931] ">
