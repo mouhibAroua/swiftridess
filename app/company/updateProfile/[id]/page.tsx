@@ -1,13 +1,12 @@
 "use client"
 import axios from "axios";
-import { useState} from "react";
+import { useState, useEffect} from "react";
 import bcrypt from "bcryptjs"
 import { useParams } from "next/navigation";
 import Sidebar from "../../DashBoard/Sidenav";
-import NotFound from "@/app/notFound/page";
 
 interface Company {
-    idcompany:string;
+    idcompany:string|null;
     companyName: string;
     ownerName: string;
     phoneNumber: string;
@@ -22,8 +21,18 @@ const UpdateProfile=()=>{
     const [phoneNumber, setPhoneNumber] = useState<string>("")
     const [emailCompany, setEmailCompany] = useState<string>("")
     const [newPassword, setNewPassword] = useState<string>("")
-    const idcompany = typeof window !== 'undefined' ? localStorage.getItem("idcompany") : null
-    const {id} = useParams()
+    const [idcompany, setIdcompany] = useState<string|null>("")
+    const param = useParams()
+    const id=param.id
+    useEffect(()=>{
+        getId();
+      },[])
+      const getId=()=>{
+        const idcompany = typeof window !== 'undefined' ? window.localStorage.getItem("idcompany") : null
+        console.log("iii",param);
+            setIdcompany(idcompany)
+      }
+
 const password=async (val:any)=>{
     let hashedNewPassword = await bcrypt.hash(newPassword, 10);
     setNewPassword(hashedNewPassword)
@@ -51,7 +60,7 @@ const password=async (val:any)=>{
 return(
     <>
     {(id!==idcompany)&&
-    <NotFound/>}
+    "not found"}
     {(id===idcompany)&& 
     <div>
     <Sidebar/>

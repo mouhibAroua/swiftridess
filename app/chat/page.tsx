@@ -5,7 +5,7 @@ import ChatPage from "../chatClient/page";
 import styles from"./chat.module.css"
 import axios from "axios";
 // import { error } from "console";
-export default function Home({user,company}:any) {
+export default function Home({idRoom,user,company}:any) {
   
   useEffect(() => {
     axios.get(`http://localhost:3000/api/allChat`)
@@ -22,16 +22,15 @@ export default function Home({user,company}:any) {
   const [chat, setChat] = useState([]);
   const [userId, setUserId] = useState(id || user);
   const [showSpinner, setShowSpinner] = useState(false);
-  const [roomId, setRoomId] = useState(0);
+  const [roomId, setRoomId] = useState(chat.length+1);
   const [companyId,setCompanyId]=useState(idcompany || company )
   var socket: any;
   socket = io("http://localhost:7000");
 console.log(socket,"socket");
 
 
-
   const handleJoin = () => {
-    if(!idcompany){setRoomId(chat.length+1)}
+    // if(!idcompany){setRoomId()}
     // else{setRoomId(idRoom)}
       socket.emit("join_room", roomId);
       setShowSpinner(true);
@@ -42,6 +41,7 @@ console.log(socket,"socket");
       }, 2000);
    
   };
+  console.log("idroom",roomId,"user",userId)
 
   return (
     <div>
@@ -67,7 +67,7 @@ console.log(socket,"socket");
         /> */}
         <button className={styles.main_button} onClick={() => handleJoin()}>
           {!showSpinner ? (
-            "How can I help you"
+            "Chat Now"
           ) : (
             <div className={styles.loading_spinner}></div>
           )}

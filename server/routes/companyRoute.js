@@ -13,6 +13,7 @@ router.get('/company/cars/:id', CompanyController.getCarsByCompany);
 
 router.get('/company/allcars/:id', CompanyController.getAllCarsByCompany);
 
+router.get("/company/getbyName/:name", CompanyController.searchByName);
 // GET user by ID
 router.get('/car/:id', CompanyController.getCarById);
 
@@ -26,7 +27,7 @@ router.put('/car/update/:id', CompanyController.updateCar);
 router.put('/company/profile/:id', CompanyController.updateProfile);
 
 // DELETE a user by ID
-router.delete('/car/:id', CompanyController.deleteCar);
+router.delete('/car/delete/:id', CompanyController.deleteCar);
 
 router.delete('/company/:id', CompanyController.deleteCom);
 

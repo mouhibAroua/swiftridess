@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,600&display=swap');
 .infos{
 position: relative;
 left: 900px;
@@ -20,11 +21,11 @@ margin-bottom: 10px;
     color: #000;
     font-size: 30px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: bold;
     line-height: normal;
     margin-left: 250px;
     font-family: 'Poppins', sans-serif;
-    top: 20px;
+    top: 0px;
     position: relative;
 }
 

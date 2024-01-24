@@ -69,7 +69,7 @@ const TopRatedCars: React.FC = () => {
     >
       <h1
         id="texting"
-        className="text-3xl font-bold  text-center text-gold-100"
+        className="text-3xl font-bold mt-10  text-center text-gold-100"
       >
         Top Rated Cars
         <hr className="border-t-4 border-oronge-500 mb-4 w-[240px] ml-[620px]"/> 

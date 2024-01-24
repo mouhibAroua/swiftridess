@@ -2,12 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import fadeIn from '../AboutUs/fadeIn';
 import { motion } from 'framer-motion';
-
+import "./lm.css"
 const Add=() => {
   const [chnageImage, setChangeImage] = useState<number>(0);
 
   const images: string[] = [
-      'https://www.cupraofficial.tn/content/dam/public/cupra-website/cupra-global-navigation/models/cupra-range/x-large/cupra-formentor-model-conversion.png?imwidth=320'
+      'https://www.cupraofficial.tn/content/dam/public/cupra-website/cupra-global-navigation/models/cupra-range/x-large/cupra-formentor-model-conversion.png?imwidth=320',
+      'https://images2.imgbox.com/b9/5b/SIzEQccH_o.png',
+      'https://images2.imgbox.com/f2/5c/SVrDsj9m_o.png'
   ];
   const changeImage = () => {
     setChangeImage((pr) => (pr + 1) % images.length);

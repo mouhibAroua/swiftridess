@@ -1,0 +1,17 @@
+.title{
+    font-size: xx-large;
+    font-weight: bold;
+    position: relative;
+    margin-left: 240px;
+    background-color: #111827;
+    width: 1255px;
+color: white;
+}
+
+.chats{
+    position: relative;
+    left: 240px;
+    border-right: 3px solid black;
+justify-content: center;
+}
+

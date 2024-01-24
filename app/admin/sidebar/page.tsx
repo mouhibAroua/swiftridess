@@ -13,7 +13,7 @@ import ShowChartOutlinedIcon from '@mui/icons-material/ShowChartOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import axios from "axios";
 import Link from 'next/link';
-import { log } from "console";
+
 
 interface MenuItem {
   title: string;
@@ -31,7 +31,7 @@ interface User{
     image_user: string;
 }
 
-const Sidebar: React.FC <obj>= (props) => {
+const Sidebar: React.FC <{}>= (props) => {
   const [state, setState] = useState(false);
   const [person,setPerson] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -39,7 +39,7 @@ const Sidebar: React.FC <obj>= (props) => {
   const [fullName,setfullName]=useState<string>("")
   const [image_user,setimage_user]=useState<string>("")
   const profileRef = useRef<HTMLButtonElement>(null);
-// let id=localStorage.getItem('id');
+  let id= typeof window !== 'undefined' ? localStorage.getItem("id"): null;
 
 // console.log(id)
 
@@ -47,7 +47,7 @@ const Sidebar: React.FC <obj>= (props) => {
 useEffect(() => {
   const getOne = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/users/28`)
+      const response = await axios.get(`http://localhost:3000/api/users/${id}`)
       setPerson(response.data);
       console.log("eya",response.data);
       
@@ -92,39 +92,37 @@ useEffect(() => {
   return (
     <div className=" fixed top-0 buttom-0 flex h-screen ">
       {/* Sidebar */}
-      <div className="col-span-3 bg-gray-800 text-white px-10 py-7">
-        <List className="flex-col space-y-3">
+      <div className="col-span-3 bg-gray-800 text-white px-7 py-7 w-[250px]">
+        <List className="flex-col space-y-2">
 
-        <div className="flex items-center space-y-3 ">
+        <div className="flex items-center justify-between">
   <Typography variant="h6" className="mt-2 mr-40" style={{ color: 'grey' }}>
     ADMINS
   </Typography>
  
-  <MenuOutlinedIcon />
+  {/* <MenuOutlinedIcon /> */}
 
 </div>
           <ListItem  className="flex items-center flex-col px-4 py-2 hover:bg-gray-1000" >
-
-                    
-                         
+ 
                   <div>
                   <div className="flex items-center space-x-4">
             <button ref={profileRef} className="w-24 h-24 outline-none rounded-full ring-offset-2 ring-gray-100 ring-2 lg:focus:ring-indigo-600"
                 onClick={() => setState(!state)}>
                 <img
-                src={person?.image_user}
-                className="mw-50 h-50 rounded-full"
+                src={person?.image_user || "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg"}
+                 className="w-full h-full rounded-full"
+          
                 alt="Profile"
                // onChange={(e)=>setimage_user(e.target.value)} 
             />
-      
             </button>
 
 
         </div>
                  
             
-            <ul className={`bg-white top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
+            <ul className={`bg-grey top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
                 {   
                     navigation.map((item, idx) => (
                         <li key={idx}>
@@ -136,7 +134,7 @@ useEffect(() => {
                 }
             </ul>
         
-            <ListItemText onChange={(e)=>setfullName(e.target.value)} 
+            <ListItemText 
             primary={<p className="mt-2"></p>} />
             </div>    
 
@@ -155,13 +153,13 @@ useEffect(() => {
             <ListItemIcon >
               <GroupOutlinedIcon color="primary" />
             </ListItemIcon>
-            <Link href={'/admin/client'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Users" /></button></Link>
+            <Link href={'/admin/client'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Clients" /></button></Link>
           </ListItem>
           <ListItem button >
             <ListItemIcon >
               <ContactMailOutlinedIcon color="primary"/>
             </ListItemIcon>
-            <Link href={'/admin/company'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Contacts information" /></button></Link>
+            <Link href={'/admin/company'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Companies" /></button></Link>
           </ListItem>
           <Typography variant="h6" className="mt-2" style={{ color: 'grey' }}>
              Details
@@ -186,25 +184,20 @@ useEffect(() => {
             <ListItemIcon>
               <PublicOutlinedIcon color="primary" />
             </ListItemIcon>
-            <ListItemText primary="Geography " />
+            <Link href={'/admin/geo'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Geography " /></button></Link>
           </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <PieChartOutlinedIcon color="primary" />
-            </ListItemIcon>
-            <ListItemText primary="Pie Chart" />
-          </ListItem>
+
           <ListItem button>
             <ListItemIcon>
               <BarChartOutlinedIcon color="primary"/>
             </ListItemIcon>
-            <ListItemText primary="Graph Chart" />
+            <Link href={'/admin/BarChart'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button >  <ListItemText primary="Graph Chart" /></button></Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
               <ShowChartOutlinedIcon color="primary" />
             </ListItemIcon>
-            <Link href={'/admin/Chart'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Line" /></button></Link>
+            <Link href={'/admin/LineChart'}  className="hover:bg-gray-300 hover:bg-opacity-50"><button > <ListItemText primary="Line" /></button></Link>
           </ListItem>
         </List>
       </div>
