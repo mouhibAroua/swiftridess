@@ -1,0 +1,17 @@
+.navv {
+  position: absolute;
+  width: 100%;
+  background:transparent;
+  top: 100px;
+}
+
+
+.bg-white {
+  background-color: transparent;
+  color: white;
+}
+
+.banner{
+  position: relative;
+  top: 10px;
+}
