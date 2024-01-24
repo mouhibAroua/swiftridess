@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const Categories: React.FC = () => {
   return (
-    <div>
+    <div className='mt-10'>
       <div className="category-flex">
       <div id="bmw">
       <Link href={`http://localhost:3001/client/CarBrands/bmw` }>
