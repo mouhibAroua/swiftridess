@@ -19,16 +19,16 @@ interface Cars {
 }
 
 const AllCars: React.FC<Cars> = ({ idcompany }) => {
-  const id = typeof window !== 'undefined' ? localStorage.getItem("idcompany"): null
+  // const id = typeof window !== 'undefined' ? localStorage.getItem("idcompany"): null
   const [companyCars, setCompanyCars] = useState<Cars[]>([]);
   
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/company/allcars/${id}`)
+      .get(`http://localhost:3000/api/company/allcars/${idcompany}`)
       
       
       .then((res) => {
-        console.log("rr",id);
+        
         setCompanyCars(res.data.carss);
       })
       .catch((err) => {

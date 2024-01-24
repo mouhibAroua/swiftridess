@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import CompanyInfo from "./CompanyInfo"
 import Link from 'next/link';  
@@ -10,8 +11,14 @@ interface NavItem {
 }
 
 const Sidebar: React.FC = () => {
-    const idcompany = typeof window !== 'undefined' ? window.localStorage.getItem("idcompany") : null
-      console.log("idcompany",idcompany);
+    const idcompany =localStorage.getItem("idcompany") 
+
+    console.log("eee",typeof (window));
+   
+    console.log("idcompany",idcompany);
+    
+        
+    
     const navigation: NavItem[] = [
       {
         href: 'http://localhost:3001/company/DashBoard',
@@ -91,6 +98,7 @@ const Sidebar: React.FC = () => {
         <nav className="fixed top-0 left-0 w-full h-full border-r bg-gray-800 space-y-8 sm:w-60">
             <div className="flex flex-col h-full">
                 <div className="h-20 flex items-center px-8">
+                    
                     <a href="javascript:void(0)" className="flex-none">
                         <img src="https://media.discordapp.net/attachments/1157269732219691038/1194220754376589352/cars-removebg-preview.png?ex=65af8fbf&is=659d1abf&hm=94eae9de317c04c8f6efeb2ce656743162493db62d430b29f3b8c0aa69da9b28&=&format=webp&quality=lossless&width=706&height=552" width={140} className="mx-auto" alt="Logo" />
                     </a>
@@ -99,8 +107,10 @@ const Sidebar: React.FC = () => {
                     <ul className="px-4 text-sm font-medium flex-1">
                         {navigation.map((item, idx) => (
                             <li key={idx}>
+                            
                                 <a
                                     href={item.href}
+                                    
                                     className="flex items-center gap-x-2 text-gray-600 p-2 rounded-lg  hover:bg-gray-50 active:bg-gray-100 duration-150"
                                 >
                                     <div className="text-gray-500">{item.icon}</div>

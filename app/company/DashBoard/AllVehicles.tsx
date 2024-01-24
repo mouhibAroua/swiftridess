@@ -22,12 +22,15 @@ interface Car {
   idcars:number;
 }
 
-const idcompany = localStorage.getItem('idcompany')
+
+
 
 const TopRatedCars: React.FC = () => {
   const [allCars, setAllCars] = useState<Car[]>([]);
   
-
+  const idcompany = typeof window == 'object' ? window.localStorage.getItem("idcompany") : null
+  console.log("zzz", typeof window);
+  console.log("rrrr",idcompany);
   useEffect(() => {
     const fetchAllCars = async () => {
       try {
@@ -69,7 +72,7 @@ console.log(allCars)
             />
             <label className="relative inline-flex items-center cursor-pointer">
               <input className="sr-only peer" value="" type="checkbox"/>
-              <div className="peer ring-2 ring-black bg-red rounded-full outline-none duration-500 after:duration-300 w-16 h-5  shadow-inner peer-checked:bg-Teal-700 shadow-gray-900 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-500  after:content-[''] after:rounded-full after:absolute after:outline-none after:h-10 after:w-10 after:bg-gray-900 after:-top-2 after:-left-2 after:flex after:justify-center after:items-center after:border-4 after:border-gray-500  peer-checked:after:translate-x-14">
+              <div className="peer ring-2 ring-black bg-red rounded-full outline-none duration-500 after:duration-300 w-16 h-5  shadow-inner peer-checked:bg-Teal-700  peer-focus:outline-none peer-focus:ring-4  after:content-[''] after:rounded-full after:absolute after:outline-none after:h-10 after:w-10 after:-top-2 after:-left-2 after:flex after:justify-center after:items-center after:border-4   peer-checked:after:translate-x-14">
               </div>
             </label>
             

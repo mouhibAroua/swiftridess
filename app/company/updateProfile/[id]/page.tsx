@@ -22,15 +22,15 @@ const UpdateProfile=()=>{
     const [emailCompany, setEmailCompany] = useState<string>("")
     const [newPassword, setNewPassword] = useState<string>("")
     const [idcompany, setIdcompany] = useState<string|null>("")
-    const {id} = useParams()
-
+    const param = useParams()
+    const id=param.id
     useEffect(()=>{
         getId();
       },[])
       const getId=()=>{
-        const id = typeof window !== 'undefined' ? window.localStorage.getItem("idcompany") : null
-        console.log("iii",id);
-            setIdcompany(id)
+        const idcompany = typeof window !== 'undefined' ? window.localStorage.getItem("idcompany") : null
+        console.log("iii",param);
+            setIdcompany(idcompany)
       }
 
 const password=async (val:any)=>{
