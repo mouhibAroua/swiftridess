@@ -2,9 +2,9 @@
   flex-direction: row;
   width: 80%; 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 120px; /* Optional: Add some gap between the cars */
-    
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px; /* Optional: Add some gap between the cars */
+  row-gap: 100px;
   }
   
   .car-box {
@@ -17,7 +17,7 @@
     margin-bottom: 20px;
     position: relative;
     top: 20px;
-    right: -350px;
+    right: -300px;
     flex: 0 1 30%; /* Adjust the flex-basis value as needed */
 
   }

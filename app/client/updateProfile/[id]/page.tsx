@@ -1,6 +1,6 @@
 "use client"
 import axios from "axios";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useParams } from "next/navigation";
 import bcrypt from "bcryptjs"
 import Navigation from "@/app/Home/navbar/page";
@@ -22,11 +22,17 @@ const UpdateProfile=()=>{
     const [email, setEmail] = useState<string>("")
     const [newPassword, setNewPassword] = useState<string>("")
     const [previewImage, setPreviewImage] = useState<string>("");
-    const userId = typeof window !== 'undefined' ? localStorage.getItem("id") : null
+    const [userId, setUserId] = useState<string|null>("")
     const {id} = useParams()
     
     const fileInputRef = useRef<HTMLInputElement>(null);
-    
+    useEffect(()=>{
+      getId();
+    },[])
+    const getId=()=>{
+      const userId = typeof window !== 'undefined' ? window.localStorage.getItem("id") : null
+          setUserId(userId)
+    }
     const addPicture = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
     
