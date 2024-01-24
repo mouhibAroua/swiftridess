@@ -62,6 +62,10 @@ const Cars = sequelize.define('cars', {
     type: DataTypes.STRING(45),
     allowNull: true,
   },
+  reserved: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
   serialCar: {
     type: DataTypes.STRING(45),
     allowNull: true,

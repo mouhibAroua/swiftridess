@@ -9,6 +9,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import ChatIcon from '@mui/icons-material/Chat';
 import { Modal } from "react-responsive-modal";
 import Home from "../../../chat/page"
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 interface CompanyInfo {
   idcompany: number;
   companyName: string;
@@ -68,7 +69,7 @@ const userId=localStorage.getItem("id")
     <div className='topSection'>
       <p>{companyInfo.companyName}</p>
       <p><CheckCircleOutlineIcon/> {companyInfo.verification ? 'Verified' : 'Not Verified'}</p>
-      <p><LocationOnIcon/> {companyInfo.location}</p>
+      <p><CalendarMonthIcon/> </p>
     <div className='bottomSection'>
     <p>Contact:</p>
     {!userId?" ":<button onClick={() => setModalOpen(true)}>
