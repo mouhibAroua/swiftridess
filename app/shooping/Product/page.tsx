@@ -1,11 +1,12 @@
 "use client"
-import Nav from "../nav/page";
 import React, { useState, useEffect } from 'react';
 import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import axios from "axios"
 import Link from 'next/link'; 
 import "../shopss.css"
+import Nav from "./Nav";
+import Footers from "../../Home/footer/page";
 
 import { log } from "console";
 const Product: React.FC = () => {
@@ -40,13 +41,21 @@ useEffect(() => {
  
 
 console.log(All);
+
 return (
+  
     <>
-  <Nav/>
+          <Nav />
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
     <div  className='mr-10 ml-10 mb-20 gap-7'>
     
-          <h1 className='text-gray-300'>
-          Home / <span className='text-black'> AllProducts</span>
+          <h1 className='text-white'>
+          Home / <span className='text-white'> AllProducts</span>
         </h1>
       <div className='flex  gap-4 flex-wrap shadow-sm'>
       {All.map((All,i)=>(
@@ -58,7 +67,7 @@ return (
           setIndex(-1)}}>
           {index === i && showAddToCart && (
           <button
-            className="cursor-pointer w-80 h-11 bg-black text-white flex justify-center items-center absolute mt-56"
+            className="cursor-pointer w-60 h-11 bg-black text-white flex justify-center items-center absolute mt-60"
             onClick={() =>
               addCart({
                 NameCart: All.Name,
