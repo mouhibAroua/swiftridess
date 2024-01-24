@@ -26,3 +26,54 @@ top: 100px;
     object-fit: scale-down; 
 height: 290px;
 }
+
+.image{
+    position: relative;
+    width: 40px;
+    bottom: 10px;
+    right: 50px;
+    object-fit: scale-down; 
+
+}
+
+.pricee{
+    position: relative;
+    right: -50px;
+}
+
+.pricc{
+    position: relative;
+    right: 90px;
+}
+
+.imga{
+    position: relative;
+    left: 600px;
+    top: 50px;
+}
+
+.sub{
+    position: relative;
+    bottom: 150px;
+    left: 630px;
+
+}
+
+#check{
+    position: relative;
+    left: 900px;
+    bottom: 180px;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #242424;
+  }
+
+  .title{
+    position: relative;
+    bottom: 210px;
+    left: 900px;
+    font-size: xx-large;
+    font-weight: bold;
+  }

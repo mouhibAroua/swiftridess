@@ -1,12 +1,10 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-// import Footer from '../Footer/page';
-import Navbar from '../nav/page';
 import axios from 'axios';
 import { MdDelete } from "react-icons/md";
 import { useRouter} from 'next/navigation';
-
+import "../shopss.css"
 
 
 function Cart() {
@@ -14,6 +12,10 @@ function Cart() {
   const [cartData, setCartData] =  useState<[]>([]);
   const [refresh,setRefresh] = useState<boolean>(true);
   const router=useRouter()
+  const [couponCode, setCouponCode] = useState(''); 
+  const [discount, setDiscount] = useState(0);
+  const [notification, setNotification] = useState(''); 
+
 const navigate=(path:string)=>{
 router.push(path)
 }
@@ -47,9 +49,17 @@ router.push(path)
     return quantity * price;
   };
 
+  const handleCouponApply = () => {
+    if (couponCode === 'RBK20') {
+      setDiscount(0.2);
+      setNotification('Congratulation: You got a 20% discount!'); 
+    } else {
+      setNotification('Invalid coupon code.'); 
+    }
+  };
+
   return (
     <div>
-      <Navbar />
       <div className='ml-40 mt-20'>
         <h1 className='text-gray-300'>
           Home / <span className='text-black'> Cart</span>
@@ -64,22 +74,19 @@ router.push(path)
         {cartData.map((item:any, i) => (
           <div key={i} className='grid grid-cols-4 mt-10 shadow items-center h-14 w-5/6 ' style={{'display':'flex','justifyContent':'space-around'}}>
            
-            <img className='w-10 ml-10' src={item.CartImage[0]} alt="no-content" />
-            <h1 className='ml-10'>{item.Price}</h1>
+           <h1 className='ml-5'>{item.NameCart}</h1>
+            <img className='image' src={item.CartImage[0]} alt="no-content" />
+            
+            <h1 className='pricc'>{item.Price} DT</h1>
             <input
               className='w-10 ml-10 border-gray-300 border rounded'
               type="number"
               value={item.Quantity || 1}
               onChange={(e) => {
                 const newQuantity = parseInt(e.target.value);
-                {/*setCartData((prevData)=> {
-                  const newData = [...prevData];
-                  newData[i].quantity = isNaN(newQuantity) ? 1 : newQuantity;
-                  return newData;
-                });*/}
               }}
             />
-            <h1 className='ml-20'>{calculateSubtotal(item.quantity || 1, item.Price)}$</h1>
+            <h1 className='pricee'>{calculateSubtotal(item.quantity || 1, item.Price)} DT</h1>
             <MdDelete className='ml-10 cursor-pointer'  onClick={() => { deleteC(item.CartID)}}/>
             
           </div>
@@ -93,20 +100,20 @@ router.push(path)
           <button className='ml-3 bg-red w-40 h-12 border rounded text-white text-sm'>Apply Coupon</button>
         </div>
 
-        <div className='mt-10 ml-80  shadow border-black border rounded w-80  text-start  '>
-          <h1 className='ml-5 mt-2'>Cart Total</h1>
-          <h3 className='ml-5 mt-6'>Subtotal: {cartData.reduce((total, item) => total + calculateSubtotal(item.quantity || 1, item.Price), 0)}$</h3>
-          <hr className="text-gray-300 w-5/6 text-center" />
-          <h3 className='ml-5 mt-6'>Shipping: Free</h3>
-          <hr className="text-gray-300 w-5/6" />
-          <h3 className='ml-5 mt-6'>Total: {cartData.reduce((total, item) => total + calculateSubtotal(item.quantity || 1, item.Price), 0)}$</h3>
+        <img className="imga" src="https://images2.imgbox.com/fc/97/c24stbXg_o.png" alt=""></img>
+
+          <h3 className='sub'>Subtotal: {cartData.reduce((total, item) => total + calculateSubtotal(item.quantity || 1, item.Price), 0)}$</h3>
+          <br/>
+          <h3 className='sub'>Shipping: Free</h3>
+          <br/>
+          <h3 className='sub'>Total: {cartData.reduce((total, item) => total + calculateSubtotal(item.quantity || 1, item.Price), 0)}$</h3>
+          <br/>
+
           <button
           onClick={()=>navigate('/shooping/paiement')} 
-           className='shadow border-gray-300 border bg black rounded ml-20 bg-black text-white w-40 h-12 mt-4'>Proceed to checkout</button>
+          className=' bg-red w-40 h-12 border rounded text-white text-sm' id='check'>Checkout</button>
         </div>
       </div>
-      
-    </div>
   );
 }
 

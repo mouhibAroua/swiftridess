@@ -7,7 +7,6 @@ import { CiSquareMinus } from "react-icons/ci";
 import { TfiReload } from "react-icons/tfi";
 import { CiDeliveryTruck } from "react-icons/ci";
 import '../../shopss.css'
-import Navbar from '../../nav/page';
 import Quantity from "./quantity"
 import Product from '../../Product/page';
 import axios from 'axios';
@@ -60,7 +59,6 @@ console.log(product);
 
   return (
     <>
- <Navbar/>
 <div className="bg-white flex flex-row justify-center w-full">
 <div className="bg-white w-[1437px] h-[1077px] ">
   <div className=''>
@@ -85,7 +83,7 @@ console.log(product);
     <Quantity/>
 
 
-    <div className="absolute top-[243px] left-[910px] font-heading-24px-semibold font-[number:var(--heading-24px-semibold-font-weight)] text-text-2 text-[length:var(--heading-24px-semibold-font-size)] tracking-[var(--heading-24px-semibold-letter-spacing)] leading-[var(--heading-24px-semibold-line-height)] whitespace-nowrap [font-style:var(--heading-24px-semibold-font-style)]">
+    <div className="title">
 {product&&product.Name}
 </div>
 <div className="absolute top-[280px] left-[910px] font-heading-24px-semibold font-[number:var(--heading-24px-semibold-font-weight)] text-text-2 text-[length:var(--heading-24px-semibold-font-size)] tracking-[var(--heading-24px-semibold-letter-spacing)] leading-[var(--heading-24px-semibold-line-height)] whitespace-nowrap [font-style:var(--heading-24px-semibold-font-style)]">
