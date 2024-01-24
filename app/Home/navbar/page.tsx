@@ -1,7 +1,10 @@
 "use client"
- import "./nav.css"
+import "./nav.css"
 import React, { useState, useRef, useEffect } from "react";
 import { useMediaQuery } from 'react-responsive';
+import axios from "axios";
+
+
 interface MenuItem {
     title: string;
     path: string;
@@ -12,12 +15,13 @@ interface ProfileDropDownProps {
 }
 
 interface users {
-    image: string;
+    image_user: string;
 }
 
 
 const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
     const [state, setState] = useState(false);
+    const [person,setPerson] = useState<users | null>(null);
     const profileRef = useRef<HTMLButtonElement>(null);
     const userId = localStorage.getItem('id');
     const logout=()=>{
@@ -64,7 +68,22 @@ const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
             }
         }
         console.log(header)
-    },[])
+    },[]);
+
+    useEffect(() => {
+        const getOne = async () => {
+          try {
+            const response = await axios.get(`http://localhost:3000/api/users/${userId}`)
+            setPerson(response.data);
+            
+            
+          } catch (error) {
+            console.log(error);
+          } 
+        };
+      
+        getOne();
+      }, []);
   
 
     return (
@@ -80,9 +99,10 @@ const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
                     onClick={() => setState(!state)}
                 >
                     {!userId?"":<img
-                        src="https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+                        src={person?.image_user||"https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg"}
                         className="w-full h-full rounded-full"
                         alt="Profile"
+                        
                     />}
                 </button>
                 <div className="lg:hidden">

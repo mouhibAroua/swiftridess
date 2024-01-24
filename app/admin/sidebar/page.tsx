@@ -110,7 +110,7 @@ useEffect(() => {
             <button ref={profileRef} className="w-24 h-24 outline-none rounded-full ring-offset-2 ring-gray-100 ring-2 lg:focus:ring-indigo-600"
                 onClick={() => setState(!state)}>
                 <img
-                src={person?.image_user}
+                src={person?.image_user || "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg"}
                  className="w-full h-full rounded-full"
           
                 alt="Profile"

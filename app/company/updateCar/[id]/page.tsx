@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react"
 import axios from "axios"
 import SideNav from "../../DashBoard/Sidenav"
 import { useParams } from "next/navigation"
-import NotFound from "@/app/notFound/page"
+
 
 
 interface Car {
@@ -99,7 +99,7 @@ const UpdateCar = ({ carData }: { carData: Car | null }) => {
     return(
        <>
     {(id!==idcars)&&
-    <NotFound/>}
+    "not found"}
     {(id===idcars)&& 
        <div>
         <SideNav/>

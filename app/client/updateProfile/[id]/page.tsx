@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { useParams } from "next/navigation";
 import bcrypt from "bcryptjs"
 import Navigation from "@/app/Home/navbar/page";
-import NotFound from "@/app/notFound/page";
+
 
 interface Client {
     id:string|null;
@@ -16,7 +16,6 @@ interface Client {
   }
 
 const UpdateProfile=()=>{
-  
     const [imgUrl, setImgUrl] = useState<string>("");
     const [fullName, setFullName] = useState<string>("")
     const [phoneNumber, setPhoneNumber] = useState<string>("")
@@ -74,9 +73,7 @@ const UpdateProfile=()=>{
           };
     
           const response = await axios.put(`http://localhost:3000/api/users/${userId}`, updatedUser);
-    
           console.log(response.data, 'res');
-          alert('You successfully updated your account');
         } catch (error) {
           console.error(error);
         }
@@ -88,7 +85,7 @@ const UpdateProfile=()=>{
 return(    
   <>
   {(id!==userId)&&
-  <NotFound/>}
+  "not found"}
   {(id===userId)&&
     <div>
       <Navigation/>
