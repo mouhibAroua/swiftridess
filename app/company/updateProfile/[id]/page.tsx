@@ -1,12 +1,12 @@
 "use client"
 import axios from "axios";
-import { useState} from "react";
+import { useState, useEffect} from "react";
 import bcrypt from "bcryptjs"
 import { useParams } from "next/navigation";
 import Sidebar from "../../DashBoard/Sidenav";
 
 interface Company {
-    idcompany:string;
+    idcompany:string|null;
     companyName: string;
     ownerName: string;
     phoneNumber: string;
@@ -21,8 +21,18 @@ const UpdateProfile=()=>{
     const [phoneNumber, setPhoneNumber] = useState<string>("")
     const [emailCompany, setEmailCompany] = useState<string>("")
     const [newPassword, setNewPassword] = useState<string>("")
-    const idcompany = typeof window !== 'undefined' ? localStorage.getItem("idcompany") : null
+    const [idcompany, setIdcompany] = useState<string|null>("")
     const {id} = useParams()
+
+    useEffect(()=>{
+        getId();
+      },[])
+      const getId=()=>{
+        const id = typeof window !== 'undefined' ? window.localStorage.getItem("idcompany") : null
+        console.log("iii",id);
+            setIdcompany(id)
+      }
+
 const password=async (val:any)=>{
     let hashedNewPassword = await bcrypt.hash(newPassword, 10);
     setNewPassword(hashedNewPassword)

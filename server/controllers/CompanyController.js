@@ -64,9 +64,9 @@ module.exports = {
         res.json(veh)
     },
     deleteCar:async (req,res)=>{
-        const {id}=req.params;
+        const idcars=req.params.id
         const veh=await car.destroy({
-            where:{id}
+            where:{idcars}
         })
         res.json(veh)
     },
