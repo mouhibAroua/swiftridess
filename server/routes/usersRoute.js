@@ -30,5 +30,7 @@ router.post('/company/reservation/accept', UserController.acceptReservation);
 
 router.delete('/company/reservation/delete', UserController.deleteReservation); 
 
+router.post('/company/reservationdate/:vehicleId', UserController.reserveVehicle);
+
 
 module.exports = router;
