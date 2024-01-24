@@ -23,7 +23,7 @@ const UpdateProfile=()=>{
     const [email, setEmail] = useState<string>("")
     const [newPassword, setNewPassword] = useState<string>("")
     const [previewImage, setPreviewImage] = useState<string>("");
-    const userId = localStorage.getItem('id')
+    const userId = typeof window !== 'undefined' ? localStorage.getItem("id") : null
     const {id} = useParams()
     
     const fileInputRef = useRef<HTMLInputElement>(null);

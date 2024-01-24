@@ -106,9 +106,6 @@ const addPicture = (e: React.ChangeEvent<HTMLInputElement>) => {
          <div className="flex-1 bg-gray-100 p-4 ml-[350px]">
          {/* Your main content goes here */}
          <div>
-         <Typography variant="h1" fontWeight="bold" style={{ color: '#000080' }}>
-           Profile
-         </Typography>
          
          <div >
       <div
