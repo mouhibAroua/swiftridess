@@ -299,6 +299,32 @@ return res.status(200).json(search)
 }
 
 
+
+const reserveVehicle = async (req, res) => {
+  try {
+    const { vehicleId } = req.params;
+
+    // Calculate the reservation date (3 months from the current date)
+    const reservationDate = new Date();
+    reservationDate.setMonth(reservationDate.getMonth() + 3);
+
+    // Update the 'reserved' field in the 'cars' table
+    await Cars.update(
+      { reserved: reservationDate },
+      {
+        where: {
+          idcars: vehicleId,
+        },
+      }
+    );
+
+    res.status(201).json({ message: 'Reservation successful', reservationDate });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
 module.exports = {
   searchByName,
   getAllUsers,
@@ -311,4 +337,5 @@ module.exports = {
   getCompanyInfoByCarId,
   deleteReservation,
   acceptReservation,
+  reserveVehicle,
 };

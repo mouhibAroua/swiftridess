@@ -25,4 +25,16 @@ height: 191px;
     background-color: #f0eded; 
     }
 
-      
+      .true{
+        position: relative;
+        bottom: 625px;
+        left: 845px;
+        font-weight: bold;
+      }
+
+      .false{
+        position: relative;
+        bottom: 620px;
+        left: 825px;
+        font-weight: bold;
+      }
