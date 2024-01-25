@@ -1,5 +1,20 @@
+.video-background {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5) url('https://cdn.discordapp.com/attachments/1113064451806076990/1198320500506636329/aaaccc_2.gif?ex=65be79ef&is=65ac04ef&hm=ae9b7b6d6b98b9de745163738f09602d9e8590cb174673c8c1241e41a1a018cd&') center/cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
 .login {
-    color: #000;
+    color: #ffffff; 
     text-transform: uppercase;
     letter-spacing: 2px;
     display: block;
@@ -11,11 +26,15 @@
     justify-content: center;
     align-items: center;
     min-height: 150px;
-    width: 350px;
+    width: 300px;
     flex-direction: column;
-    gap:  15px;
-    background: #e3e3e3;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    gap: 25px;
     border-radius: 8px;
+
   }
 
   .inputBox {
@@ -28,11 +47,11 @@
     padding: 10px;
     outline: none;
     border: none;
-    color: #000;
+    color: #ffffff;
     font-size: 1em;
     background: transparent;
-    border-left: 2px solid #000;
-    border-bottom: 2px solid #000;
+    border-left: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
     transition: 0.1s;
     border-bottom-left-radius: 8px;
   }
@@ -46,7 +65,7 @@
     padding: 10px;
     pointer-events: none;
     font-size: 12px;
-    color: #000;
+    color: #ffffff;
     text-transform: uppercase;
     transition: 0.5s;
     letter-spacing: 3px;
@@ -58,23 +77,24 @@
     transform: translateX(113px) translateY(-15px);
     font-size: 0.8em;
     padding: 5px 10px;
-    background: #000;
+    background: #ffffff;
     letter-spacing: 0.2em;
-    color: #fff;
+    color: #000000;
     border: 2px;
   }
   
   .inputBox input:valid,
   .inputBox input:focus {
-    border: 2px solid #000;
+    border: 2px solid #ffffff;
     border-radius: 8px;
   }
+  
   
   .enter {
     height: 45px;
     width: 100px;
     border-radius: 5px;
-    border: 2px solid #000;
+    border: 2px solid #ffffff;
     cursor: pointer;
     background-color: transparent;
     transition: 0.5s;
@@ -82,6 +102,7 @@
     font-size: 10px;
     letter-spacing: 2px;
     margin-bottom: 1em;
+    color: #ffffff;
   }
   
   .enter:hover {
@@ -100,7 +121,7 @@
   .inputBox button {
     height: 45px;
     border-radius: 8px;
-    border: 2px solid #000;
+    border: 2px solid #ffffff;
     cursor: pointer;
     background-color: transparent;
     transition: 0.5s;

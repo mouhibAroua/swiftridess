@@ -41,10 +41,10 @@ export default function Home() {
 
   return (
   
-<div className='flex justify-center items-center h-screen' style={{ backgroundColor: '#9ca3af' }}>
-      <div className='max-w-[1700px] ml-20'>
-        <img src="https://inv.assets.ansira.net/ChromeColorMatch/us/TRANSPARENT_cc_2023LRS070007_01_1280_1AA.png" alt="" />
-      </div>
+<div className='flex justify-center items-center h-screen' >
+          <div className="video-background  ">
+              <video src={process.env.PUBLIC_URL+"/assets/video3.mp4"} loop autoPlay muted className='object-cover absolute h-screen w-screen -z-10 top-0 left-0'></video>
+          </div>
       <div className="container" >
         <form onSubmit={handleSubmit} >
         <div className="card mx-auto">
@@ -68,8 +68,8 @@ export default function Home() {
            <span>Password</span>
            </div>
            <button className="enter" onClick={()=>getCompanyIdFromLocalStorage()}>Log In</button>
-          <div className='flex text-sm mt-3'>
-          <h1  className='-mt-6 mb-4  '>Already have account  ?  </h1> <Link className='-mt-6 ' href="/SignupCompany"><span className='underline  cursor-pointer'>  Register Now</span></Link>
+          <div className='flex text-sm mt-3 text-white'>
+          <h1  className='-mt-6 mb-4    '>Already have account  ?  </h1> <Link className='-mt-6 ' href="/SignupCompany"><span className='underline  cursor-pointer'>  Register Now</span></Link>
           </div>
          
         </div>
