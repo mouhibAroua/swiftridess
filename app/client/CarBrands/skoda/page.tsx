@@ -17,7 +17,7 @@ const CarList: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:3000/api/car/getallcars');
-        setCars(response.data.filter((car: any) => car.brand === 'skoda'));
+        setCars(response.data.filter((car: any) => car.brand === 'Skoda'));
       } catch (error) {
         console.error('Error fetching car data', error);
       }
