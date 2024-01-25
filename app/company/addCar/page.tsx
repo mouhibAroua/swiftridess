@@ -26,13 +26,13 @@ const addCar=()=>{
     const [price, setPrice] = useState<number>(0)
     const [brand, setBrand] =useState<string>("")
     const [model, setModel] =useState<string>("")
-    const [type, setType] =useState<string>("")
-    const [transmission, setTransmission] =useState<string>("")
-    const [fuelType, setFuelType] =useState<string>("")
+    const [type, setType] =useState<string>("SUV")
+    const [transmission, setTransmission] =useState<string>("Automatic")
+    const [fuelType, setFuelType] =useState<string>("Diesel")
     const [registration, setRegistration] =useState<string>("")
     const [mileage, setMileage] =useState<string>("")
-    const [occasion, setOccassion] =useState<string>("")
-    const [passengers, setPassengers] =useState<string>("")
+    const [occasion, setOccassion] =useState<string>("Dialy use")
+    const [passengers, setPassengers] =useState<string>("2")
     const [image, setImage] = useState<string[]>([]);
     const [serialCar, setSerialCar] =useState<string>("")
     const [previewImage, setPreviewImage] = useState<string>("");
@@ -206,13 +206,12 @@ const addCar=()=>{
   <div className="grid grid-cols-2">
   <label  className="block  text-white  text-lg"
     >Transmission:</label>
- 
-    <input
-    onChange={(e)=>setTransmission(e.target.value)}
-      type="text"
-      name="inputname"
-      className="block w-[300px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800"
-    />
+ <select className="block w-[300px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800 " 
+  id="transmission" value={transmission}
+  onChange={(e)=>setTransmission(e.target.value)}>
+          <option value="Automatic">Automatic</option>
+          <option value="Manual">Manual</option>
+       </select>
  </div>
  <div className="grid grid-cols-2">
   <label  className="block  text-white  text-lg"

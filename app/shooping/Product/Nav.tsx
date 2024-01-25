@@ -1,10 +1,7 @@
 "use client"
-import "./nav.css"
+ import "./nav.css"
 import React, { useState, useRef, useEffect } from "react";
 import { useMediaQuery } from 'react-responsive';
-import axios from "axios";
-
-
 interface MenuItem {
     title: string;
     path: string;
@@ -15,13 +12,12 @@ interface ProfileDropDownProps {
 }
 
 interface users {
-    image_user: string;
+    image: string;
 }
 
 
 const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
     const [state, setState] = useState(false);
-    const [person,setPerson] = useState<users | null>(null);
     const profileRef = useRef<HTMLButtonElement>(null);
     const userId = localStorage.getItem('id');
     const logout=()=>{
@@ -68,22 +64,7 @@ const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
             }
         }
         console.log(header)
-    },[]);
-
-    useEffect(() => {
-        const getOne = async () => {
-          try {
-            const response = await axios.get(`http://localhost:3000/api/users/${userId}`)
-            setPerson(response.data);
-            
-            
-          } catch (error) {
-            console.log(error);
-          } 
-        };
-      
-        getOne();
-      }, []);
+    },[])
   
 
     return (
@@ -95,16 +76,7 @@ const ProfileDropDown: React.FC<ProfileDropDownProps> = (props) => {
         <div className={`relative ${props.class}`}  >
             {!userId? "":
             <div className="flex items-center space-x-4">
-                <button ref={profileRef} className="w-10 h-10 outline-none rounded-full ring-offset-2 ring-gray-200 ring-2 lg:focus:ring-indigo-600 -mt-8"
-                    onClick={() => setState(!state)}
-                >
-                    {!userId?"":<img
-                        src={person?.image_user||"https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg"}
-                        className="w-full h-full rounded-full"
-                        alt="Profile"
-                        
-                    />}
-                </button>
+                
                 <div className="lg:hidden">
                     <span className="block">Micheal John</span>
                     <span className="block text-sm text-black">john@gmail.com</span>
@@ -134,7 +106,6 @@ const Navigation: React.FC = () => {
 
     const navigation: MenuItem[] = [
         { title: "Home", path: "/Home" },
-        { title: "Sign", path: "/UserLogin/Login" },
     ];
 
   return (
@@ -164,7 +135,6 @@ const Navigation: React.FC = () => {
                                 ))
                             }
                         </ul>
-                        <button onClick={() => window.scrollTo({ top: 1800, behavior: "smooth" })} className="whyusb"> Why Us</button>
                         <ProfileDropDown 
                             class="mt-5 pt-5 border-t lg:hidden"
                         />
