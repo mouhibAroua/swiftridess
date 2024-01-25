@@ -15,6 +15,16 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string>('');
 
+  const ErrNotif = () => toast.error('please check your information!', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
  
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -22,25 +32,27 @@ const Login = () => {
     event.preventDefault();
     if(!email||!password){
       setError('Invalid email or password')
+      ErrNotif()
       return;
     }
     
     try {
-      const logUser = await axios.post("http://localhost:3000/api/login/user", { email, password });
-      
+      const logUser = await axios.post("http://localhost:3000/api/login/user", { email, password });      
       localStorage.setItem('id', logUser.data.id);
       console.log("data ", logUser);
-      if(logUser.data.role ==="client") {
-        
+
+      if(logUser.data.role ==="client") {   
         push("/Home")
       }
       if(logUser.data.role ==="admin") {
-        push("/Admin")
+        push("/admin/dashboard")
       }
-    } catch (e) {
-      const error = e as AxiosError;
-      alert(error.message);
+      ErrNotif()
+    } catch (e) {     
+      
+      const error = e as AxiosError;    
       console.log(error);
+      
       
     }
   };

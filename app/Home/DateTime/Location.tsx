@@ -65,7 +65,7 @@ export default function MultipleSelectChip() {
       </div>
     );
   }
-
+  
   return (
     <div className='mapp'>
     <FormControl sx={{ m: 1, width: 250, position: "relative", top: "-335px", right: "-70px" }}>
@@ -83,8 +83,9 @@ export default function MultipleSelectChip() {
 
                     <div>
                     <Popup>
-                    <button onClick={() => router.push('client/searchedCar')}>View Vehicles</button>
+                      <button onClick={() => router.push(`/client/searchedCar/${company.idcompany }`, )}>View Vehicles</button>
                     </Popup>
+                    
                       <Tooltip direction="bottom" offset={[0, 20]} opacity={1} permanent>
                         {company.companyName}
                       </Tooltip>
@@ -96,6 +97,8 @@ export default function MultipleSelectChip() {
         </MapContainer>
       </Modal>
     </FormControl>
+    
   </div>
+  
   );
 }
