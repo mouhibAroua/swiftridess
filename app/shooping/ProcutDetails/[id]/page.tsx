@@ -10,6 +10,10 @@ import '../../shopss.css'
 import Quantity from "./quantity"
 import Product from '../../Product/page';
 import axios from 'axios';
+import '../pro.css'
+import Nav from '../../navBar/page'
+import Banner from "../../navBar/banner";
+
 interface Product {
   ProductID: number;
   Name: string;
@@ -58,7 +62,12 @@ useEffect(() => {
 console.log(product);
 
   return (
+  
     <>
+    <div className='navbar-container '>
+    <Nav />
+    </div>
+     
 <div className="bg-white flex flex-row justify-center w-full">
 <div className="bg-white w-[1437px] h-[1077px] ">
   <div className=''>
@@ -110,18 +119,18 @@ console.log(product);
             </div>
      </div>
      </div>
-        <button onClick={()=>{addCart({NameCart:product.Name,CartImage:product.ProductImage[0],Price:product.Price,Quantity:product.Quantity,userUserID:userId})}} button="small" className="!absolute !left-[1072px] !top-[390px] bg-red rounded w-48 h-12 text-black"  hover={false}    >Add To Cart</button>
-        <div className="absolute w-[399px] h-[180px] top-[503px] left-[897px] rounded-[4px] overflow-hidden border border-solid border-[#00000080]">
+        <button onClick={()=>{addCart({NameCart:product.Name,CartImage:product.ProductImage[0],Price:product.Price,Quantity:product.Quantity,userUserID:userId})}} button="small" className="!absolute !left-[1072px] !top-[390px] bg-red rounded w-48 h-12 text-white"  hover={false}    >Add To Cart</button>
+        <div className="absolute w-[399px] h-[180px] top-[503px] left-[897px] rounded-[4px] overflow-hidden border border-solid ">
           <div className="absolute w-[399px] h-px top-[90px] left-0 opacity-50">
             <img className="absolute w-[399px] h-px -top-px left-0 object-cover" alt="Line" src="line-1.svg" />
           </div>
           <div className="inline-flex items-center gap-[16px] absolute top-[24px] left-[16px]">
             <CiDeliveryTruck  className="!relative !w-[40px] !h-[40px]" />
             <div className="inline-flex flex-col items-start gap-[8px] relative flex-[0_0_auto]">
-              <div className="relative w-fit mt-[-1.00px] font-title-16px-medium font-[number:var(--title-16px-medium-font-weight)] text-black text-[length:var(--title-16px-medium-font-size)] tracking-[var(--title-16px-medium-letter-spacing)] leading-[var(--title-16px-medium-line-height)] whitespace-nowrap [font-style:var(--title-16px-medium-font-style)]">
+              <div className="relative w-fit mt-[-1.00px] font-title-16px-medium font-[number:var(--title-16px-medium-font-weight)] text-white text-[length:var(--title-16px-medium-font-size)] tracking-[var(--title-16px-medium-letter-spacing)] leading-[var(--title-16px-medium-line-height)] whitespace-nowrap [font-style:var(--title-16px-medium-font-style)]">
                 Free Delivery
               </div>
-              <p className="relative w-fit [font-family:'Poppins-Medium',Helvetica] font-medium text-black text-[12px] tracking-[0] leading-[18px] underline whitespace-nowrap">
+              <p className="relative w-fit [font-family:'Poppins-Medium',Helvetica] font-medium text-white text-[12px] tracking-[0] leading-[18px] underline whitespace-nowrap">
                 Enter your postal code for Delivery Availability
               </p>
               </div>
@@ -129,11 +138,11 @@ console.log(product);
           <div className="inline-flex items-center gap-[16px] absolute top-[106px] left-[16px]">
             <TfiReload  className="!relative !w-[40px] !h-[40px]" />
             <div className="inline-flex flex-col items-start gap-[8px] relative flex-[0_0_auto]">
-              <div className="relative w-fit mt-[-1.00px] font-title-16px-medium font-[number:var(--title-16px-medium-font-weight)] text-black text-[length:var(--title-16px-medium-font-size)] tracking-[var(--title-16px-medium-letter-spacing)] leading-[var(--title-16px-medium-line-height)] whitespace-nowrap [font-style:var(--title-16px-medium-font-style)]">
+              <div className="relative w-fit mt-[-1.00px] font-title-16px-medium font-[number:var(--title-16px-medium-font-weight)] text-white text-[length:var(--title-16px-medium-font-size)] tracking-[var(--title-16px-medium-letter-spacing)] leading-[var(--title-16px-medium-line-height)] whitespace-nowrap [font-style:var(--title-16px-medium-font-style)]">
                 Return Delivery
               </div>
-              <p className="relative w-fit [font-family:'Poppins-Medium',Helvetica] font-medium text-black text-[12px] tracking-[0] leading-[18px] whitespace-nowrap">
-                <span className="font-title-12px-medium font-[number:var(--title-12px-medium-font-weight)] text-black text-[length:var(--title-12px-medium-font-size)] tracking-[var(--title-12px-medium-letter-spacing)] leading-[var(--title-12px-medium-line-height)] [font-style:var(--title-12px-medium-font-style)]">
+              <p className="relative w-fit [font-family:'Poppins-Medium',Helvetica] font-medium text-white text-[12px] tracking-[0] leading-[18px] whitespace-nowrap">
+                <span className="font-title-12px-medium font-[number:var(--title-12px-medium-font-weight)] text-white text-[length:var(--title-12px-medium-font-size)] tracking-[var(--title-12px-medium-letter-spacing)] leading-[var(--title-12px-medium-line-height)] [font-style:var(--title-12px-medium-font-style)]">
                   Free 30 Days Delivery Returns.{" "}
                 </span>
                 <span className="underline">Details</span>

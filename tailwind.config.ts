@@ -10,6 +10,7 @@ const config: Config = {
     colors:{
       transparent: 'transparent',
       current: 'currentColor',
+      blackish: "#1b1b1b",
       'back':'#a39ea4',
       'inputs':'#f5f5f5',
       'red':'#db4444',
@@ -31,6 +32,7 @@ const config: Config = {
       'Teal-100':'#ccfbf1',
       'Teal-600':'#0d9488',
       'Teal-700': '#0f766e'
+      
 
     },
     extend: {

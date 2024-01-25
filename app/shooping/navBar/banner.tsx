@@ -1,21 +1,48 @@
-import React from 'react';
-import "./nav.css"
-const AnnouncementBanner: React.FC = () => {
+import React from "react";
+
+import { BsSearch } from "react-icons/bs";
+import { BiUser } from "react-icons/bi";
+import { FiHeart } from "react-icons/fi";
+import { HiOutlineShoppingBag } from "react-icons/hi";
+import Link from "next/link";
+
+const HeaderMain = () => {
   return (
-    <div className="bg-indigo-600">
-      <div className="max-w-screen-xl mx-auto px-4 py-3 text-white sm:text-center md:px-8">
-        <p className="banner">
-          Keep An Eye On The Store For Future Sales !{' '}
-          <a href="javascript:(0)" className="font-semibold underline duration-150 hover:text-indigo-100 inline-flex items-center gap-x-1">
-            Learn more
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-              <path fillRule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z" clipRule="evenodd" />
-            </svg>
-          </a>
-        </p>
+    <div className="border-b border-gray-200 py-6 mr-[40px] " style={{marginLeft:'50px'}}>
+      <div className="container sm:flex justify-between items-center  rounded" style={{backgroundColor:'#cbd5e1'}}>
+      <img 
+         src="https://cdn.discordapp.com/attachments/1157269732219691038/1199622531003465728/cars-removebg-preview.png?ex=65c3368b&is=65b0c18b&hm=7444ad51f09b5d7393b17cf79b1a8abf3dac5abd2250ce3f31b9b6b14b72ead3&" 
+         alt="" 
+         style={{ width: "120px", height: "auto" }} 
+       />
+
+        <div className="w-full sm:w-[300px] md:w-[70%] relative">
+          <input
+            className="border-gray-200 border p-2 px-4 rounded-lg w-full"
+            type="text"
+            placeholder="Enter any product name..."
+          />
+
+          <BsSearch
+            className="absolute right-0 top-0 mr-3 mt-3 text-gray-400"
+            size={20}
+          />
+        </div>
+
+        <div className="hidden lg:flex gap-4 text-gray-500 text-[30px] mr-3">
+          
+
+          <div className="relative">
+            <Link href={'/shooping/cart'}><HiOutlineShoppingBag /></Link>
+            
+            <div className="bg-red-600 rounded-full absolute top-0 right-0 w-[18px] h-[18px] text-[12px] text-white grid place-items-center translate-x-1 -translate-y-1">
+              0
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default AnnouncementBanner;
+export default HeaderMain;

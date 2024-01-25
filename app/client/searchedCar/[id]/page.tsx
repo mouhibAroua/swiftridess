@@ -5,7 +5,6 @@ import PeopleIcon from "@mui/icons-material/People";
 import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import Link from "next/link";
-import Navigation from "@/app/Home/navbar/page";
 
 interface Cars {
   idcars: string;
@@ -40,7 +39,6 @@ const AllCars: React.FC<Cars> = () => {
   }, []);  
   return (
     <div>
-      <Navigation/>
       <h1 className="text-center font-bold text-5xl mt-20">
         {" "}
         Choose your favorite car
@@ -86,7 +84,6 @@ const AllCars: React.FC<Cars> = () => {
         </div>
       </div>
     </div>
-  );
   );
 };
 export default AllCars;
