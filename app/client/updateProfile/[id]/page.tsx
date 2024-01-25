@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import { useParams } from "next/navigation";
 import bcrypt from "bcryptjs"
 import Navigation from "@/app/Home/navbar/page";
-import NotFound from "@/app/notFound/page";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 interface Client {
