@@ -19,7 +19,16 @@ const SignUp = () => {
 
   
   const router = useRouter();
-  const notify = () => toast("Your Account Created Succesfuly! please log in");
+  const notify = () => toast.success('Your Account Created Succesfuly! please log in', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -56,6 +65,7 @@ const SignUp = () => {
       const data = await res.json();
   
       if (res.ok) {
+        notify()
         router.push("/UserLogin/Login");
       } else {
         console.log("User registration failed:", data.error );
@@ -102,7 +112,7 @@ const SignUp = () => {
             <span className="user">Number</span>
           </div>
 
-          <button className="enter" onClick={()=>{notify()}}>register</button>
+          <button className="enter" >register</button>
           {error && (
             <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
               {error}
