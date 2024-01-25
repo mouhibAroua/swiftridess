@@ -5,8 +5,7 @@ import "./allvehicles.css";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import MySwitch from "./switch"
 import Link from "next/link";
 
 
@@ -69,13 +68,7 @@ console.log(allCars)
               src={car.image[0]}
               alt={`${car.brand} ${car.model}`}
               className="car-image"
-            />
-            <label className="relative inline-flex items-center cursor-pointer">
-              <input className="sr-only peer" value="" type="checkbox"/>
-              <div className="peer ring-2 ring-black bg-red rounded-full outline-none duration-500 after:duration-300 w-16 h-5  shadow-inner peer-checked:bg-Teal-700  peer-focus:outline-none peer-focus:ring-4  after:content-[''] after:rounded-full after:absolute after:outline-none after:h-10 after:w-10 after:-top-2 after:-left-2 after:flex after:justify-center after:items-center after:border-4   peer-checked:after:translate-x-14">
-              </div>
-            </label>
-            
+            />         
             <div className="car-details">
             
               <h3>
@@ -99,11 +92,11 @@ console.log(allCars)
                   
               </button>
               </Link>
-              <button className="delete-button" onClick={()=>remove(car.idcars)} >
-                  <svg className="delete-svgIcon" viewBox="0 0 448 512">
-                    <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
-                  </svg>
-              </button>
+              <button className="delete-button" onClick={() => { remove(car.idcars); window.location.reload(); }}>
+  <svg className="delete-svgIcon" viewBox="0 0 448 512">
+    <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+  </svg>
+</button>
               </div>
             </div>
           </div>

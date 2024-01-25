@@ -3,7 +3,7 @@ const Cars=require('../models/vehicles');
 const Company=require('../models/company');
 const Reservation=require('../models/reservation');
 const jwt =require('jsonwebtoken')
-
+const Feedback=require('../models/feedback');
 
 const generateToken = (id, fullName) => {
   const expiresIn = 60 * 60 * 48;
@@ -303,12 +303,8 @@ return res.status(200).json(search)
 const reserveVehicle = async (req, res) => {
   try {
     const { vehicleId } = req.params;
-
-    // Calculate the reservation date (3 months from the current date)
     const reservationDate = new Date();
     reservationDate.setMonth(reservationDate.getMonth() + 3);
-
-    // Update the 'reserved' field in the 'cars' table
     await Cars.update(
       { reserved: reservationDate },
       {
@@ -317,13 +313,53 @@ const reserveVehicle = async (req, res) => {
         },
       }
     );
-
     res.status(201).json({ message: 'Reservation successful', reservationDate });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+async function getAllFeedBack(req, res) {
+  try {
+    const feedbacks = await Feedback.findAll({
+      include: [
+        {
+          model: User,
+          as: 'client',
+          attributes: ['fullName', 'image_user'], 
+        },
+      ],
+    });
+    const feedbacksWithFullNameAndImage = feedbacks.map((feedback) => ({
+      idfeedback: feedback.idfeedback,
+      content: feedback.content,
+      client_id: feedback.client_id,
+      clientFullName: feedback.client.fullName,
+      clientImageUser: feedback.client.image_user, 
+    }));
+
+    res.json(feedbacksWithFullNameAndImage);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+async function createFeedback(req, res) {
+  const { content, client_id } = req.body;
+  try {
+    if (!content || !client_id) {
+      return res.status(400).json({ error: 'Content and client_id are required fields.' });
+    }
+    const newFeedback = await Feedback.create({
+      content,
+      client_id,
+    });
+    res.status(201).json(newFeedback);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
 
 module.exports = {
   searchByName,
@@ -338,4 +374,6 @@ module.exports = {
   deleteReservation,
   acceptReservation,
   reserveVehicle,
+  getAllFeedBack,
+  createFeedback,
 };
