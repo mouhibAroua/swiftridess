@@ -5,17 +5,19 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import axios from "axios"
 import Link from 'next/link'; 
 import "../shopss.css"
-import Nav from "./Nav";
+import Banner from "../navBar/banner";
 import Footers from "../../Home/footer/page";
 
 import { log } from "console";
+
 const Product: React.FC = () => {
   const [All, setAll] = useState<any[]>([]);
   const [showAddToCart, setShowAddToCart] = useState<boolean>(false);
-const [index, setIndex] = useState<number>(-1);
-const userId = localStorage.getItem('userId');
-console.log(userId)
-useEffect(() => {
+  const [index, setIndex] = useState<number>(-1);
+  const userId = localStorage.getItem('userId');
+  console.log(userId);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('http://localhost:3000/api/products/allProducts');
@@ -32,72 +34,71 @@ useEffect(() => {
     fetchData();
   }, []);
 
-  const addCart=(obj:object)=>{
-    axios.post("http://localhost:3000/api/cart/addCart",obj)
-    .then((res)=>{console.log(res)})
-    .catch((err)=>console.log(err))
+  const addCart = (obj: object) => {
+    axios.post("http://localhost:3000/api/cart/addCart", obj)
+      .then((res) => { console.log(res) })
+      .catch((err) => console.log(err))
   }
-  
- 
 
-console.log(All);
+  console.log(All);
 
-return (
-  
+  return (
     <>
-          <Nav />
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
-    <div  className='mr-10 ml-10 mb-20 gap-7'>
-    
-          <h1 className='text-white'>
-          Home / <span className='text-white'> AllProducts</span>
-        </h1>
-      <div className='flex  gap-4 flex-wrap shadow-sm'>
-      {All.map((All,i)=>(
-        <div key={i} className=''>
-          <div className='w-80 h-72  mt-10 flex-wrap'
-          onMouseEnter={()=>{setShowAddToCart(!showAddToCart)
-            setIndex(i)}}
-          onMouseLeave={()=>{setShowAddToCart(!showAddToCart)
-          setIndex(-1)}}>
-          {index === i && showAddToCart && (
-          <button
-            className="cursor-pointer w-60 h-11 bg-black text-white flex justify-center items-center absolute mt-60"
-            onClick={() =>
-              addCart({
-                NameCart: All.Name,
-                CartImage: All.ProductImage,
-                Price: All.Price,
-                Quantity: All.Quantity,
-                company_idcompany: userId,
-              })
-            }
-          >
-            Add To Cart
-          </button>
-        )}          <Link href={`/shooping/ProcutDetails/${All.ProductID}`} ><img className='mainimgss' src={All.ProductImage[0]?All.ProductImage[0]:All.ProductImage} alt="" onClick={()=>{
-            }} /></Link>
-            
-          </div>
-          <h1>{All.Name}</h1>
-         <div className='flex gap-4'>
-         <h1 className='text-red'>{All.Price} DT</h1>
-         </div>
-        </div>
-      ))}
-        
-      </div>
-    
-
+    <div className='navvbar'>
+    <Banner />
     </div>
+     
 
+
+      <div className='mr-10 ml-10 mb-20 gap-7'>
+        <h1 className='text-black'>
+          Home / <span className='text-black'> AllProducts</span>
+        </h1>
+        <div className='flex gap-4 flex-wrap shadow-sm'>
+          {All.map((product, i) => (
+            <div key={i} className='border border-gray-600 rounded'>
+              <div
+                className='w-80 h-72 mt-10 flex-wrap border-gray-600 rounded '
+                onMouseEnter={() => {
+                  setShowAddToCart(!showAddToCart);
+                  setIndex(i);
+                }}
+                onMouseLeave={() => {
+                  setShowAddToCart(!showAddToCart);
+                  setIndex(-1);
+                }}
+              >
+                {index === i && showAddToCart && (
+                  <button
+                    className="cursor-pointer w-[320px] h-11 bg-black text-white flex justify-center items-center absolute mt-60"
+                    onClick={() =>
+                      addCart({
+                        NameCart: product.Name,
+                        CartImage: product.ProductImage[0] || product.ProductImage,
+                        Price: product.Price,
+                        Quantity: product.Quantity,
+                        company_idcompany: userId,
+                      })
+                    }
+                  >
+                    Add To Cart
+                  </button>
+                )}
+                <Link href={`/shooping/ProcutDetails/${product.ProductID}`}>
+                  <img className='mainimgss' src={product.ProductImage[0] || product.ProductImage} alt="" />
+                </Link>
+              </div>
+              <h1>{product.Name}</h1>
+              <div className='flex gap-4'>
+                <h1 className='text-red'>{product.Price} DT</h1>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <Footers/>
     </>
-  )
+  );
 }
 
 export default Product;
