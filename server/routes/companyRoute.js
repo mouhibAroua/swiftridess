@@ -27,7 +27,7 @@ router.put('/car/update/:id', CompanyController.updateCar);
 router.put('/company/profile/:id', CompanyController.updateProfile);
 
 // DELETE a user by ID
-router.delete('/car/:id', CompanyController.deleteCar);
+router.delete('/car/delete/:id', CompanyController.deleteCar);
 
 router.delete('/company/:id', CompanyController.deleteCom);
 

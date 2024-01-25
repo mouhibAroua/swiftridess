@@ -15,6 +15,7 @@ import Foot from "../../../Home/footer/page";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import Rating from "../rating/Rating"
+import Available from "../companyInfo/VehicleAvailability"
 interface Car {
   id: string;
   brand: string;
@@ -142,7 +143,7 @@ const CarInfo = ({ carId }: CarInfoProps) => {
               <Company />
               <Date />
               <Rating />
-
+             <Available/>
             </div>
           </div>
 
