@@ -83,7 +83,7 @@ useEffect(() => {
                 className={style.chatProfileSpan}
                 style={{ textAlign: client_id == userId ? "right" : "left" }}
               >
-                {client_id}
+                {client_id.image_user}
               </span>
               <h3 style={{ textAlign: client_id == userId ? "right" : "left" }}>
                 {content}

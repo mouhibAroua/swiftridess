@@ -1,14 +1,16 @@
 .chat_div {
-    height: 100vh;
-    width: 100vw;
+    
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
   }
   .chat_border {
     border: 1px solid red;
     padding: 5px;
+    border-top: 1px solid #ccc;
   }
   .chat_input {
     height: 2rem;
@@ -16,18 +18,35 @@
     padding: 5px;
   }
   .chat_button {
-    height: 2rem;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+  .chat_button:hover{
+    background-color: #f1f1f1;
+    color: #333;
   }
   .chatProfileRight {
     display: flex;
     align-items: center;
     gap: 5px;
+    border-radius: 10px;
     flex-direction: row-reverse;
     margin-bottom: 5px;
+    background-color: #333;
+    color: #fff;
   }
   .chatProfileLeft {
+    background-color: #f1f1f1;
+    color: black;
     display: flex;
     align-items: center;
+    border-radius: 10px;
     gap: 5px;
     margin-bottom: 5px;
   }
