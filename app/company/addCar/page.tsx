@@ -2,6 +2,8 @@
 import axios from "axios";
 import { useState, useRef } from "react";
 import SideNav from "../../company/DashBoard/Sidenav"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Car {
     price: number;
@@ -79,6 +81,16 @@ const addCar=()=>{
         passengers: passengers,
         serialCar: serialCar
       };
+      const notify = () => toast.success('Car added successfully!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
     
       const addNewCar = () => {
         const idcompany = localStorage.getItem("idcompany")
@@ -89,7 +101,7 @@ const addCar=()=>{
         axios
           .post(`http://localhost:3000/api/car/add`, newCar)
           .then(() => {
-            alert('Car added');
+            notify()
           })
           .catch((err) => {
             console.log(err);
@@ -106,7 +118,7 @@ const addCar=()=>{
        <h1 className="text-center font-bold-5xl text-5xl  ml-50 text-white ">Add New Vehicle</h1>
         <div className="grid grid-cols-2 ">
         <div className="grid ml-10 mt-[50px] space-y-4 ">
-            
+        <ToastContainer/>
     <div className="grid grid-cols-2 ">      
   <label  className="block text-white text-lg"
     >Price/Day:</label>
@@ -157,7 +169,7 @@ const addCar=()=>{
        </div>
  <div className="grid grid-cols-2">
   <label  className="block  text-white  text-lg"
-    >Registration:</label>
+    >Year:</label>
   
     <input
     onChange={(e)=>setRegistration(e.target.value)}
@@ -218,9 +230,9 @@ const addCar=()=>{
   <select className="block w-[300px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800" 
   id="occasion" value={occasion}
           onChange={e => setOccassion(e.target.value)}>
-          <option value="Daily use">Daily Use</option>
-          <option value="Marriage">Marriage</option>
-          <option value="Transporter">Transporter</option>
+          <option value="Daily use">daily</option>
+          <option value="Marriage">wedding</option>
+          <option value="Transporter">transporter</option>
        </select>
        </div>
        <div className="grid grid-cols-2">

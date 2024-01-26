@@ -20,14 +20,6 @@ const Feedback = sequelize.define('feedback', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  company_idcompany: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  verification: {
-    type: DataTypes.TINYINT,
-    allowNull: true,
-  },
 }, {
   tableName: 'feedback',
   indexes: [
@@ -35,23 +27,12 @@ const Feedback = sequelize.define('feedback', {
       name: 'fk_feedback_client1_idx',
       fields: ['client_id'],
     },
-    {
-      name: 'fk_feedback_company1_idx',
-      fields: ['company_idcompany'],
-    },
   ],
 });
 
 Feedback.belongsTo(User, {
   foreignKey: 'client_id',
   as: 'client',
-  onDelete: 'NO ACTION',
-  onUpdate: 'NO ACTION',
-});
-
-Feedback.belongsTo(Company, {
-  foreignKey: 'company_idcompany',
-  as: 'company',
   onDelete: 'NO ACTION',
   onUpdate: 'NO ACTION',
 });

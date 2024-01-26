@@ -18,39 +18,42 @@ interface Cars {
   idcompany: string;
 }
 
-const AllCars: React.FC<Cars> = ({ idcompany }) => {
-  // const id = typeof window !== 'undefined' ? localStorage.getItem("idcompany"): null
+const AllCars: React.FC<Cars> = () => {
+  const id = typeof window !== 'undefined' ? localStorage.getItem("idcompany"): null
   const [companyCars, setCompanyCars] = useState<Cars[]>([]);
   
   useEffect(() => {
+    var currentUrl = window.location.href;
+    var endPoint=currentUrl.split("/")
+    var idcompany=endPoint[endPoint.length-1]
     axios
       .get(`http://localhost:3000/api/company/allcars/${idcompany}`)
       
       
       .then((res) => {
-        
+        console.log("rr",idcompany);
         setCompanyCars(res.data.carss);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [idcompany]);
+  }, []);  
   return (
     <div>
       <Navigation/>
-      <h1 className="text-center font-bold text-5xl mt-36">
+      <h1 className="text-center font-bold text-5xl mt-24">
         {" "}
         Choose your favorite car
       </h1>
       <div className="mt-10 container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-[250px] gap-x-[200px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {companyCars.map((car) => (
             <div
               key={car.idcars}
-              className="bg-white rounded-lg shadow-md h-[200px] w-[350px] "
+              className="bg-white rounded-lg shadow-md h-[400px] w-[350px]"
             >
               <img
-                className="w-[350px] h-[200px] object-fill"
+                className="object-fill"
                 src={car.image[0]}
                 alt={`Car ${car.brand}`}
               />

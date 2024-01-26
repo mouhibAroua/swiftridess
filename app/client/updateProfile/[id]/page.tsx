@@ -5,7 +5,8 @@ import { useParams } from "next/navigation";
 import bcrypt from "bcryptjs"
 import Navigation from "@/app/Home/navbar/page";
 
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface Client {
     id:string|null;
     fullName: string;
@@ -14,7 +15,16 @@ interface Client {
     email: string;
     password: string
   }
-
+  const notify = () => toast.success('You successfully updated your account !', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    });
 const UpdateProfile=()=>{
     const [imgUrl, setImgUrl] = useState<string>("");
     const [fullName, setFullName] = useState<string>("")
@@ -80,6 +90,7 @@ const UpdateProfile=()=>{
     
           const response = await axios.put(`http://localhost:3000/api/users/${userId}`, updatedUser);
           console.log(response.data, 'res');
+          notify()
         } catch (error) {
           console.error(error);
         }
@@ -95,6 +106,7 @@ return(
   {(id===userId)&&
     <div>
       <Navigation/>
+      <ToastContainer/>
   <div className="flex justify-between">
                 <div className="flex">
 <div className=" bg-slate ml-80 mt-40 w-[1000px] h-[600px] flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931] ">
@@ -167,7 +179,9 @@ return(
                         <div className="flex justify-end">
                             <button type="submit"
                                 className=" bg-gray-800 text-white border border-blue-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
-                                onClick={()=>{modifyProfile({id:userId,fullName:fullName,phoneNumber:phoneNumber,email:email,password:newPassword,image_user:imgUrl})}}>
+                                onClick={()=>{modifyProfile({id:userId,fullName:fullName,phoneNumber:phoneNumber,email:email,password:newPassword,image_user:imgUrl})
+                                window.location.reload();
+                                }}>
                                 Save</button>
                         </div>
                         
