@@ -89,3 +89,4 @@ const AllCars: React.FC<Cars> = () => {
   );
 };
 export default AllCars;
+

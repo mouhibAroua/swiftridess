@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import './signup.css'
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function RegisterForm() {
@@ -18,7 +20,16 @@ export default function RegisterForm() {
   const [laltitude, setLatitude] = useState<string>("");
 
   const router = useRouter();
-
+  const notify = () => toast.success('Your Account Created Succesfuly! please log in', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    });
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -59,6 +70,7 @@ export default function RegisterForm() {
       });
 
       if (res.ok) {
+        notify()
         router.push("/LoginCompany");
       } else {
         console.log("Company registration failed.",error);
