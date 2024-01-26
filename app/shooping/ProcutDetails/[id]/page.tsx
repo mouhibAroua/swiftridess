@@ -1,160 +1,112 @@
-"use client"
-import { useState,useEffect } from 'react';
-// import { useSelector } from 'react-redux';
-import ReactStars from 'react-stars'
-import { CiSquarePlus } from "react-icons/ci";
-import { CiSquareMinus } from "react-icons/ci";
-import { TfiReload } from "react-icons/tfi";
-import { CiDeliveryTruck } from "react-icons/ci";
-import '../../shopss.css'
-import Quantity from "./quantity"
-import Product from '../../Product/page';
-import axios from 'axios';
-import '../pro.css'
-import Nav from '../../navBar/page'
-import Banner from "../../navBar/banner";
+"use client";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Nav from "../../navBar/banner";
+import Foot from "../../../Home/footer/page";
+import "./product.css";
+import Stars from "./stars";
+import Quantity from "./quantity";
+import { useCartStore } from "../../stores/CartStore";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
-interface Product {
-  ProductID: number;
-  Name: string;
-  ProductImage: string[];
-  Price: string;
-  Description: string;
-  Availability:string;
-  Quantity:number;
 
-}
-const ProductDetails: React.FC = () => {
-  const [inp, setInp] = useState<number>(0);
-  const [hoveredImage, setHoveredImage] = useState(null);
-  const [product, setProduct] = useState<Product>({});
+
+
+
+const ProductInfo: React.FC = () => {
+  const [product, setProduct] = useState<any>(null);
+
   const userId = localStorage.getItem('idcompany');
-  const handleImageHover = (imageSrc: string): void => {
-    setHoveredImage(imageSrc);
-  };
-  const addCart=(obj:object)=>{
-    axios.post("http://localhost:3000/api/cart/addCart",obj)
-    .then((res)=>{console.log(res)})
-    .catch((err)=>console.log(err))
-  }
-  const handleImageLeave = () => {
-    setHoveredImage(null);
-  };
-const ratingChanged = (newRating:number) => {
-  console.log(newRating)
- 
-}
-
-useEffect(() => {
   var currentUrl = window.location.href;
-  var endPoint=currentUrl.split("/")
-  var i=endPoint[endPoint.length-1]
-  axios
-    .get<Product>(`http://localhost:3000/api/products/getOneProd/${i}`)
-    .then((res) => {
-      setProduct(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}, []);
-
-console.log(product);
+  var endPoint = currentUrl.split("/");
+  var oneProduct = endPoint[endPoint.length - 1];
+  const cartStore = useCartStore();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/products/getOneProd/${oneProduct}`
+        );
+        setProduct(response.data);
+      } catch (error) {
+        console.error("Error fetching product information:", error);
+      }
+    };
+    fetchData();
+  }, []);
+  const addCart = (obj: object) => {
+    cartStore.setCart([...cartStore.cart, obj]);
+    axios.post("http://localhost:3000/api/cart/addCart", obj)
+      .then((res) => { console.log(res) })
+      .catch((err) => console.log(err))
+  }
 
   return (
-  
-    <>
-    <div className='navbar-container '>
-    <Nav />
-    </div>
-     
-<div className="bg-white flex flex-row justify-center w-full">
-<div className="bg-white w-[1437px] h-[1077px] ">
-  <div className=''>
-<div className="absolute w-[500px] h-[600px] top-[204px] left-[342px] bg-secondary rounded-[4px] overflow-hidden">
-     <img className=" w-[446px] h-[546px]  left-[27px] "  src={hoveredImage || product.ProductImage&&product.ProductImage[0]} alt='Image0'  />
-    </div>
-    <div className="">
-      {/* Map through images and display smaller images */}
-      {product.ProductImage && product.ProductImage.map((imageSrc, index) => (
-        <img
-          key={index}
-          alt='Image'
-          className="otherimgs"
-          onMouseOver={() => handleImageHover(imageSrc)}
-          onMouseLeave={handleImageLeave}
-        />
-      ))}
-    </div>
-    </div>
-  
-   
-    <Quantity/>
+    <div>
+      <Nav />
+      {product ? (
+        <div>
+          <h2 className="name">{product.Name}</h2>
+          <p className="desc"> {product.Description}</p>
+          <p className="price">{product.Price}DT</p>
+          <div className="stars ">
+            <Stars />
+          </div>
+          <p className="ratings">(150 reviews) </p>
+          <Quantity />
+          {product.ProductImage && (
+            <div>
+              <img
+                className="imageprod"
+                src={product.ProductImage}
+                alt="Product"
+              />
+            </div>
+          )}
+          <button className="CartBtn"   onClick={() =>
+                      addCart({
+                        NameCart: product.Name,
+                        CartImage:  product.ProductImage,
+                        Price: product.Price,
+                        Quantity: product.Quantity,
+                        company_idcompany: userId,
+                      })
+                    }>
+            <span className="IconContainer">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="1em"
+                viewBox="0 0 576 512"
+                fill="rgb(17, 17, 17)"
+                className="cart"
+              >
+                <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"></path>
+              </svg>
+            </span>
+            <p className="text">Add to Cart</p>
+          </button>
+          <div className="wish">
+            {" "}
+            <FavoriteIcon />{" "}
+          </div>
+          <img
+            className="deli"
+            src="https://images2.imgbox.com/2f/4c/gm8r8ztx_o.png"
+            alt=""
+          ></img>
+                    <img
+            className="related"
+            src="https://images2.imgbox.com/5e/0e/2opnK56s_o.png"
+            alt=""
+          ></img>
 
-
-    <div className="title">
-{product&&product.Name}
-</div>
-<div className="absolute top-[280px] left-[910px] font-heading-24px-semibold font-[number:var(--heading-24px-semibold-font-weight)] text-text-2 text-[length:var(--heading-24px-semibold-font-size)] tracking-[var(--heading-24px-semibold-letter-spacing)] leading-[var(--heading-24px-semibold-line-height)] whitespace-nowrap [font-style:var(--heading-24px-semibold-font-style)]">
-{product&&product.Description}
-</div>
-<div className="absolute top-[350px] left-[910px] font-heading-24px-regular font-[number:var(--heading-24px-regular-font-weight)] text-text-2 text-[length:var(--heading-24px-regular-font-size)] tracking-[var(--heading-24px-regular-letter-spacing)] leading-[var(--heading-24px-regular-line-height)] whitespace-nowrap [font-style:var(--heading-24px-regular-font-style)]">
-{product&& product.Price &&product.Price}DT
+          <Foot/>
         </div>
-<div className="inline-flex items-start gap-[16px] absolute top-[314px] left-[910px]">
-<div className="inline-flex items-start gap-[8px] relative flex-[0_0_auto]">
-<ReactStars className="!relative !flex-[0_0_auto]"
- count={5} 
- onChange={ratingChanged}
- size={24}
- color2={'#ffd700'}
- style={{'margin-left':'15px'}} />
-  <div className=" mb-10 relative w-fit mt-[9px] opacity-100 font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-text-2 text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] whitespace-nowrap [font-style:var(--title-14px-regular-font-style)]">
-              (150 Reviews)
-            </div>
-            </div>
-            <div className="inline-flex items-center gap-[16px] relative flex-[0_0_auto]">
-            <div className="relative w-fit mt-[9px] opacity-100 font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-button-1 text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] whitespace-nowrap [font-style:var(--title-14px-regular-font-style)]">
-              In Stock
-            </div>
-     </div>
-     </div>
-        <button onClick={()=>{addCart({NameCart:product.Name,CartImage:product.ProductImage[0],Price:product.Price,Quantity:product.Quantity,userUserID:userId})}} button="small" className="!absolute !left-[1072px] !top-[390px] bg-red rounded w-48 h-12 text-white"  hover={false}    >Add To Cart</button>
-        <div className="absolute w-[399px] h-[180px] top-[503px] left-[897px] rounded-[4px] overflow-hidden border border-solid ">
-          <div className="absolute w-[399px] h-px top-[90px] left-0 opacity-50">
-            <img className="absolute w-[399px] h-px -top-px left-0 object-cover" alt="Line" src="line-1.svg" />
-          </div>
-          <div className="inline-flex items-center gap-[16px] absolute top-[24px] left-[16px]">
-            <CiDeliveryTruck  className="!relative !w-[40px] !h-[40px]" />
-            <div className="inline-flex flex-col items-start gap-[8px] relative flex-[0_0_auto]">
-              <div className="relative w-fit mt-[-1.00px] font-title-16px-medium font-[number:var(--title-16px-medium-font-weight)] text-white text-[length:var(--title-16px-medium-font-size)] tracking-[var(--title-16px-medium-letter-spacing)] leading-[var(--title-16px-medium-line-height)] whitespace-nowrap [font-style:var(--title-16px-medium-font-style)]">
-                Free Delivery
-              </div>
-              <p className="relative w-fit [font-family:'Poppins-Medium',Helvetica] font-medium text-white text-[12px] tracking-[0] leading-[18px] underline whitespace-nowrap">
-                Enter your postal code for Delivery Availability
-              </p>
-              </div>
-          </div>
-          <div className="inline-flex items-center gap-[16px] absolute top-[106px] left-[16px]">
-            <TfiReload  className="!relative !w-[40px] !h-[40px]" />
-            <div className="inline-flex flex-col items-start gap-[8px] relative flex-[0_0_auto]">
-              <div className="relative w-fit mt-[-1.00px] font-title-16px-medium font-[number:var(--title-16px-medium-font-weight)] text-white text-[length:var(--title-16px-medium-font-size)] tracking-[var(--title-16px-medium-letter-spacing)] leading-[var(--title-16px-medium-line-height)] whitespace-nowrap [font-style:var(--title-16px-medium-font-style)]">
-                Return Delivery
-              </div>
-              <p className="relative w-fit [font-family:'Poppins-Medium',Helvetica] font-medium text-white text-[12px] tracking-[0] leading-[18px] whitespace-nowrap">
-                <span className="font-title-12px-medium font-[number:var(--title-12px-medium-font-weight)] text-white text-[length:var(--title-12px-medium-font-size)] tracking-[var(--title-12px-medium-letter-spacing)] leading-[var(--title-12px-medium-line-height)] [font-style:var(--title-12px-medium-font-style)]">
-                  Free 30 Days Delivery Returns.{" "}
-                </span>
-                <span className="underline">Details</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      ) : (
+        <p>Loading product information...</p>
+      )}
     </div>
-    <img className="footerssss" src="https://images2.imgbox.com/f6/b7/JjIVqTxd_o.png" alt="" width={1550} height={1000} />
-
-    </>
-);
+  );
 };
- export default ProductDetails;
+
+export default ProductInfo;

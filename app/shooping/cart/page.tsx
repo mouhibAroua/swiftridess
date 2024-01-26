@@ -1,12 +1,11 @@
 "use client"
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MdDelete } from "react-icons/md";
 import { useRouter} from 'next/navigation';
 import "../shopss.css"
-
-
+import Nav from '../navBar/page'
+import Banar from '../navBar/banner'
 function Cart() {
   const userId = localStorage.getItem('idcompany');
   const [cartData, setCartData] =  useState<[]>([]);
@@ -32,15 +31,10 @@ router.push(path)
       setRefresh(!refresh)
       
   }
-  
-  
-
   useEffect(() => {
     axios.get(`http://localhost:3000/api/cart/UserCart/${userId}`)
       .then((response) => {
-        console.log('houss', response.data);
         setCartData(response.data);
-       
       })
       .catch((error) => console.log(error));
   }, [refresh])
@@ -58,12 +52,13 @@ router.push(path)
     }
   };
 
+
   return (
     <div>
+      <Banar/>
+   <Nav/>
       <div className='ml-40 mt-20'>
-        <h1 className='text-gray-300'>
-          Home / <span className='text-black'> Cart</span>
-        </h1>
+        
 
         <div className='grid grid-cols-4 mt-10 shadow items-center h-14 w-5/6 '>
           <h1 className='ml-20'>Product</h1>
@@ -93,25 +88,23 @@ router.push(path)
           
         ))}
 
-
-
         <div className='mt-20 '>
           <input className='border-gray-300 border rounded w-48 h-12 text-center text-sm' type="text" placeholder='Coupon Code' />
-          <button className='ml-3 bg-red w-40 h-12 border rounded text-white text-sm'>Apply Coupon</button>
+          <button className='ml-3 bg-gray-600 w-40 h-12 border rounded text-white text-sm' onClick={()=>handleCouponApply()}>Apply Coupon</button>
         </div>
 
         <img className="imga" src="https://images2.imgbox.com/fc/97/c24stbXg_o.png" alt=""></img>
 
-          <h3 className='sub'>Subtotal: {cartData.reduce((total, item) => total + calculateSubtotal(item.quantity || 1, item.Price), 0)}$</h3>
+          <h3 className='sub'>Subtotal: {cartData.reduce((total, item) => total + calculateSubtotal(item.quantity || 1, item.Price), 0)}DT</h3>
           <br/>
           <h3 className='sub'>Shipping: Free</h3>
           <br/>
-          <h3 className='sub'>Total: {cartData.reduce((total, item) => total + calculateSubtotal(item.quantity || 1, item.Price), 0)}$</h3>
+          <h3 className='sub'>Total: {cartData.reduce((total, item) => total + calculateSubtotal(item.quantity || 1, item.Price), 0)}DT</h3>
           <br/>
 
           <button
-          onClick={()=>navigate('/shooping/paiement')} 
-          className=' bg-red w-40 h-12 border rounded text-white text-sm' id='check'>Checkout</button>
+          onClick={()=>navigate('/shooping/paiment')} 
+          className=' bg-gray-600 w-40 h-12 border rounded text-white text-sm' id='check'>Checkout</button>
         </div>
       </div>
   );

@@ -26,7 +26,7 @@ interface Product {
 const ProductCard: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const cartStore = useCartStore();
-
+  const userId = localStorage.getItem('idcompany');
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -41,7 +41,12 @@ const ProductCard: React.FC = () => {
 
     fetchProducts();
   }, []);
-
+  const addCart = (obj: object) => {
+    cartStore.setCart([...cartStore.cart, obj]);
+    axios.post("http://localhost:3000/api/cart/addCart", obj)
+      .then((res) => { console.log(res) })
+      .catch((err) => console.log(err))
+  }
   return (
     <div>
       <Banner />
@@ -59,16 +64,29 @@ const ProductCard: React.FC = () => {
                     <div
                       className="product-img"
                       style={{ backgroundImage: `url(${product.ProductImage})` }}
-                    ></div>
+                    >        </div>
+                    
                   </a>
                 </div>
                 <div className="product-info">
+                 
                   <h2 className="product-title">{product.Name}</h2>
                   <p className="product-description">{product.Description}</p>
                   {product.Price !== undefined && (
                     <p className="product-price">{`${product.Price} DT`}</p>
-                  )}
+                    
+                  )} <button className="float-right -mt-10 border rounded  bg-black text-white h-[40px] w-[100px]"  onClick={() =>
+                    addCart({
+                      NameCart: product.Name,
+                      CartImage: product.ProductImage,
+                      Price: product.Price,
+                      Quantity: product.Quantity,
+                      company_idcompany: userId,
+                    })
+                  }>add to cart</button>
+                  
                 </div>
+                
               </div>
             ))}
           </div>
