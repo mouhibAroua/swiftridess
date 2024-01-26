@@ -7,6 +7,7 @@ import Home from "../../chat/page"
 import './contact.css'
 import PersonIcon from '@mui/icons-material/Person';
 import SideNav from "../DashBoard/Sidenav"
+import { log } from "console";
 interface Chat {
     client_id: number;
     roomId: number;
@@ -61,6 +62,7 @@ console.log("chat",allChat)
             fetchUsers();
         }
     }, [allChat]);
+console.log("aaaaa",selectedUserId);
 
     const handleUserClick = (userId: number) => {
         axios.get(`http://localhost:3000/api/chats/user/${selectedUserId}/company/${companyId}`).then(res=>{
@@ -98,7 +100,7 @@ console.log("chat",allChat)
                 ))
             }
             <Modal open={modalOpen} onClose={() => setModalOpen(false)} center>
-                {selectedUserId && <Home userId={selectedUserId}  idRoom={oneChat[0]?oneChat[0].roomId:""}/>}
+                {selectedUserId && <Home user={selectedUserId}  idRoom={oneChat[0]?oneChat[0].roomId:""}/>}
             </Modal>
         </div>
     );

@@ -13,7 +13,7 @@ interface FeedbackDialogProps {
   onClose: () => void;
   onSubmit: (content: string, clientId: number) => void;
 }
-
+const id = localStorage.getItem('id');
 const FeedbackDialog: React.FC<FeedbackDialogProps> = ({ open, onClose, onSubmit }) => {
   const [content, setContent] = useState('');
   const [clientId, setClientId] = useState<number>(() => {
@@ -88,9 +88,11 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onSubmit }) => {
 
   return (
     <div>
+      {!id?"":
       <Button className='add' variant="outlined" color="primary" onClick={handleOpen}>
         Send FeedBack
       </Button>
+}
       <FeedbackDialog open={open} onClose={handleClose} onSubmit={onSubmit} />
     </div>
   );
