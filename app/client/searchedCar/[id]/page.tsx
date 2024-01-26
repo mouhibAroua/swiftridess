@@ -5,6 +5,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import Link from "next/link";
+import Navigation from "@/app/Home/navbar/page";
 
 interface Cars {
   idcars: string;
@@ -39,7 +40,8 @@ const AllCars: React.FC<Cars> = () => {
   }, []);  
   return (
     <div>
-      <h1 className="text-center font-bold text-5xl mt-20">
+      <Navigation/>
+      <h1 className="text-center font-bold text-5xl mt-24">
         {" "}
         Choose your favorite car
       </h1>
@@ -48,29 +50,29 @@ const AllCars: React.FC<Cars> = () => {
           {companyCars.map((car) => (
             <div
               key={car.idcars}
-              className="bg-white rounded-lg shadow-md h-[400px] w-[300px]"
+              className="bg-white rounded-lg shadow-md h-[400px] w-[350px]"
             >
               <img
-                className="w-[300px] h-[400px]"
+                className="object-fill"
                 src={car.image[0]}
                 alt={`Car ${car.brand}`}
               />
               <div className="px-4 py-2 bg-gray-200 rounded-t-lg">
-                <h1 className="text-lg font-semibold">{car.brand}</h1>
+                <h1 className="text-lg text-black font-semibold">{car.brand}</h1>
                 <div className="space-x-4">
-                  <p className="inline-block">
+                  <p className="text-black inline-block">
                     <PeopleIcon /> {car.passengers}
                   </p>
-                  <p className="text-gray-600 inline-block">
+                  <p className="text-black inline-block">
                     <LocalGasStationIcon /> {car.fuelType}
                   </p>
-                  <p className="inline-block">
+                  <p className="text-black inline-block">
                     <DirectionsCarIcon /> {car.type}
                   </p>
                 </div>
               </div>
               <div className="p-4">
-                <p className="text-2xl font-semibold mb-2">{car.price}DT/Day</p>
+                <p className="text-2xl text-black font-semibold mb-2">{car.price}DT/Day</p>
                 <div className="grid grid-cols-2 gap-2">
                   <Link target = "_blank" href={`/client/VehicleDetails/${car.idcars}`}>
                     <p className="bg-gray-400 text-white font-bold py-2 px-4 rounded">

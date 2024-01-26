@@ -169,7 +169,7 @@ const addCar=()=>{
        </div>
  <div className="grid grid-cols-2">
   <label  className="block  text-white  text-lg"
-    >Registration:</label>
+    >Year:</label>
   
     <input
     onChange={(e)=>setRegistration(e.target.value)}
@@ -230,9 +230,9 @@ const addCar=()=>{
   <select className="block w-[300px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800" 
   id="occasion" value={occasion}
           onChange={e => setOccassion(e.target.value)}>
-          <option value="Daily use">Daily Use</option>
-          <option value="Marriage">Marriage</option>
-          <option value="Transporter">Transporter</option>
+          <option value="Daily use">daily</option>
+          <option value="Marriage">wedding</option>
+          <option value="Transporter">transporter</option>
        </select>
        </div>
        <div className="grid grid-cols-2">

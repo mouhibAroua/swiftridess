@@ -3,7 +3,6 @@ import { useState, useRef} from "react"
 import axios from "axios"
 import SideNav from "../../DashBoard/Sidenav"
 import { useParams } from "next/navigation"
-import NotFound from "@/app/notFound/page"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -171,7 +170,7 @@ const UpdateCar = ({ carData }: { carData: Car | null }) => {
        </div>
  <div className="grid grid-cols-2">
   <label  className="block  text-white  text-lg"
-    >Registration:</label>
+    >Year:</label>
   
     <input
     onChange={(e)=>setRegistration(e.target.value)}
@@ -208,13 +207,12 @@ const UpdateCar = ({ carData }: { carData: Car | null }) => {
   <div className="grid grid-cols-2">
   <label  className="block  text-white  text-lg"
     >Transmission:</label>
- 
-    <input
-    onChange={(e)=>setTransmission(e.target.value)}
-      type="text"
-      name="inputname"
-      className="block w-[300px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800"
-    />
+ <select className="block w-[300px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800 " 
+  id="transmission" value={transmission}
+  onChange={(e)=>setTransmission(e.target.value)}>
+          <option value="Automatic">Automatic</option>
+          <option value="Manual">Manual</option>
+       </select>
  </div>
   
   <div className="grid grid-cols-2">
@@ -224,9 +222,9 @@ const UpdateCar = ({ carData }: { carData: Car | null }) => {
   <select className="block w-[300px] rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800" 
   id="occasion" value={occasion}
           onChange={e => setOccassion(e.target.value)}>
-          <option value="Daily use">Daily Use</option>
-          <option value="Marriage">Marriage</option>
-          <option value="Transporter">Transporter</option>
+          <option value="Daily use">daily</option>
+          <option value="Marriage">wedding</option>
+          <option value="Transporter">transporter</option>
        </select>
        </div>
        <div className="grid grid-cols-2">
