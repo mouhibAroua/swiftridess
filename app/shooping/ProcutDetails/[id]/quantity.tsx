@@ -71,8 +71,8 @@ const StyledInputRoot = styled('div')(
   flex-flow: row nowrap;
   justify-content: center;
   align-items: flex-start;
-  margin-Left: 450px; 
-  margin-Top: 130px; 
+  margin-Left: 300px; 
+  margin-Top: 160px; 
 `,
 );
 
