@@ -33,4 +33,9 @@ router.delete('/company/reservation/delete', UserController.deleteReservation);
 router.post('/company/reservationdate/:vehicleId', UserController.reserveVehicle);
 
 
+router.get('/user/feedback', UserController.getAllFeedBack);
+
+
+router.post('/user/feedback', UserController.createFeedback);
+
 module.exports = router;
